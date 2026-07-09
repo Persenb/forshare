@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>大学物理速查表</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="大学物理速查表">大学物理速查表</h1>
+<hr />
+<h2 id="一刚体力学">一、刚体力学</h2>
+<h3 id="刚体转动的能量">1. 刚体转动的能量</h3>
+<ul>
+<li><strong>转动动能：</strong> <span class="math inline">\(E_k =
+\dfrac{1}{2}J\omega^2\)</span></li>
+<li><strong>动能定理：</strong> <span class="math inline">\(\int M
+d\theta = \dfrac{1}{2}J\omega_2^2 -
+\dfrac{1}{2}J\omega_1^2\)</span></li>
+<li><strong>滚动（纯滚动）：</strong> <span class="math inline">\(E_k =
+\dfrac{1}{2}mv_c^2 + \dfrac{1}{2}J\omega^2,\quad v_c = \omega
+R\)</span></li>
+</ul>
+<h3 id="角动量定理">2. 角动量定理</h3>
+<ul>
+<li><strong>质点角动量：</strong> <span class="math inline">\(\vec{L} =
+\vec{r} \times m\vec{v}\)</span></li>
+<li><strong>刚体定轴角动量：</strong> <span class="math inline">\(L =
+J\omega\)</span></li>
+<li><strong>角动量定理：</strong> <span class="math inline">\(M =
+\dfrac{dL}{dt} = J\alpha\)</span></li>
+<li><strong>角动量守恒：</strong> <span
+class="math inline">\(M_{\text{外}} = 0 \Rightarrow J_1\omega_1 =
+J_2\omega_2\)</span></li>
+</ul>
+<h3 id="转动定律-m-jalpha">3. 转动定律 <span class="math inline">\(M =
+J\alpha\)</span></h3>
+<ul>
+<li><span class="math inline">\(M = J\alpha\)</span>（类比 <span
+class="math inline">\(F = ma\)</span>）</li>
+<li>解题：平动列 <span class="math inline">\(F=ma\)</span>，转动列 <span
+class="math inline">\(M=J\alpha\)</span>，约束 <span
+class="math inline">\(a = R\alpha\)</span></li>
+</ul>
+<hr />
+<h2 id="二静电场">二、静电场</h2>
+<h3 id="e-的计算式">4. <span class="math inline">\(E\)</span>
+的计算式</h3>
+<ul>
+<li><strong>定义：</strong> <span class="math inline">\(\vec{E} =
+\vec{F}/q_0\)</span></li>
+<li><strong>点电荷：</strong> <span class="math inline">\(E =
+\dfrac{q}{4\pi\varepsilon_0 r^2}\)</span></li>
+<li><strong>叠加原理：</strong> <span class="math inline">\(\vec{E} =
+\sum\vec{E}_i\)</span> 或 <span class="math inline">\(\vec{E} = \int
+d\vec{E}\)</span></li>
+<li><strong>常见分布：</strong>
+<ul>
+<li>无限长均匀带电直线：<span class="math inline">\(E =
+\dfrac{\lambda}{2\pi\varepsilon_0 r}\)</span></li>
+<li>无限大均匀带电平面：<span class="math inline">\(E =
+\dfrac{\sigma}{2\varepsilon_0}\)</span></li>
+<li>均匀带电圆环轴线：<span class="math inline">\(E =
+\dfrac{qx}{4\pi\varepsilon_0(R^2+x^2)^{3/2}}\)</span></li>
+</ul></li>
+</ul>
+<h3 id="电偶极子">5. 电偶极子</h3>
+<ul>
+<li><strong>电偶极矩：</strong> <span class="math inline">\(\vec{p} =
+q\vec{l}\)</span>（<span class="math inline">\(-q \to +q\)</span>）</li>
+<li><strong>均匀外场中力矩：</strong> <span
+class="math inline">\(\vec{M} = \vec{p} \times \vec{E}\)</span>，<span
+class="math inline">\(M = pE\sin\theta\)</span></li>
+<li><strong>电势能：</strong> <span class="math inline">\(W =
+-\vec{p}\cdot\vec{E} = -pE\cos\theta\)</span></li>
+<li><strong>轴线上电场：</strong> <span class="math inline">\(E =
+\dfrac{1}{4\pi\varepsilon_0}\dfrac{2p}{r^3}\)</span></li>
+<li><strong>中垂面上电场：</strong> <span class="math inline">\(E =
+\dfrac{1}{4\pi\varepsilon_0}\dfrac{p}{r^3}\)</span></li>
+</ul>
+<h3 id="电场的高斯定理">6. 电场的高斯定理</h3>
+<ul>
+<li><strong>真空：</strong> <span class="math inline">\(\oint
+\vec{E}\cdot d\vec{S} =
+\dfrac{q_{\text{内}}}{\varepsilon_0}\)</span></li>
+<li><strong>介质：</strong> <span class="math inline">\(\oint
+\vec{D}\cdot d\vec{S} = q_{\text{内}}\)</span>，<span
+class="math inline">\(\vec{D} =
+\varepsilon_0\varepsilon_r\vec{E}\)</span></li>
+<li>选择高斯面：球对称→同心球面、轴对称→同轴圆柱面、面对称→柱形高斯面</li>
+</ul>
+<h3 id="电场的环路定理">7. 电场的环路定理</h3>
+<ul>
+<li><span class="math inline">\(\oint \vec{E}\cdot d\vec{l} = 0\)</span>
+→ 静电场是保守场</li>
+<li>电场力做功与路径无关，可引入电势</li>
+</ul>
+<h3 id="电势的计算">8. 电势的计算</h3>
+<ul>
+<li><strong>定义：</strong> <span class="math inline">\(U_P =
+\displaystyle\int_P^{\infty} \vec{E}\cdot d\vec{l}\)</span></li>
+<li><strong>点电荷：</strong> <span class="math inline">\(U =
+\dfrac{q}{4\pi\varepsilon_0 r}\)</span></li>
+<li><strong>叠加原理（标量）：</strong> <span class="math inline">\(U =
+\sum U_i\)</span> 或 <span class="math inline">\(U = \int
+dU\)</span></li>
+<li><strong>均匀带电球壳：</strong> 内部 <span class="math inline">\(U =
+\dfrac{q}{4\pi\varepsilon_0 R}\)</span>（等势），外部 <span
+class="math inline">\(U = \dfrac{q}{4\pi\varepsilon_0 r}\)</span></li>
+<li><strong>电场与电势关系：</strong> <span
+class="math inline">\(\vec{E} = -\nabla U\)</span>，<span
+class="math inline">\(E_x = -\partial U/\partial x\)</span></li>
+</ul>
+<h3 id="静电平衡">9. 静电平衡</h3>
+<ul>
+<li><strong>条件：</strong> 导体内部 <span class="math inline">\(E =
+0\)</span>，导体是等势体</li>
+<li><strong>电荷分布：</strong> 只在外表面，曲率越大 <span
+class="math inline">\(\sigma\)</span> 越大</li>
+<li><strong>表面附近：</strong> <span class="math inline">\(E =
+\dfrac{\sigma}{\varepsilon_0}\)</span>，方向垂直表面</li>
+<li><strong>空腔导体（静电屏蔽）：</strong>
+内表面无电荷，腔内无电场</li>
+</ul>
+<h3 id="静电能与电场能量密度">10. 静电能与电场能量密度</h3>
+<ul>
+<li><strong>电容器储能：</strong> <span class="math inline">\(W =
+\dfrac{1}{2}QU = \dfrac{1}{2}CU^2 = \dfrac{Q^2}{2C}\)</span></li>
+<li><strong>电场能量密度：</strong> <span class="math inline">\(w_e =
+\dfrac{1}{2}\varepsilon_0\varepsilon_r E^2 =
+\dfrac{1}{2}\vec{E}\cdot\vec{D}\)</span></li>
+<li><strong>总静电能：</strong> <span class="math inline">\(W_e =
+\displaystyle\int_V \dfrac{1}{2}\varepsilon_0 E^2 dV\)</span></li>
+</ul>
+<hr />
+<h2 id="三静磁场">三、静磁场</h2>
+<h3 id="毕奥-萨伐尔定律">11. 毕奥-萨伐尔定律</h3>
+<ul>
+<li><strong>微分：</strong> <span class="math inline">\(d\vec{B} =
+\dfrac{\mu_0}{4\pi}\dfrac{Id\vec{l}\times\vec{r}}{r^3}\)</span></li>
+<li><strong>积分：</strong> <span class="math inline">\(\vec{B} =
+\dfrac{\mu_0}{4\pi}\displaystyle\int\dfrac{Id\vec{l}\times\vec{r}}{r^3}\)</span></li>
+<li><strong>无限长直导线：</strong> <span class="math inline">\(B =
+\dfrac{\mu_0 I}{2\pi a}\)</span></li>
+<li><strong>圆环圆心：</strong> <span class="math inline">\(B =
+\dfrac{\mu_0 I}{2R}\)</span></li>
+<li><strong>圆弧圆心：</strong> <span class="math inline">\(B =
+\dfrac{\mu_0 I}{2R}\cdot\dfrac{\theta}{2\pi}\)</span></li>
+</ul>
+<h3 id="密绕螺线管磁场">12. 密绕螺线管磁场</h3>
+<ul>
+<li><strong>内部：</strong> <span class="math inline">\(B = \mu_0 n
+I\)</span>（<span class="math inline">\(n = N/L\)</span>）</li>
+<li><strong>端点：</strong> <span class="math inline">\(B =
+\dfrac{1}{2}\mu_0 n I\)</span></li>
+<li><strong>外部：</strong> <span class="math inline">\(\approx
+0\)</span></li>
+</ul>
+<h3 id="安培环路定理">13. 安培环路定理</h3>
+<ul>
+<li><span class="math inline">\(\oint \vec{B}\cdot d\vec{l} = \mu_0 \sum
+I_{\text{内}}\)</span></li>
+<li>方向：右手四指沿绕行方向，拇指指向与电流同向则 <span
+class="math inline">\(I &gt; 0\)</span></li>
+</ul>
+<h3 id="无限长载流圆柱导体磁场">14. 无限长载流圆柱导体磁场</h3>
+<ul>
+<li><strong>内部（<span class="math inline">\(r &lt;
+R\)</span>）：</strong> <span class="math inline">\(B = \dfrac{\mu_0 I
+r}{2\pi R^2}\)</span></li>
+<li><strong>表面（<span class="math inline">\(r =
+R\)</span>）：</strong> <span class="math inline">\(B = \dfrac{\mu_0
+I}{2\pi R}\)</span></li>
+<li><strong>外部（<span class="math inline">\(r &gt;
+R\)</span>）：</strong> <span class="math inline">\(B = \dfrac{\mu_0
+I}{2\pi r}\)</span></li>
+</ul>
+<hr />
+<h2 id="四磁场对电流的作用">四、磁场对电流的作用</h2>
+<h3 id="安培力磁力矩磁力的功">15. 安培力、磁力矩、磁力的功</h3>
+<ul>
+<li><strong>安培力：</strong> <span class="math inline">\(d\vec{F} = I
+d\vec{l} \times \vec{B}\)</span></li>
+<li><strong>磁矩：</strong> <span class="math inline">\(\vec{p}_m =
+NIS\vec{n}\)</span></li>
+<li><strong>磁力矩：</strong> <span class="math inline">\(\vec{M} =
+\vec{p}_m \times \vec{B}\)</span>，<span class="math inline">\(M =
+NISB\sin\theta\)</span></li>
+<li><strong>磁力的功：</strong> <span class="math inline">\(A =
+I\Delta\Phi\)</span></li>
+</ul>
+<hr />
+<h2 id="五电磁感应">五、电磁感应</h2>
+<h3 id="法拉第定律与楞次定律">16. 法拉第定律与楞次定律</h3>
+<ul>
+<li><strong>法拉第定律：</strong> <span
+class="math inline">\(\mathcal{E}_i =
+-\dfrac{d\Phi}{dt}\)</span>（多匝：<span
+class="math inline">\(\mathcal{E}_i =
+-N\dfrac{d\Phi}{dt}\)</span>）</li>
+<li><strong>楞次定律：</strong>
+感应电流的效果反抗引起感应电流的原因（增反减同）</li>
+</ul>
+<h3 id="动生电动势与感生电动势">17. 动生电动势与感生电动势</h3>
+<ul>
+<li><strong>动生：</strong> <span class="math inline">\(\mathcal{E} =
+\displaystyle\int (\vec{v}\times\vec{B})\cdot
+d\vec{l}\)</span>，直导线：<span class="math inline">\(\mathcal{E} =
+Blv\)</span></li>
+<li><strong>感生：</strong> <span class="math inline">\(\mathcal{E}_i =
+-\dfrac{d\Phi}{dt} = -\displaystyle\int_S
+\dfrac{\partial\vec{B}}{\partial t}\cdot d\vec{S}\)</span></li>
+<li><strong>涡旋电场：</strong> <span class="math inline">\(\oint
+\vec{E}_{\text{涡}}\cdot d\vec{l} = -\displaystyle\int_S
+\dfrac{\partial\vec{B}}{\partial t}\cdot d\vec{S}\)</span></li>
+</ul>
+<h3 id="麦克斯韦方程组">18. 麦克斯韦方程组</h3>
+<ul>
+<li><span class="math inline">\(\oint\vec{D}\cdot d\vec{S} =
+q_0\)</span> — 电场有源</li>
+<li><span class="math inline">\(\oint\vec{B}\cdot d\vec{S} = 0\)</span>
+— 磁场无源</li>
+<li><span class="math inline">\(\oint\vec{E}\cdot d\vec{l} =
+-\int\dfrac{\partial\vec{B}}{\partial t}\cdot d\vec{S}\)</span> —
+变化磁场产生电场</li>
+<li><span class="math inline">\(\oint\vec{H}\cdot d\vec{l} = I_0 +
+\int\dfrac{\partial\vec{D}}{\partial t}\cdot d\vec{S}\)</span> —
+电流和变化电场产生磁场</li>
+<li><strong>位移电流：</strong> <span class="math inline">\(I_d =
+\varepsilon_0\dfrac{d\Phi_e}{dt}\)</span></li>
+</ul>
+<hr />
+<h2 id="六波动光学">六、波动光学</h2>
+<h3 id="杨氏双缝干涉">19. 杨氏双缝干涉</h3>
+<ul>
+<li><strong>明纹：</strong> <span class="math inline">\(d\sin\theta =
+\pm k\lambda\)</span>（<span
+class="math inline">\(k=0,1,2,\ldots\)</span>）</li>
+<li><strong>暗纹：</strong> <span class="math inline">\(d\sin\theta =
+\pm (2k-1)\dfrac{\lambda}{2}\)</span>（<span
+class="math inline">\(k=1,2,\ldots\)</span>）</li>
+<li><strong>条纹间距：</strong> <span class="math inline">\(\Delta x =
+\dfrac{D}{d}\lambda\)</span></li>
+</ul>
+<h3 id="光程差与相位差">20. 光程差与相位差</h3>
+<ul>
+<li><strong>光程：</strong> <span class="math inline">\(nr\)</span></li>
+<li><strong>相位差：</strong> <span class="math inline">\(\Delta\varphi
+= \dfrac{2\pi}{\lambda}\delta\)</span></li>
+<li><strong>干涉判据：</strong> <span class="math inline">\(\delta = \pm
+k\lambda\)</span>（明），<span class="math inline">\(\delta =
+\pm(2k+1)\dfrac{\lambda}{2}\)</span>（暗）</li>
+</ul>
+<h3 id="薄膜干涉">21. 薄膜干涉</h3>
+<ul>
+<li><strong>反射光光程差：</strong> <span class="math inline">\(\delta =
+2ne + \dfrac{\lambda}{2}\)</span>（或 <span
+class="math inline">\(0\)</span>，取决于半波损失）</li>
+<li><strong>半波损失：</strong> 光从光疏→光密反射时，相位突变 <span
+class="math inline">\(\pi\)</span>，附加 <span
+class="math inline">\(\lambda/2\)</span></li>
+</ul>
+<h3 id="迈克尔逊干涉仪">22. 迈克尔逊干涉仪</h3>
+<ul>
+<li><span class="math inline">\(\Delta d =
+N\cdot\dfrac{\lambda}{2}\)</span>（<span
+class="math inline">\(N\)</span> 为条纹移动数）</li>
+<li>用于测量微小位移或波长</li>
+</ul>
+<h3 id="劈尖干涉">23. 劈尖干涉</h3>
+<ul>
+<li><strong>相邻条纹对应厚度差：</strong> <span
+class="math inline">\(\Delta e = \dfrac{\lambda}{2}\)</span></li>
+<li><strong>相邻条纹间距：</strong> <span class="math inline">\(l =
+\dfrac{\lambda}{2\theta}\)</span></li>
+<li>条纹向棱边弯→凹，背离棱边弯→凸</li>
+<li><strong>测细丝直径：</strong> <span class="math inline">\(d =
+\dfrac{\lambda}{2}\cdot\dfrac{L}{l}\)</span></li>
+</ul>
+<h3 id="单缝衍射与光栅衍射">24. 单缝衍射与光栅衍射</h3>
+<ul>
+<li><strong>单缝暗纹：</strong> <span class="math inline">\(a\sin\theta
+= \pm k\lambda\)</span>（<span
+class="math inline">\(k=1,2,\ldots\)</span>）</li>
+<li><strong>光栅方程：</strong> <span class="math inline">\(d\sin\theta
+= \pm k\lambda\)</span>（<span
+class="math inline">\(k=0,1,2,\ldots\)</span>）</li>
+<li><strong>缺级：</strong> <span class="math inline">\(\dfrac{d}{a} =
+\dfrac{k}{k&#39;}\)</span>（光栅级次/单缝级次为整数比）</li>
+<li><strong>最高级次：</strong> <span class="math inline">\(k_{\max} =
+\lfloor d/\lambda\rfloor\)</span></li>
+</ul>
+<h3 id="马吕斯定律">25. 马吕斯定律</h3>
+<ul>
+<li><span class="math inline">\(I = I_0\cos^2\alpha\)</span></li>
+<li>自然光通过偏振片：<span class="math inline">\(I =
+I_0/2\)</span></li>
+</ul>
+<h3 id="布儒斯特定律">26. 布儒斯特定律</h3>
+<ul>
+<li><span class="math inline">\(\tan i_B =
+\dfrac{n_2}{n_1}\)</span>，<span class="math inline">\(i_B + r =
+90^\circ\)</span></li>
+<li>反射光为完全偏振光（<span class="math inline">\(\perp\)</span>
+入射面），折射光为部分偏振光</li>
+</ul>
+<hr />
+<h2 id="七气体动理论">七、气体动理论</h2>
+<h3 id="理想气体状态方程">27. 理想气体状态方程</h3>
+<ul>
+<li><span class="math inline">\(pV = \dfrac{m}{M}RT = \nu
+RT\)</span></li>
+<li><span class="math inline">\(p = nkT\)</span>（<span
+class="math inline">\(n\)</span> 分子数密度）</li>
+<li>等温 <span class="math inline">\(p_1V_1 = p_2V_2\)</span>，等压
+<span class="math inline">\(V_1/T_1 = V_2/T_2\)</span>，等容 <span
+class="math inline">\(p_1/T_1 = p_2/T_2\)</span></li>
+</ul>
+<h3 id="压强公式与温度公式">28. 压强公式与温度公式</h3>
+<ul>
+<li><strong>压强：</strong> <span class="math inline">\(p =
+\dfrac{1}{3}nm\overline{v^2} =
+\dfrac{2}{3}n\overline{\varepsilon_k}\)</span></li>
+<li><strong>温度：</strong> <span
+class="math inline">\(\overline{\varepsilon_k} =
+\dfrac{3}{2}kT\)</span></li>
+</ul>
+<h3 id="能量均分定理">29. 能量均分定理</h3>
+<ul>
+<li>每个自由度 <span class="math inline">\(\dfrac{1}{2}kT\)</span></li>
+<li><strong>分子平均动能：</strong> <span
+class="math inline">\(\overline{\varepsilon} =
+\dfrac{i}{2}kT\)</span></li>
+<li><strong>理想气体内能：</strong> <span class="math inline">\(E =
+\nu\cdot\dfrac{i}{2}RT\)</span></li>
+<li><strong>分子自由度：</strong> 单原子 <span
+class="math inline">\(i=3\)</span>，双原子刚性 <span
+class="math inline">\(i=5\)</span>，多原子刚性 <span
+class="math inline">\(i=6\)</span></li>
+</ul>
+<h3 id="速率分布">31. 速率分布</h3>
+<ul>
+<li><strong>归一化：</strong> <span
+class="math inline">\(\displaystyle\int_0^\infty f(v)dv =
+1\)</span></li>
+<li><strong>最概然速率：</strong> <span class="math inline">\(v_p =
+\sqrt{\dfrac{2RT}{M}}\)</span></li>
+<li><strong>平均速率：</strong> <span class="math inline">\(\bar{v} =
+\sqrt{\dfrac{8RT}{\pi M}}\)</span></li>
+<li><strong>方均根速率：</strong> <span
+class="math inline">\(\sqrt{\overline{v^2}} =
+\sqrt{\dfrac{3RT}{M}}\)</span></li>
+<li><strong>大小关系：</strong> <span class="math inline">\(v_p &lt;
+\bar{v} &lt; \sqrt{\overline{v^2}}\)</span></li>
+</ul>
+<hr />
+<h2 id="八热力学">八、热力学</h2>
+<h3 id="热力学过程">32. 热力学过程</h3>
+<ul>
+<li><strong>第一定律：</strong> <span class="math inline">\(Q = \Delta E
++ A\)</span>，<span class="math inline">\(\Delta E = \nu C_V\Delta
+T\)</span>（任何过程）</li>
+<li><strong>摩尔热容：</strong> <span class="math inline">\(C_V =
+\dfrac{i}{2}R\)</span>，<span class="math inline">\(C_p = C_V +
+R\)</span>，<span class="math inline">\(\gamma = \dfrac{C_p}{C_V} =
+\dfrac{i+2}{i}\)</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>过程</th>
+<th><span class="math inline">\(\Delta E\)</span></th>
+<th><span class="math inline">\(A\)</span></th>
+<th><span class="math inline">\(Q\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>等容</td>
+<td><span class="math inline">\(\nu C_V\Delta T\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(\nu C_V\Delta T\)</span></td>
+</tr>
+<tr>
+<td>等压</td>
+<td><span class="math inline">\(\nu C_V\Delta T\)</span></td>
+<td><span class="math inline">\(p\Delta V\)</span></td>
+<td><span class="math inline">\(\nu C_p\Delta T\)</span></td>
+</tr>
+<tr>
+<td>等温</td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(\nu RT\ln\dfrac{V_2}{V_1}\)</span></td>
+<td><span class="math inline">\(A\)</span></td>
+</tr>
+<tr>
+<td>绝热</td>
+<td><span class="math inline">\(\nu C_V\Delta T\)</span></td>
+<td><span class="math inline">\(-\Delta E\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>泊松公式：</strong> <span class="math inline">\(pV^\gamma =
+const\)</span>，<span class="math inline">\(V^{\gamma-1}T =
+const\)</span></li>
+</ul>
+<h3 id="循环效率">33. 循环效率</h3>
+<ul>
+<li><strong>热机效率：</strong> <span class="math inline">\(\eta =
+\dfrac{A}{Q_1} = 1 - \dfrac{Q_2}{Q_1}\)</span></li>
+<li><strong>制冷系数：</strong> <span class="math inline">\(e =
+\dfrac{Q_2}{A} = \dfrac{Q_2}{Q_1 - Q_2}\)</span></li>
+</ul>
+<h3 id="卡诺循环">34. 卡诺循环</h3>
+<ul>
+<li><strong>卡诺热机：</strong> <span class="math inline">\(\eta = 1 -
+\dfrac{T_2}{T_1}\)</span></li>
+<li><strong>卡诺制冷机：</strong> <span class="math inline">\(e =
+\dfrac{T_2}{T_1 - T_2}\)</span></li>
+<li><strong>卡诺定理：</strong> 可逆机效率最高，<span
+class="math inline">\(\eta_{\text{不可逆}} &lt; \eta_{\text{可逆}} =
+\eta_{\text{卡诺}}\)</span></li>
+</ul>
+<hr />
+<h2 id="九振动与波">九、振动与波</h2>
+<h3 id="简谐振动">35. 简谐振动</h3>
+<ul>
+<li><strong>动力学：</strong> <span class="math inline">\(F =
+-kx\)</span>，<span class="math inline">\(\dfrac{d^2x}{dt^2} + \omega^2
+x = 0\)</span></li>
+<li><strong>运动学：</strong> <span class="math inline">\(x =
+A\cos(\omega t + \varphi)\)</span>，<span class="math inline">\(\omega =
+\sqrt{k/m}\)</span></li>
+<li><strong>速度：</strong> <span class="math inline">\(v = -\omega
+A\sin(\omega t + \varphi)\)</span></li>
+<li><strong>加速度：</strong> <span class="math inline">\(a = -\omega^2
+A\cos(\omega t + \varphi)\)</span></li>
+<li><strong>能量：</strong> <span class="math inline">\(E_k =
+\dfrac{1}{2}m\omega^2 A^2\sin^2(\omega t + \varphi)\)</span>，<span
+class="math inline">\(E_p = \dfrac{1}{2}kA^2\cos^2(\omega t +
+\varphi)\)</span>，<span class="math inline">\(E =
+\dfrac{1}{2}kA^2\)</span>（守恒）</li>
+</ul>
+<h3 id="旋转矢量法">36. 旋转矢量法</h3>
+<ul>
+<li>矢量长 <span class="math inline">\(A\)</span>，角速度 <span
+class="math inline">\(\omega\)</span>，与 <span
+class="math inline">\(x\)</span> 轴夹角 <span
+class="math inline">\(\omega t + \varphi\)</span></li>
+<li>用于求初相、相位差、时间间隔</li>
+</ul>
+<h3 id="简谐振动的合成">37. 简谐振动的合成</h3>
+<ul>
+<li><strong>同方向同频率：</strong> <span class="math inline">\(A =
+\sqrt{A_1^2 + A_2^2 + 2A_1A_2\cos\Delta\varphi}\)</span></li>
+<li><span class="math inline">\(\Delta\varphi = 0\)</span>：<span
+class="math inline">\(A = A_1 + A_2\)</span>（加强）；<span
+class="math inline">\(\Delta\varphi = \pi\)</span>：<span
+class="math inline">\(A = |A_1 - A_2|\)</span>（减弱）</li>
+<li><strong>拍频：</strong> <span class="math inline">\(v = |\nu_1 -
+\nu_2|\)</span></li>
+</ul>
+<h3 id="波函数">38. 波函数</h3>
+<ul>
+<li><span class="math inline">\(y(x,t) = A\cos(\omega t - kx +
+\varphi)\)</span>，<span class="math inline">\(k =
+\dfrac{2\pi}{\lambda}\)</span></li>
+<li><span class="math inline">\(u = \dfrac{\omega}{k} =
+\lambda\nu\)</span></li>
+<li>“−” → 波沿 <span class="math inline">\(+x\)</span> 方向传播，“+” →
+沿 <span class="math inline">\(-x\)</span> 方向</li>
+</ul>
+<h3 id="波的干涉与驻波">39. 波的干涉与驻波</h3>
+<ul>
+<li><strong>相干条件：</strong> 同频、同方向、相位差恒定</li>
+<li><strong>加强：</strong> <span class="math inline">\(\Delta\varphi =
+\pm 2k\pi\)</span> 或 <span class="math inline">\(\delta = \pm
+k\lambda\)</span></li>
+<li><strong>减弱：</strong> <span class="math inline">\(\Delta\varphi =
+\pm (2k+1)\pi\)</span> 或 <span class="math inline">\(\delta = \pm
+(2k+1)\dfrac{\lambda}{2}\)</span></li>
+<li><strong>驻波方程：</strong> <span class="math inline">\(y =
+2A\cos\left(\dfrac{2\pi x}{\lambda}\right)\cos(\omega t)\)</span></li>
+<li><strong>波腹：</strong> <span class="math inline">\(x = \pm
+k\cdot\dfrac{\lambda}{2}\)</span>；<strong>波节：</strong> <span
+class="math inline">\(x = \pm(2k+1)\dfrac{\lambda}{4}\)</span></li>
+<li><strong>相邻波腹/波节间距：</strong> <span
+class="math inline">\(\dfrac{\lambda}{2}\)</span></li>
+</ul>
+<hr />
+<h2 id="附录物理常数">附录：物理常数</h2>
+<table>
+<thead>
+<tr>
+<th>常数</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(\varepsilon_0\)</span></td>
+<td><span class="math inline">\(8.85\times10^{-12}\
+\text{C}^2/(\text{N·m}^2)\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(\mu_0\)</span></td>
+<td><span class="math inline">\(4\pi\times10^{-7}\
+\text{N/A}^2\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(3.00\times10^8\ \text{m/s}\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(h\)</span></td>
+<td><span class="math inline">\(6.63\times10^{-34}\
+\text{J·s}\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(k\)</span></td>
+<td><span class="math inline">\(1.38\times10^{-23}\
+\text{J/K}\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(R\)</span></td>
+<td><span class="math inline">\(8.31\ \text{J/(mol·K)}\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(N_A\)</span></td>
+<td><span class="math inline">\(6.02\times10^{23}\
+\text{mol}^{-1}\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(1.60\times10^{-19}\
+\text{C}\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(m_e\)</span></td>
+<td><span class="math inline">\(9.11\times10^{-31}\
+\text{kg}\)</span></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

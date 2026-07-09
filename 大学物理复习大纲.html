@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>大学物理复习大纲</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="大学物理复习大纲38条全展开">大学物理复习大纲（38条全展开）</h1>
+<hr />
+<h2 id="一刚体力学">一、刚体力学</h2>
+<h3 id="刚体转动的能量">1. 刚体转动的能量</h3>
+<p><strong>转动动能公式：</strong> <span class="math display">\[
+E_k = \frac{1}{2} J \omega^2
+\]</span></p>
+<ul>
+<li><span class="math inline">\(J\)</span> —
+转动惯量，相当于”旋转中的质量”</li>
+<li><span class="math inline">\(\omega\)</span> —
+角速度，相当于”旋转中的速度”</li>
+</ul>
+<p><strong>刚体定轴转动的动能定理：</strong> <span
+class="math display">\[
+\int M \, d\theta = \frac{1}{2}J\omega_2^2 - \frac{1}{2}J\omega_1^2
+\]</span></p>
+<p>合外力矩对刚体做的功等于刚体转动动能的增量。</p>
+<p><strong>滚动问题中的能量守恒（纯滚动条件）：</strong> <span
+class="math display">\[
+E_k = \frac{1}{2}mv_c^2 + \frac{1}{2}J\omega^2,\quad v_c = \omega R
+\]</span> - 第一项：质心平动动能 - 第二项：绕质心的转动动能 -
+纯滚动时两者通过 <span class="math inline">\(v_c = \omega R\)</span>
+关联</p>
+<blockquote>
+<p>⚠️
+注意区分：<strong>平动动能</strong>只与质心速度有关，<strong>转动动能</strong>只与角速度有关。滚动时两者同时存在。</p>
+</blockquote>
+<hr />
+<h3 id="角动量定理">2. 角动量定理</h3>
+<p><strong>质点的角动量（对某参考点）：</strong> <span
+class="math display">\[
+\vec{L} = \vec{r} \times \vec{p} = \vec{r} \times m\vec{v}
+\]</span> 大小 <span class="math inline">\(L =
+mvr\sin\theta\)</span>，方向由右手螺旋定则判定。</p>
+<p><strong>刚体定轴转动的角动量：</strong> <span class="math display">\[
+L = J\omega
+\]</span></p>
+<p><strong>角动量定理（对轴）：</strong> <span class="math display">\[
+\vec{M} = \frac{d\vec{L}}{dt} \quad\Rightarrow\quad M =
+\frac{d(J\omega)}{dt} = J\alpha
+\]</span></p>
+<p><strong>角动量守恒定律：</strong> 合外力矩 <span
+class="math inline">\(\vec{M}=0\)</span> 时，角动量守恒： <span
+class="math display">\[
+J_1\omega_1 = J_2\omega_2 = \text{常量}
+\]</span></p>
+<blockquote>
+<p>常见应用场景：人坐在旋转椅上收拢/伸展双臂（改变 <span
+class="math inline">\(J\)</span> 从而改变 <span
+class="math inline">\(\omega\)</span>）、天体运动的掠面速度守恒、陀螺进动（了解）。</p>
+</blockquote>
+<blockquote>
+<p>⚠️
+<strong>易错点</strong>：角动量守恒的条件是<strong>合外力矩为零</strong>，不是合外力为零。力作用线通过转轴时该力不产生力矩。</p>
+</blockquote>
+<hr />
+<h3 id="转动定律-m-jalpha">3. 转动定律 <span class="math inline">\(M =
+J\alpha\)</span></h3>
+<p><strong>核心公式：</strong> <span class="math display">\[
+M = J\alpha
+\]</span></p>
+<ul>
+<li><span class="math inline">\(M\)</span> — 合外力矩</li>
+<li><span class="math inline">\(J\)</span> — 转动惯量（对固定转轴）</li>
+<li><span class="math inline">\(\alpha\)</span> — 角加速度</li>
+</ul>
+<p><strong>与牛顿第二定律的类比：</strong></p>
+<table>
+<thead>
+<tr>
+<th>平动</th>
+<th>转动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(F = ma\)</span></td>
+<td><span class="math inline">\(M = J\alpha\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(m\)</span>（质量，惯性度量）</td>
+<td><span
+class="math inline">\(J\)</span>（转动惯量，转动惯性度量）</td>
+</tr>
+<tr>
+<td><span class="math inline">\(v\)</span>（速度）</td>
+<td><span class="math inline">\(\omega\)</span>（角速度）</td>
+</tr>
+<tr>
+<td><span class="math inline">\(p = mv\)</span>（动量）</td>
+<td><span class="math inline">\(L = J\omega\)</span>（角动量）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>解题步骤：</strong> 1. 隔离物体，受力分析 2. 对平动物体列
+<span class="math inline">\(F = ma\)</span> 3. 对转动物体列 <span
+class="math inline">\(M = J\alpha\)</span> 4.
+利用约束条件（如绳不可伸长、纯滚动 <span class="math inline">\(a =
+R\alpha\)</span>）联立求解</p>
+<blockquote>
+<p>⚠️ <strong>注意</strong>：<span class="math inline">\(M =
+J\alpha\)</span> 中的各量必须对 <strong>同一固定转轴</strong>
+计算。绳绕过定滑轮的问题中，滑轮两侧张力一般不等（否则滑轮不会转动）。</p>
+</blockquote>
+<hr />
+<h2 id="二静电场">二、静电场</h2>
+<h3 id="电场强度-e-的计算式">4. 电场强度 <span
+class="math inline">\(E\)</span> 的计算式</h3>
+<p><strong>定义式：</strong> <span class="math display">\[
+\vec{E} = \frac{\vec{F}}{q_0}
+\]</span> 单位：N/C 或 V/m</p>
+<p><strong>点电荷的电场：</strong> <span class="math display">\[
+E = \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2} \quad（方向由 q
+的正负决定）
+\]</span></p>
+<p><strong>场强叠加原理（核心方法）：</strong> <span
+class="math display">\[
+\vec{E} = \sum_i \vec{E}_i \quad\text{或}\quad \vec{E} = \int d\vec{E}
+\]</span></p>
+<p><strong>常见带电体的电场分布：</strong></p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>带电体</th>
+<th>公式</th>
+<th>方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无限长均匀带电直线（线密度 <span
+class="math inline">\(\lambda\)</span>）</td>
+<td><span class="math inline">\(E = \dfrac{\lambda}{2\pi\varepsilon_0
+r}\)</span></td>
+<td>垂直于直线向外</td>
+</tr>
+<tr>
+<td>无限大均匀带电平面（面密度 <span
+class="math inline">\(\sigma\)</span>）</td>
+<td><span class="math inline">\(E =
+\dfrac{\sigma}{2\varepsilon_0}\)</span></td>
+<td>垂直于平面向外</td>
+</tr>
+<tr>
+<td>均匀带电圆环轴线上（半径 <span class="math inline">\(R\)</span>，总
+<span class="math inline">\(q\)</span>）</td>
+<td><span class="math inline">\(E =
+\dfrac{qx}{4\pi\varepsilon_0(R^2+x^2)^{3/2}}\)</span></td>
+<td>沿轴线</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️
+<strong>易错点</strong>：叠加时电场是矢量，要分解成分量分别计算后再合成，不要直接代数相加。</p>
+</blockquote>
+<hr />
+<h3 id="电偶极子">5. 电偶极子</h3>
+<p><strong>定义：</strong> 一对等量异号点电荷 <span
+class="math inline">\(+q\)</span> 和 <span
+class="math inline">\(-q\)</span>，相距 <span
+class="math inline">\(l\)</span>。</p>
+<p><strong>电偶极矩（矢量）：</strong> <span class="math display">\[
+\vec{p} = q\vec{l}
+\]</span> 方向由 <span class="math inline">\(-q\)</span> 指向 <span
+class="math inline">\(+q\)</span></p>
+<p><strong>电偶极子在均匀外电场中：</strong> - <strong>受力矩：</strong>
+<span class="math inline">\(\vec{M} = \vec{p} \times
+\vec{E}\)</span>，大小 <span class="math inline">\(M =
+pE\sin\theta\)</span>，使偶极子转向外电场方向 -
+<strong>电势能：</strong> <span class="math inline">\(W = -\vec{p} \cdot
+\vec{E} = -pE\cos\theta\)</span> - <span class="math inline">\(\theta =
+0^\circ\)</span>（平行）：能量最低，稳定平衡 - <span
+class="math inline">\(\theta =
+180^\circ\)</span>（反平行）：能量最高，不稳定平衡</p>
+<p><strong>电偶极子轴线上的电场：</strong> <span class="math display">\[
+E = \frac{1}{4\pi\varepsilon_0}\frac{2p}{r^3} \quad (r \gg l)
+\]</span></p>
+<p><strong>电偶极子中垂面上的电场：</strong> <span
+class="math display">\[
+E = \frac{1}{4\pi\varepsilon_0}\frac{p}{r^3} \quad (r \gg l)
+\]</span></p>
+<blockquote>
+<p>注意：电偶极子的电场与 <span class="math inline">\(1/r^3\)</span>
+成正比，衰减比点电荷（<span
+class="math inline">\(1/r^2\)</span>）更快。</p>
+</blockquote>
+<hr />
+<h3 id="电场的高斯定理">6. 电场的高斯定理</h3>
+<p><strong>真空中的高斯定理：</strong> <span class="math display">\[
+\Phi_e = \oint_S \vec{E} \cdot d\vec{S} =
+\frac{q_{\text{内}}}{\varepsilon_0}
+\]</span></p>
+<p><strong>介质中的高斯定理：</strong> <span class="math display">\[
+\oint_S \vec{D} \cdot d\vec{S} = q_{\text{内}}
+\]</span></p>
+<p><strong>物理意义：</strong>
+通过闭合曲面的电通量等于面内电荷的代数和除以 <span
+class="math inline">\(\varepsilon_0\)</span>。<strong>与面外电荷无关。</strong></p>
+<p><strong>选择高斯面的技巧：</strong> 1.
+<strong>球对称</strong>（点电荷、均匀带电球体/球壳）→ 选同心球面 2.
+<strong>轴对称</strong>（无限长直线、圆柱体）→ 选同轴圆柱面 3.
+<strong>面对称</strong>（无限大平面）→
+选柱形高斯面（底面平行于平面）</p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong> - <span
+class="math inline">\(q_{\text{内}}\)</span>
+是<strong>高斯面内</strong>电荷的代数和，面外电荷不影响通量但会影响场强分布
+-
+高斯定理对任何闭合曲面都成立，但<strong>只有高度对称的情况才能用高斯定理求
+E</strong> - <span class="math inline">\(\vec{E}\)</span>
+是<strong>曲面上各点的总场强</strong>（面内外电荷共同产生）</p>
+</blockquote>
+<hr />
+<h3 id="电场的环路定理">7. 电场的环路定理</h3>
+<p><strong>公式：</strong> <span class="math display">\[
+\oint_L \vec{E} \cdot d\vec{l} = 0
+\]</span></p>
+<p><strong>物理含义：</strong>
+静电场中电场强度沿任意闭合路径的线积分为零。</p>
+<p><strong>推论：</strong> - 静电场是<strong>保守力场</strong> -
+静电场力做功与路径无关，只与起点和终点位置有关 -
+可以引入<strong>电势</strong>（标量）来描述电场</p>
+<blockquote>
+<p>与重力场类比：重力场中沿闭合路径重力做功为零，可以引入重力势能。</p>
+<p><strong>对比磁场：</strong> 磁场的环路积分 <span
+class="math inline">\(\oint \vec{B} \cdot d\vec{l} = \mu_0 I\)</span>
+不为零 → 磁场是非保守场（涡旋场）。</p>
+</blockquote>
+<hr />
+<h3 id="电势的计算">8. 电势的计算</h3>
+<p><strong>定义：</strong> <span class="math display">\[
+U_P = \int_P^{\text{零势点}} \vec{E} \cdot d\vec{l}
+\]</span> 通常取无穷远处为零势点。</p>
+<p><strong>点电荷的电势：</strong> <span class="math display">\[
+U = \frac{1}{4\pi\varepsilon_0}\frac{q}{r}
+\]</span></p>
+<p><strong>电势叠加原理（标量叠加！）：</strong> <span
+class="math display">\[
+U = \sum_i U_i \quad\text{或}\quad U = \int dU
+\]</span></p>
+<p><strong>常见带电体的电势：</strong></p>
+<table>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr>
+<th>带电体</th>
+<th>电势分布</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>均匀带电球壳（半径 <span class="math inline">\(R\)</span>）</td>
+<td>内部 <span class="math inline">\(U = \dfrac{q}{4\pi\varepsilon_0
+R}\)</span>（等势），外部 <span class="math inline">\(U =
+\dfrac{q}{4\pi\varepsilon_0 r}\)</span></td>
+</tr>
+<tr>
+<td>无限长带电直线</td>
+<td>不能用无穷远为零势点，取某参考点 <span class="math inline">\(U =
+\dfrac{\lambda}{2\pi\varepsilon_0}\ln\dfrac{r_0}{r}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>从电势求电场：</strong> <span class="math display">\[
+E_x = -\frac{\partial U}{\partial x},\quad E_y = -\frac{\partial
+U}{\partial y},\quad E_z = -\frac{\partial U}{\partial z}
+\]</span> 或 <span class="math inline">\(\vec{E} = -\nabla
+U\)</span></p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong>
+电势是<strong>标量</strong>，叠加时只需代数相加（比电场叠加简单得多）。电势的正负取决于场源电荷的正负和参考点的选择。</p>
+</blockquote>
+<hr />
+<h3 id="静电平衡时外部电场的理解">9. 静电平衡时外部电场的理解</h3>
+<p><strong>静电平衡条件：</strong> 导体内部电场处处为零。</p>
+<p><strong>为什么外部电场会”变形”？</strong></p>
+<p>当导体放入外电场 <span class="math inline">\(E_0\)</span> 中： 1.
+导体内部的自由电子在 <span class="math inline">\(E_0\)</span>
+作用下定向移动 2. 电子移动到导体表面，产生<strong>感应电荷</strong> 3.
+感应电荷在导体内部产生附加电场 <span
+class="math inline">\(E&#39;\)</span>，方向与 <span
+class="math inline">\(E_0\)</span> 相反 4. 达到平衡时：<span
+class="math inline">\(E_0 + E&#39; = 0\)</span>（内部合场强为零）</p>
+<p><strong>静电平衡的性质：</strong> -
+导体是<strong>等势体</strong>，表面是<strong>等势面</strong> -
+导体表面附近场强与表面垂直：<span class="math inline">\(E =
+\dfrac{\sigma}{\varepsilon_0}\)</span> -
+电荷只分布在导体<strong>表面</strong>，且<strong>曲率越大处电荷面密度越大</strong>（尖端放电的原因）
+- 空腔导体（法拉第笼）：内表面无电荷，腔内无电场 →
+<strong>静电屏蔽</strong></p>
+<blockquote>
+<p>这就是为什么可以用接地的金属网罩屏蔽外部电场——导体壳内部不受外部电场影响。</p>
+</blockquote>
+<hr />
+<h3 id="静电能与电场能量密度">10. 静电能与电场能量密度</h3>
+<p><strong>点电荷系的静电能（互能）：</strong> <span
+class="math display">\[
+W = \frac{1}{2}\sum_i q_i U_i
+\]</span></p>
+<p><strong>电容器的储能：</strong> <span class="math display">\[
+W = \frac{1}{2}QU = \frac{1}{2}CU^2 = \frac{Q^2}{2C}
+\]</span></p>
+<p><strong>电场能量密度（核心公式）：</strong> <span
+class="math display">\[
+w_e = \frac{1}{2}\varepsilon_0 \varepsilon_r E^2 =
+\frac{1}{2}\vec{E}\cdot\vec{D}
+\]</span></p>
+<ul>
+<li>真空中：<span class="math inline">\(w_e = \frac{1}{2}\varepsilon_0
+E^2\)</span></li>
+<li>介质中：<span class="math inline">\(w_e =
+\frac{1}{2}\varepsilon_0\varepsilon_r E^2\)</span></li>
+</ul>
+<p><strong>静电场的总能量：</strong> <span class="math display">\[
+W_e = \int_V w_e \, dV = \int_V \frac{1}{2}\varepsilon_0 E^2 \, dV
+\]</span></p>
+<blockquote>
+<p><strong>观点转变：</strong>
+静电能不是”储存在电荷上”而是<strong>储存在电场中</strong>——这是场的观点。能量定域在电场存在的空间。</p>
+</blockquote>
+<blockquote>
+<p>⚠️
+<strong>注意</strong>：电容器储能和电场能量密度是两种等效的计算方法，前者从电容参数出发，后者从场分布出发。</p>
+</blockquote>
+<hr />
+<h2 id="三静磁场">三、静磁场</h2>
+<h3 id="毕奥-萨伐尔定律">11. 毕奥-萨伐尔定律</h3>
+<p><strong>微分形式（电流元产生的磁场）：</strong> <span
+class="math display">\[
+d\vec{B} = \frac{\mu_0}{4\pi} \frac{I d\vec{l} \times \vec{r}}{r^3}
+\]</span></p>
+<p>大小：<span class="math inline">\(dB = \dfrac{\mu_0}{4\pi} \dfrac{I
+dl \sin\theta}{r^2}\)</span>，方向由右手螺旋定则（<span
+class="math inline">\(I d\vec{l}\)</span> 叉乘 <span
+class="math inline">\(\vec{r}\)</span>）确定。</p>
+<p><strong>积分形式：</strong> <span class="math display">\[
+\vec{B} = \int d\vec{B} = \frac{\mu_0}{4\pi} \int \frac{I d\vec{l}
+\times \vec{r}}{r^3}
+\]</span></p>
+<p><strong>常见载流导体的磁场：</strong></p>
+<p><strong>(a) 直线电流</strong> <span class="math display">\[
+B = \frac{\mu_0 I}{4\pi a}(\sin\theta_2 - \sin\theta_1)
+\]</span> - 无限长直线：<span class="math inline">\(\theta_1 =
+-\frac{\pi}{2},\ \theta_2 = \frac{\pi}{2}\)</span> → <span
+class="math inline">\(B = \dfrac{\mu_0 I}{2\pi a}\)</span> -
+半无限长：<span class="math inline">\(B = \dfrac{\mu_0 I}{4\pi
+a}\)</span></p>
+<p><strong>(b) 圆环电流（轴线上）</strong> <span class="math display">\[
+B = \frac{\mu_0 I R^2}{2(R^2 + x^2)^{3/2}}
+\]</span> - 圆心处（<span class="math inline">\(x=0\)</span>）：<span
+class="math inline">\(B = \dfrac{\mu_0 I}{2R}\)</span> - 圆弧（圆心角
+<span class="math inline">\(\theta\)</span>）：<span
+class="math inline">\(B = \dfrac{\mu_0 I}{2R} \cdot
+\dfrac{\theta}{2\pi}\)</span></p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong>
+毕萨定律涉及叉乘，方向判断是关键。直线电流用右手握住导线、拇指指向电流方向，四指绕向即磁场方向。</p>
+</blockquote>
+<hr />
+<h3 id="密绕螺线管的磁场">12. 密绕螺线管的磁场</h3>
+<p><strong>无限长密绕螺线管内部的磁场（均匀）：</strong> <span
+class="math display">\[
+B = \mu_0 n I
+\]</span> - <span class="math inline">\(n = N/L\)</span> — 单位长度匝数
+- <span class="math inline">\(I\)</span> — 电流强度</p>
+<p><strong>螺线管外部</strong>：磁场近似为 <span
+class="math inline">\(0\)</span>（理想情况）。</p>
+<p><strong>有限长螺线管轴线上：</strong> <span class="math display">\[
+B = \frac{\mu_0 n I}{2}(\cos\beta_1 - \cos\beta_2)
+\]</span> - 端点处：<span class="math inline">\(B = \frac{1}{2}\mu_0 n
+I\)</span>（是内部的一半）</p>
+<blockquote>
+<p><strong>右手定则：</strong>
+右手四指沿电流方向弯曲，拇指指向即为螺线管内部磁场方向（N极方向）。</p>
+</blockquote>
+<blockquote>
+<p><strong>考题常考：</strong>
+长直螺线管与环形螺线管的磁场分布对比。</p>
+</blockquote>
+<hr />
+<h3 id="安培环路定理">13. 安培环路定理</h3>
+<p><strong>公式：</strong> <span class="math display">\[
+\oint_L \vec{B} \cdot d\vec{l} = \mu_0 \sum I_{\text{内}}
+\]</span></p>
+<p><strong>物理意义：</strong> 磁感应强度沿任意闭合路径的线积分等于
+<span class="math inline">\(\mu_0\)</span>
+乘以穿过该路径所围曲面的电流的代数和。</p>
+<p><strong>方向正负判断（右手定则）：</strong> -
+右手四指沿环路积分的绕行方向弯曲 - 拇指指向与电流方向相同时 <span
+class="math inline">\(I &gt; 0\)</span>，相反时 <span
+class="math inline">\(I &lt; 0\)</span></p>
+<p><strong>与高斯定理类比的应用：</strong>
+与高斯定理类似，安培环路定理在<strong>高度对称</strong>的情况下可用于求
+<span class="math inline">\(B\)</span>：</p>
+<table>
+<thead>
+<tr>
+<th>对称性</th>
+<th>选择环路</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>轴对称</td>
+<td>与电流同轴的圆</td>
+<td>无限长载流直导线、圆柱体</td>
+</tr>
+<tr>
+<td>面对称</td>
+<td>矩形环路</td>
+<td>无限大载流平面</td>
+</tr>
+<tr>
+<td>螺线管对称</td>
+<td>矩形环路</td>
+<td>螺线管内部</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong> - <span class="math inline">\(\sum
+I_{\text{内}}\)</span>
+是<strong>穿过环路所围曲面</strong>的电流代数和，不在环路内的电流不贡献
+- <span class="math inline">\(\vec{B}\)</span>
+是环路上<strong>所有电流</strong>（包括环路外的）产生的总场，<span
+class="math inline">\(\mu_0\sum I_{\text{内}}\)</span>
+只等于左边的积分值</p>
+</blockquote>
+<hr />
+<h3 id="无限长载流圆柱导体的磁场分布">14.
+无限长载流圆柱导体的磁场分布</h3>
+<p><strong>总电流 <span class="math inline">\(I\)</span>
+均匀分布在半径为 <span class="math inline">\(R\)</span>
+的圆柱截面上。</strong></p>
+<p><strong>(a) 导体内部（<span class="math inline">\(r &lt;
+R\)</span>）：</strong> <span class="math display">\[
+B = \frac{\mu_0 I r}{2\pi R^2}
+\]</span> - 内部磁场与 <span class="math inline">\(r\)</span>
+成<strong>正比</strong>（从中心到表面线性增大）</p>
+<p><strong>(b) 导体表面（<span class="math inline">\(r =
+R\)</span>）：</strong> <span class="math display">\[
+B = \frac{\mu_0 I}{2\pi R}
+\]</span></p>
+<p><strong>(c) 导体外部（<span class="math inline">\(r &gt;
+R\)</span>）：</strong> <span class="math display">\[
+B = \frac{\mu_0 I}{2\pi r}
+\]</span> - 外部磁场与无限长直导线相同，与 <span
+class="math inline">\(r\)</span> 成<strong>反比</strong></p>
+<blockquote>
+<p>这是典型的安培环路定理应用题。记住：内部 <span
+class="math inline">\(B \propto r\)</span>，外部 <span
+class="math inline">\(B \propto 1/r\)</span>。画 <span
+class="math inline">\(B\!-\!r\)</span> 图是常见的考题形式。</p>
+</blockquote>
+<hr />
+<h2 id="四磁场对电流的作用">四、磁场对电流的作用</h2>
+<h3 id="安培力磁力矩磁场对线圈的作用磁力的功">15.
+安培力、磁力矩、磁场对线圈的作用、磁力的功</h3>
+<p><strong>安培力公式（载流导线在磁场中受力）：</strong> <span
+class="math display">\[
+d\vec{F} = I d\vec{l} \times \vec{B}
+\]</span> 大小 <span class="math inline">\(dF = I dl
+B\sin\theta\)</span>，方向由左手定则判断。</p>
+<p><strong>均匀磁场中的载流线圈：</strong></p>
+<p><strong>(a) 安培力合力为零</strong>（线圈整体不受平移力）</p>
+<p><strong>(b) 磁力矩（核心公式）：</strong> <span
+class="math display">\[
+\vec{M} = \vec{p}_m \times \vec{B}
+\]</span> <span class="math display">\[
+M = p_m B \sin\theta = NISB\sin\theta
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\vec{p}_m = N I S \vec{n}\)</span> —
+线圈的<strong>磁矩</strong></li>
+<li><span class="math inline">\(N\)</span> — 匝数，<span
+class="math inline">\(S\)</span> — 线圈面积，<span
+class="math inline">\(\vec{n}\)</span> — 法向（右手定则确定）</li>
+<li><span class="math inline">\(\theta\)</span> — <span
+class="math inline">\(\vec{n}\)</span> 与 <span
+class="math inline">\(\vec{B}\)</span> 的夹角</li>
+</ul>
+<p><strong>力矩的特征：</strong> - <span class="math inline">\(\theta =
+0^\circ\)</span>（<span class="math inline">\(\vec{n}\)</span> 与 <span
+class="math inline">\(\vec{B}\)</span> 同向）：<span
+class="math inline">\(M=0\)</span>，稳定平衡 - <span
+class="math inline">\(\theta = 180^\circ\)</span>（反向）：<span
+class="math inline">\(M=0\)</span>，不稳定平衡 - <span
+class="math inline">\(\theta = 90^\circ\)</span>：力矩最大，<span
+class="math inline">\(M_{\max} = NISB\)</span></p>
+<p><strong>磁力的功：</strong> <span class="math display">\[
+A = I \Delta\Phi
+\]</span> -
+载流导线或线圈在磁场中运动时，安培力做的功等于电流乘以磁通量的增量 -
+实际上是电源克服反电动势做功的结果</p>
+<blockquote>
+<p><strong>左手定则：</strong>
+伸左手，磁感线穿过掌心，四指指向电流方向，拇指指向安培力方向。</p>
+<p><strong>对比：</strong> 静电场中电偶极子的力矩 <span
+class="math inline">\(\vec{M} = \vec{p} \times \vec{E}\)</span>
+与磁场中线圈的力矩 <span class="math inline">\(\vec{M} = \vec{p}_m
+\times \vec{B}\)</span> 形式完全对应。</p>
+</blockquote>
+<hr />
+<h2 id="五电磁感应">五、电磁感应</h2>
+<h3 id="电磁感应与楞次定律">16. 电磁感应与楞次定律</h3>
+<p><strong>法拉第电磁感应定律（定义式）：</strong> <span
+class="math display">\[
+\mathcal{E}_i = -\frac{d\Phi}{dt}
+\]</span> - <span class="math inline">\(\Phi = \int \vec{B} \cdot
+d\vec{S}\)</span> — 穿过回路的磁通量 -
+负号<strong>体现楞次定律</strong></p>
+<p><strong>多匝线圈：</strong> <span class="math display">\[
+\mathcal{E}_i = -N\frac{d\Phi}{dt} = -\frac{d\Psi}{dt}
+\]</span> - <span class="math inline">\(\Psi = N\Phi\)</span> —
+磁通链</p>
+<p><strong>楞次定律（方向判断）：</strong> &gt;
+<strong>感应电流的效果总是反抗引起感应电流的原因。</strong></p>
+<p>通俗理解： -
+如果磁通量<strong>增加</strong>，感应电流产生的磁场<strong>阻碍</strong>它增加
+-
+如果磁通量<strong>减少</strong>，感应电流产生的磁场<strong>补偿</strong>它减少
+- 即：“增反减同”</p>
+<p><strong>判断步骤：</strong> 1. 确定原磁场方向 2.
+判断磁通量的变化（增加还是减少） 3. 根据”增反减同”确定感应电流的磁场方向
+4. 用右手定则判断感应电流方向</p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong>
+是磁通量的<strong>变化率</strong>而不是磁通量本身决定感应电动势大小。</p>
+</blockquote>
+<hr />
+<h3 id="动生电动势与感生电动势">17. 动生电动势与感生电动势</h3>
+<p><strong>动生电动势（磁场不变，导体切割磁感线运动）：</strong> <span
+class="math display">\[
+\mathcal{E} = \int (\vec{v} \times \vec{B}) \cdot d\vec{l}
+\]</span></p>
+<p>对于直导线在均匀磁场中垂直切割： <span class="math display">\[
+\mathcal{E} = Blv
+\]</span> 方向由右手定则判断（<span class="math inline">\(\vec{v} \times
+\vec{B}\)</span> 的方向）。</p>
+<p><strong>感生电动势（导体不动，磁场变化）：</strong> <span
+class="math display">\[
+\mathcal{E}_i = -\frac{d\Phi}{dt} = -\int_S \frac{\partial
+\vec{B}}{\partial t} \cdot d\vec{S}
+\]</span></p>
+<p><strong>涡旋电场（感生电场的本质）：</strong> 变化磁场产生的电场
+<span class="math inline">\(E_{\text{涡}}\)</span> 满足： <span
+class="math display">\[
+\oint \vec{E}_{\text{涡}} \cdot d\vec{l} = -\int_S \frac{\partial
+\vec{B}}{\partial t} \cdot d\vec{S}
+\]</span></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>动生电动势</th>
+<th>感生电动势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产生原因</td>
+<td>导体切割磁感线</td>
+<td>磁场随时间变化</td>
+</tr>
+<tr>
+<td>非静电力</td>
+<td>洛伦兹力</td>
+<td>涡旋电场力</td>
+</tr>
+<tr>
+<td>公式</td>
+<td><span class="math inline">\(\mathcal{E} = Blv\)</span></td>
+<td><span class="math inline">\(\mathcal{E} = -d\Phi/dt\)</span></td>
+</tr>
+<tr>
+<td>适用</td>
+<td>导体运动</td>
+<td>导体静止</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>注意：</strong>
+有时两者同时存在（如导体在变化磁场中运动），需分别计算后叠加。</p>
+</blockquote>
+<hr />
+<h3 id="麦克斯韦方程组的含义">18. 麦克斯韦方程组的含义</h3>
+<p><strong>积分形式（四大方程）：</strong></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>方程</th>
+<th>名称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(\oint \vec{D} \cdot d\vec{S} =
+q_0\)</span></td>
+<td>电场高斯定理</td>
+<td>电场是有源场（电荷是电场的源）</td>
+</tr>
+<tr>
+<td><span class="math inline">\(\oint \vec{B} \cdot d\vec{S} =
+0\)</span></td>
+<td>磁场高斯定理</td>
+<td>磁场是无源场（无磁单极子）</td>
+</tr>
+<tr>
+<td><span class="math inline">\(\oint \vec{E} \cdot d\vec{l} = -\int
+\frac{\partial \vec{B}}{\partial t} \cdot d\vec{S}\)</span></td>
+<td>法拉第定律</td>
+<td>变化磁场产生电场</td>
+</tr>
+<tr>
+<td><span class="math inline">\(\oint \vec{H} \cdot d\vec{l} = I_0 +
+\int \frac{\partial \vec{D}}{\partial t} \cdot d\vec{S}\)</span></td>
+<td>安培环路定理（推广）</td>
+<td>电流和变化电场都能产生磁场</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心物理思想：</strong> 1.
+<strong>电场</strong>可由<strong>电荷</strong>激发（静电场），也可由<strong>变化磁场</strong>激发（涡旋电场）
+2.
+<strong>磁场</strong>可由<strong>电流</strong>激发（静磁场），也可由<strong>变化电场</strong>激发（位移电流）
+3. 变化的电场和变化磁场相互激发 → <strong>电磁波</strong></p>
+<p><strong>位移电流：</strong> <span class="math display">\[
+I_d = \varepsilon_0 \frac{d\Phi_e}{dt}
+\]</span> - 位移电流的本质是变化的电场 - 位移电流与传导电流一样产生磁场
+- 位移电流<strong>不产生焦耳热</strong></p>
+<blockquote>
+<p><strong>考试常考：</strong>
+描述每个方程的物理意义，以及麦克斯韦方程组如何预言电磁波的存在。</p>
+</blockquote>
+<hr />
+<h2 id="六波动光学">六、波动光学</h2>
+<h3 id="杨氏双缝干涉">19. 杨氏双缝干涉</h3>
+<p><strong>装置：</strong> 单色光通过两个相距 <span
+class="math inline">\(d\)</span> 的狭缝，在后方屏幕上形成干涉条纹。</p>
+<p><strong>明暗纹条件：</strong> - 明纹（干涉加强）：<span
+class="math inline">\(\delta = d\sin\theta = \pm k\lambda,\ k =
+0,1,2,\ldots\)</span> - 暗纹（干涉减弱）：<span
+class="math inline">\(\delta = d\sin\theta = \pm
+(2k-1)\frac{\lambda}{2},\ k = 1,2,\ldots\)</span></p>
+<p><strong>条纹间距（相邻明纹或相邻暗纹的距离）：</strong> <span
+class="math display">\[
+\Delta x = \frac{D}{d}\lambda
+\]</span> - <span class="math inline">\(D\)</span> — 缝到屏幕的距离 -
+<span class="math inline">\(d\)</span> — 双缝间距</p>
+<p><strong>条纹特征：</strong> - 等间距、明暗相间的直条纹 -
+用白光照射时，中央为零级白色明纹，两侧彩色条纹（紫光在内，红光在外）</p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong> 光程差公式中的 <span
+class="math inline">\(k\)</span> 从 0 开始还是从 1 开始？明纹 <span
+class="math inline">\(k=0\)</span> 对应中央零级，暗纹 <span
+class="math inline">\(k=1\)</span>
+对应第一级暗纹。注意题目中”第一级明纹”对应 <span
+class="math inline">\(k=1\)</span>。</p>
+</blockquote>
+<hr />
+<h3 id="光程差与相位差">20. 光程差与相位差</h3>
+<p><strong>光程：</strong> <span class="math display">\[
+\text{光程} = nr
+\]</span> - 光在介质中传播 <span class="math inline">\(r\)</span>
+距离，等价于在真空中传播 <span class="math inline">\(nr\)</span>
+的距离</p>
+<p><strong>光程差 <span class="math inline">\(\delta\)</span> 与相位差
+<span class="math inline">\(\Delta\varphi\)</span> 的关系：</strong>
+<span class="math display">\[
+\Delta\varphi = \frac{2\pi}{\lambda}\delta
+\]</span> - <span class="math inline">\(\lambda\)</span> — 真空中波长 -
+<span class="math inline">\(\delta\)</span> — 光程差</p>
+<p><strong>干涉判据的统一形式（用光程差）：</strong> - 加强（明）：<span
+class="math inline">\(\delta = \pm k\lambda\)</span> - 减弱（暗）：<span
+class="math inline">\(\delta = \pm (2k+1)\frac{\lambda}{2}\)</span></p>
+<p><strong>引入光程的意义：</strong> -
+把光在不同介质中的传播统一折算为真空中的传播 -
+有了光程，干涉公式不用区分介质，统一写为上述形式</p>
+<blockquote>
+<p>⚠️ <strong>注意：</strong> 波在介质中波长变为 <span
+class="math inline">\(\lambda_n =
+\lambda/n\)</span>，但干涉计算中使用真空波长 <span
+class="math inline">\(\lambda\)</span> 与光程差 <span
+class="math inline">\(\delta\)</span> 更方便。</p>
+</blockquote>
+<hr />
+<h3 id="薄膜干涉">21. 薄膜干涉</h3>
+<p><strong>光路：</strong>
+光照射到薄膜上，分别在薄膜上下表面反射，两束反射光发生干涉。</p>
+<p><strong>光程差公式（反射光）：</strong> <span class="math display">\[
+\delta = 2ne + \frac{\lambda}{2}\ (\text{或}\ 0)
+\quad\text{取决于是否附加半波损失}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(n\)</span> — 薄膜折射率</li>
+<li><span class="math inline">\(e\)</span> — 薄膜厚度</li>
+<li>附加项：<span class="math inline">\(\frac{\lambda}{2}\)</span>
+是<strong>半波损失</strong>带来的额外光程差</li>
+</ul>
+<p><strong>半波损失的判断规则：</strong> &gt;
+光从<strong>光疏介质</strong>（折射率小）射向<strong>光密介质</strong>（折射率大）的反射面时，反射光发生
+<span class="math inline">\(\pi\)</span> 相位突变，相当于额外增加 <span
+class="math inline">\(\lambda/2\)</span> 的光程差。</p>
+<p><strong>判断方法（设薄膜折射率为 <span
+class="math inline">\(n_2\)</span>，上下介质为 <span
+class="math inline">\(n_1, n_3\)</span>）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>上表面反射</th>
+<th>下表面反射</th>
+<th>附加光程差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(n_1 &lt; n_2 &lt; n_3\)</span></td>
+<td>有半波损失</td>
+<td>有半波损失</td>
+<td><span class="math inline">\(0\)</span>（两损失抵消）</td>
+</tr>
+<tr>
+<td><span class="math inline">\(n_1 &lt; n_2 &gt; n_3\)</span></td>
+<td>有半波损失</td>
+<td>无半波损失</td>
+<td><span class="math inline">\(\lambda/2\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(n_1 &gt; n_2 &lt; n_3\)</span></td>
+<td>无半波损失</td>
+<td>有半波损失</td>
+<td><span class="math inline">\(\lambda/2\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>重点关注：</strong>
+半波损失的条件判断是薄膜干涉的<strong>最大易错点</strong>！考试中一定会出现。</p>
+</blockquote>
+<p><strong>透射光的干涉：</strong>
+透射光与反射光的干涉图样<strong>互补</strong>（反射光减弱对应透射光增强）。</p>
+<hr />
+<h3 id="迈克尔逊干涉仪">22. 迈克尔逊干涉仪</h3>
+<p><strong>原理：</strong>
+利用分振幅法产生干涉。光源发出的光经分光镜分为两束，分别被两个反射镜反射后相遇产生干涉。</p>
+<p><strong>等臂时：</strong> 两束光光程差 <span
+class="math inline">\(\delta = 0\)</span> →
+中央亮纹（若不计半波损失）。</p>
+<p><strong>移动反射镜 <span class="math inline">\(M_1\)</span> 移动距离
+<span class="math inline">\(\Delta d\)</span>：</strong> <span
+class="math display">\[
+\Delta d = N \cdot \frac{\lambda}{2}
+\]</span> - <span class="math inline">\(N\)</span> — 干涉条纹移动的数目
+- <span class="math inline">\(\lambda\)</span> — 光波波长</p>
+<p><strong>应用——测量微小位移：</strong> <span class="math display">\[
+\Delta d = \frac{\lambda}{2} \cdot \Delta N
+\]</span> - 可以测量极微小的位移（精度达到波长量级） -
+也可以反过来<strong>精确测量波长</strong></p>
+<blockquote>
+<p><strong>考试题型：</strong>
+给出条纹移动数目和波长求位移，或给出位移和条纹移动数求波长。</p>
+</blockquote>
+<hr />
+<h3 id="劈尖干涉">23. 劈尖干涉</h3>
+<p><strong>装置：</strong>
+两块平板玻璃一端接触，另一端夹一根细丝（或薄片），形成空气劈尖。</p>
+<p><strong>光程差（反射光）：</strong> <span class="math display">\[
+\delta = 2ne + \frac{\lambda}{2}
+\]</span> - 空气劈尖中 <span class="math inline">\(n \approx
+1\)</span>，<span class="math inline">\(\delta = 2e +
+\lambda/2\)</span></p>
+<p><strong>明暗纹条件：</strong> - 明纹：<span class="math inline">\(2e
++ \lambda/2 = k\lambda\)</span> → <span class="math inline">\(e =
+(2k-1)\lambda/4\)</span> - 暗纹：<span class="math inline">\(2e +
+\lambda/2 = (2k+1)\lambda/2\)</span> → <span class="math inline">\(e =
+k\lambda/2\)</span>（棱边处 <span class="math inline">\(e=0\)</span>
+为暗纹—因为有半波损失）</p>
+<p><strong>相邻条纹对应的厚度差：</strong> <span class="math display">\[
+\Delta e = \frac{\lambda}{2}
+\]</span></p>
+<p><strong>相邻条纹间距：</strong> <span class="math display">\[
+l = \frac{\lambda}{2\theta} \quad (\theta \text{为劈尖角})
+\]</span></p>
+<p><strong>判断凹凸：</strong> -
+若某处条纹<strong>向棱边方向弯曲</strong> → 该处<strong>凹下去</strong>
+- 若某处条纹<strong>向背离棱边的方向弯曲</strong> →
+该处<strong>凸出来</strong></p>
+<p>原理：条纹是等厚线，弯曲表示该处厚度与两侧不同。</p>
+<p><strong>测量细丝直径/薄片厚度：</strong> <span
+class="math display">\[
+d = \frac{\lambda}{2} \cdot \frac{L}{l} = \frac{\lambda}{2} \cdot N
+\]</span> - <span class="math inline">\(L\)</span> — 劈尖长度 - <span
+class="math inline">\(l\)</span> — 条纹间距 - <span
+class="math inline">\(N\)</span> — 条纹总数</p>
+<blockquote>
+<p>⚠️ <strong>重点：</strong> 半波损失导致棱边为暗纹（<span
+class="math inline">\(e=0\)</span>
+处），这是检查劈尖干涉是否正确的重要判据。</p>
+</blockquote>
+<hr />
+<h3 id="单缝衍射与光栅衍射">24. 单缝衍射与光栅衍射</h3>
+<p><strong>单缝夫琅禾费衍射（半波带法）：</strong></p>
+<p>暗纹条件： <span class="math display">\[
+a\sin\theta = \pm k\lambda,\quad k = 1,2,3,\ldots
+\]</span></p>
+<p>明纹条件（近似）： <span class="math display">\[
+a\sin\theta = \pm (2k+1)\frac{\lambda}{2},\quad k = 1,2,\ldots
+\]</span></p>
+<ul>
+<li><span class="math inline">\(a\)</span> — 缝宽</li>
+<li>中央明纹宽度是其他明纹的两倍</li>
+<li>中央明纹半角宽：<span class="math inline">\(\theta =
+\lambda/a\)</span>（<span class="math inline">\(a \gg \lambda\)</span>
+时衍射不明显）</li>
+</ul>
+<p><strong>光栅衍射：</strong></p>
+<p>光栅方程（主极大条件）： <span class="math display">\[
+d\sin\theta = \pm k\lambda,\quad k = 0,1,2,\ldots
+\]</span> - <span class="math inline">\(d = a + b\)</span> —
+光栅常数（缝宽+缝间距）</p>
+<p><strong>缺级现象：</strong> 当光栅方程的 <span
+class="math inline">\(k\)</span>
+级与单缝衍射暗纹条件同时满足时，该级主极大缺级： <span
+class="math display">\[
+\frac{d}{a} = \frac{k}{k&#39;}
+\]</span> 例如 <span class="math inline">\(d/a = 3\)</span> 时，<span
+class="math inline">\(k = \pm 3, \pm 6, \ldots\)</span> 级缺级。</p>
+<p><strong>可观察到的最高级次：</strong> <span class="math display">\[
+k_{\max} = \left\lfloor\frac{d}{\lambda}\right\rfloor \quad (\sin\theta
+\leq 1)
+\]</span></p>
+<blockquote>
+<p><strong>对比：</strong>
+单缝衍射是<strong>干涉和衍射的综合</strong>（缝本身的衍射），光栅衍射是<strong>多缝干涉受到单缝衍射调制</strong>。</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong>
+缺级的计算需要同时考虑光栅方程和单缝衍射暗纹条件，找到公共解。</p>
+</blockquote>
+<hr />
+<h3 id="光的偏振定律">25. 光的偏振定律</h3>
+<p><strong>偏振态：</strong> - <strong>自然光：</strong>
+各个方向振动强度相等 - <strong>线偏振光：</strong> 只有一个方向振动 -
+<strong>部分偏振光：</strong> 某个方向振动较强</p>
+<p><strong>马吕斯定律（线偏振光通过偏振片）：</strong> <span
+class="math display">\[
+I = I_0 \cos^2 \alpha
+\]</span> - <span class="math inline">\(I_0\)</span> — 入射偏振光强度 -
+<span class="math inline">\(\alpha\)</span> —
+偏振片偏振化方向与入射光振动方向的夹角 - <span
+class="math inline">\(\alpha = 0^\circ\)</span>：透射最强；<span
+class="math inline">\(\alpha = 90^\circ\)</span>：完全消光</p>
+<p><strong>自然光通过偏振片：</strong> <span class="math inline">\(I =
+I_0/2\)</span></p>
+<hr />
+<h3 id="布儒斯特定律">26. 布儒斯特定律</h3>
+<p><strong>内容：</strong> 当入射角等于某特定值 <span
+class="math inline">\(i_B\)</span>
+时，反射光成为完全偏振光（振动方向垂直于入射面）。</p>
+<p><strong>布儒斯特角公式：</strong> <span class="math display">\[
+\tan i_B = \frac{n_2}{n_1}
+\]</span> - <span class="math inline">\(n_1\)</span> — 入射介质折射率 -
+<span class="math inline">\(n_2\)</span> — 折射介质折射率 - <span
+class="math inline">\(i_B + r =
+90^\circ\)</span>（反射光与折射光垂直）</p>
+<p><strong>此时：</strong> -
+反射光：<strong>完全偏振光</strong>（振动方向垂直于入射面） -
+折射光：<strong>部分偏振光</strong>（以平行于入射面的振动为主）</p>
+<blockquote>
+<p><strong>应用：</strong>
+激光器输出窗、拍照用偏振滤光片（消除反光）。</p>
+<p><strong>对比马吕斯定律：</strong>
+马吕斯定律描述偏振光通过偏振片后的强度变化；布儒斯特定律描述如何通过反射获得偏振光。</p>
+</blockquote>
+<hr />
+<h2 id="七气体动理论">七、气体动理论</h2>
+<h3 id="理想气体状态方程">27. 理想气体状态方程</h3>
+<p><strong>常用形式：</strong> <span class="math display">\[
+pV = \frac{m}{M}RT = \nu RT
+\]</span> <span class="math display">\[
+p = nkT
+\]</span></p>
+<ul>
+<li><span class="math inline">\(p\)</span> — 压强，<span
+class="math inline">\(V\)</span> — 体积，<span
+class="math inline">\(T\)</span> — 热力学温度（K）</li>
+<li><span class="math inline">\(\nu = m/M\)</span> — 摩尔数</li>
+<li><span class="math inline">\(R = 8.31\ \text{J/(mol·K)}\)</span> —
+普适气体常量</li>
+<li><span class="math inline">\(k = R/N_A = 1.38 \times 10^{-23}\
+\text{J/K}\)</span> — 玻尔兹曼常数</li>
+<li><span class="math inline">\(n = N/V\)</span> — 分子数密度</li>
+</ul>
+<p><strong>变式应用：</strong> - 等温：<span
+class="math inline">\(p_1V_1 = p_2V_2\)</span> - 等压：<span
+class="math inline">\(V_1/T_1 = V_2/T_2\)</span> - 等容：<span
+class="math inline">\(p_1/T_1 = p_2/T_2\)</span></p>
+<blockquote>
+<p>✅ <strong>考点：</strong> 给出 <span
+class="math inline">\(p\!-\!V\)</span>
+图，判断温度高低、气体状态变化。注意 <span
+class="math inline">\(T\)</span>
+必须是热力学温标（开尔文），不是摄氏温度。</p>
+</blockquote>
+<hr />
+<h3 id="理想气体的压强公式与温度公式">28.
+理想气体的压强公式与温度公式</h3>
+<p><strong>压强公式（宏观微观联系）：</strong> <span
+class="math display">\[
+p = \frac{1}{3}nm\overline{v^2} = \frac{2}{3}n\overline{\varepsilon_k}
+\]</span> - <span class="math inline">\(\overline{v^2}\)</span> —
+分子速率平方的平均值 - <span
+class="math inline">\(\overline{\varepsilon_k} =
+\frac{1}{2}m\overline{v^2}\)</span> — 分子的平均平动动能</p>
+<p><strong>温度公式：</strong> <span class="math display">\[
+\overline{\varepsilon_k} = \frac{3}{2}kT
+\]</span> - 温度是分子平均平动动能的量度 -
+温度是宏观量，分子热运动剧烈程度的标志</p>
+<p><strong>物理意义：</strong> -
+压强是大量分子对器壁碰撞的<strong>统计平均效果</strong> -
+温度是分子无规则运动剧烈程度的<strong>统计平均量度</strong> -
+对单个分子谈温度<strong>没有意义</strong></p>
+<blockquote>
+<p>⚠️ <strong>注意：</strong> <span class="math inline">\(p\)</span> 和
+<span class="math inline">\(T\)</span>
+都是<strong>统计量</strong>，对少量分子（如少于几十个）不适用。</p>
+</blockquote>
+<hr />
+<h3 id="能量均分定理">29. 能量均分定理</h3>
+<p><strong>内容：</strong> 在热平衡状态下，分子的每个自由度平均分到
+<span class="math inline">\(\frac{1}{2}kT\)</span> 的能量。</p>
+<p><strong>分子自由度 <span
+class="math inline">\(i\)</span>：</strong></p>
+<table>
+<thead>
+<tr>
+<th>分子类型</th>
+<th>自由度 <span class="math inline">\(i\)</span></th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单原子</td>
+<td><span class="math inline">\(3\)</span>（全平动）</td>
+<td>He, Ne, Ar</td>
+</tr>
+<tr>
+<td>双原子（刚性）</td>
+<td><span class="math inline">\(5\)</span>（3平动+2转动）</td>
+<td><span class="math inline">\(H_2, O_2, N_2\)</span></td>
+</tr>
+<tr>
+<td>多原子（刚性）</td>
+<td><span class="math inline">\(6\)</span>（3平动+3转动）</td>
+<td><span class="math inline">\(CO_2, H_2O\)</span></td>
+</tr>
+<tr>
+<td>双原子（考虑振动）</td>
+<td><span class="math inline">\(7\)</span>（+1振动动能+1振动势能）</td>
+<td>高温下</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分子平均能量：</strong> <span class="math display">\[
+\overline{\varepsilon} = \frac{i}{2}kT
+\]</span></p>
+<p><strong>理想气体的内能（<span class="math inline">\(\nu\)</span>
+摩尔）：</strong> <span class="math display">\[
+E = \nu \cdot \frac{i}{2}RT = \frac{m}{M}\cdot\frac{i}{2}RT
+\]</span></p>
+<p><strong>关键区分：</strong> | 对象 | 平均平动动能 | 平均总动能 |
+内能（<span class="math inline">\(\nu\)</span> 摩尔）|
+|——|————|———–|—————–| | 一个分子 | <span
+class="math inline">\(\frac{3}{2}kT\)</span> | <span
+class="math inline">\(\frac{i}{2}kT\)</span> | — | | 定量气体（总） |
+<span class="math inline">\(\nu \cdot \frac{3}{2}RT\)</span> | <span
+class="math inline">\(\nu \cdot \frac{i}{2}RT\)</span> | <span
+class="math inline">\(\nu \cdot \frac{i}{2}RT\)</span> |</p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong> -
+一个分子的平均平动动能<strong>总是</strong> <span
+class="math inline">\(\frac{3}{2}kT\)</span>（与分子结构无关！） -
+但一个分子的总平均动能 = <span
+class="math inline">\(\frac{i}{2}kT\)</span>，<strong>与自由度有关</strong>
+- 理想气体内能 = 分子总动能（无分子间势能）</p>
+</blockquote>
+<hr />
+<h3 id="三种特征速率">31. 三种特征速率</h3>
+<blockquote>
+<p>注：原 30 空已删除，此为原 31</p>
+</blockquote>
+<p><strong>速率分布函数 <span
+class="math inline">\(f(v)\)</span>：</strong> <span
+class="math display">\[
+f(v) = \frac{dN}{N dv}
+\]</span> - 物理意义：速率在 <span class="math inline">\(v\)</span>
+附近单位速率间隔内的分子数占总分子数的比例 - 归一化条件：<span
+class="math inline">\(\int_0^\infty f(v) dv = 1\)</span></p>
+<p><strong>三种特征速率（从麦克斯韦速率分布律得出）：</strong></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>速率</th>
+<th>公式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最概然速率（最可几速率）</td>
+<td><span class="math inline">\(v_p = \sqrt{\dfrac{2RT}{M}} =
+\sqrt{\dfrac{2kT}{m}}\)</span></td>
+<td>分布曲线的峰值位置</td>
+</tr>
+<tr>
+<td>平均速率</td>
+<td><span class="math inline">\(\bar{v} = \sqrt{\dfrac{8RT}{\pi M}} =
+\sqrt{\dfrac{8kT}{\pi m}}\)</span></td>
+<td>分子运动的平均快慢</td>
+</tr>
+<tr>
+<td>方均根速率</td>
+<td><span class="math inline">\(\sqrt{\overline{v^2}} =
+\sqrt{\dfrac{3RT}{M}} = \sqrt{\dfrac{3kT}{m}}\)</span></td>
+<td>计算平均平动动能</td>
+</tr>
+</tbody>
+</table>
+<p><strong>大小关系：</strong> <span class="math inline">\(v_p &lt;
+\bar{v} &lt; \sqrt{\overline{v^2}}\)</span></p>
+<p><strong>比例关系：</strong> <span class="math inline">\(v_p : \bar{v}
+: \sqrt{\overline{v^2}} = \sqrt{2} : \sqrt{8/\pi} : \sqrt{3} \approx 1 :
+1.13 : 1.22\)</span></p>
+<blockquote>
+<p><strong>应用：</strong> -
+计算分子的<strong>平均平动动能</strong>用方均根速率 -
+研究<strong>碰撞频率、平均自由程</strong>用平均速率 -
+分布曲线的<strong>峰值</strong>对应最概然速率</p>
+</blockquote>
+<hr />
+<h2 id="八热力学">八、热力学</h2>
+<h3 id="四种热力学过程的综合计算">32. 四种热力学过程的综合计算</h3>
+<p><strong>热力学第一定律（核心工具）：</strong> <span
+class="math display">\[
+Q = \Delta E + A
+\]</span> - <span class="math inline">\(Q\)</span> — 吸热（<span
+class="math inline">\(&gt;0\)</span> 吸热，<span
+class="math inline">\(&lt;0\)</span> 放热） - <span
+class="math inline">\(\Delta E\)</span> — 内能增量（<span
+class="math inline">\(\Delta E = \nu C_V\Delta
+T\)</span>，<strong>对任何过程都成立</strong>） - <span
+class="math inline">\(A\)</span> — 对外做功（<span
+class="math inline">\(&gt;0\)</span> 对外做功，<span
+class="math inline">\(&lt;0\)</span> 外界对气体做功）</p>
+<p><strong>四个等值过程对比：</strong></p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 38%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr>
+<th>过程</th>
+<th>特征</th>
+<th>内能增量 <span class="math inline">\(\Delta E\)</span></th>
+<th>做功 <span class="math inline">\(A\)</span></th>
+<th>热量 <span class="math inline">\(Q\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>等容</strong></td>
+<td><span class="math inline">\(V = \text{常数}\)</span></td>
+<td><span class="math inline">\(\nu C_V\Delta T\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(\nu C_V\Delta T\)</span></td>
+</tr>
+<tr>
+<td><strong>等压</strong></td>
+<td><span class="math inline">\(p = \text{常数}\)</span></td>
+<td><span class="math inline">\(\nu C_V\Delta T\)</span></td>
+<td><span class="math inline">\(p\Delta V = \nu R\Delta T\)</span></td>
+<td><span class="math inline">\(\nu C_p\Delta T\)</span></td>
+</tr>
+<tr>
+<td><strong>等温</strong></td>
+<td><span class="math inline">\(T = \text{常数}\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(\nu RT\ln\dfrac{V_2}{V_1}\)</span></td>
+<td><span class="math inline">\(A\)</span>（全部转化为功）</td>
+</tr>
+<tr>
+<td><strong>绝热</strong></td>
+<td><span class="math inline">\(Q = 0\)</span></td>
+<td><span class="math inline">\(\nu C_V\Delta T\)</span></td>
+<td><span class="math inline">\(-\Delta E\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>摩尔热容：</strong> - <span class="math inline">\(C_V =
+\dfrac{i}{2}R\)</span> - <span class="math inline">\(C_p = C_V + R =
+\dfrac{i+2}{2}R\)</span> - <span class="math inline">\(\gamma =
+\dfrac{C_p}{C_V} = \dfrac{i+2}{i}\)</span>（比热容比）</p>
+<table>
+<thead>
+<tr>
+<th>分子类型</th>
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(C_V\)</span></th>
+<th><span class="math inline">\(C_p\)</span></th>
+<th><span class="math inline">\(\gamma\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单原子</td>
+<td>3</td>
+<td><span class="math inline">\(3R/2\)</span></td>
+<td><span class="math inline">\(5R/2\)</span></td>
+<td><span class="math inline">\(5/3 \approx 1.67\)</span></td>
+</tr>
+<tr>
+<td>双原子刚性</td>
+<td>5</td>
+<td><span class="math inline">\(5R/2\)</span></td>
+<td><span class="math inline">\(7R/2\)</span></td>
+<td><span class="math inline">\(7/5 = 1.40\)</span></td>
+</tr>
+<tr>
+<td>多原子刚性</td>
+<td>6</td>
+<td><span class="math inline">\(3R\)</span></td>
+<td><span class="math inline">\(4R\)</span></td>
+<td><span class="math inline">\(4/3 \approx 1.33\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>泊松公式（绝热过程）：</strong> <span class="math display">\[
+pV^\gamma = \text{常量}, \quad V^{\gamma-1}T = \text{常量}, \quad
+p^{\gamma-1}T^{-\gamma} = \text{常量}
+\]</span></p>
+<p><strong>吸放热判断（<span class="math inline">\(p\!-\!V\)</span>
+图上）：</strong> - 在 <span class="math inline">\(p\!-\!V\)</span>
+图上画<strong>绝热线</strong>作为参考 -
+从同一状态出发，比绝热线”陡”的是吸热方向，比绝热线”平”的是放热方向 -
+或直接计算 <span class="math inline">\(Q = \Delta E + A\)</span>
+的正负</p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong> <span class="math inline">\(\Delta E =
+\nu C_V\Delta T\)</span>
+<strong>对任何过程都成立</strong>（不限于等容过程），因为理想气体内能只与温度有关。</p>
+</blockquote>
+<hr />
+<h3 id="循环效率">33. 循环效率</h3>
+<p><strong>正循环（热机）：</strong> 系统从高温热源吸热 <span
+class="math inline">\(Q_1\)</span>，对外做功 <span
+class="math inline">\(A\)</span>，向低温热源放热 <span
+class="math inline">\(Q_2\)</span>。</p>
+<p><strong>效率公式（两个形式）：</strong></p>
+<p>形式一： <span class="math display">\[
+\eta = \frac{A}{Q_1} = 1 - \frac{Q_2}{Q_1}
+\]</span> - <span class="math inline">\(A\)</span> —
+净功（循环曲线包围的面积） - <span class="math inline">\(Q_1\)</span> —
+吸热总和 - <span class="math inline">\(Q_2\)</span> —
+放热总和（取绝对值）</p>
+<p><strong>使用场景：</strong> 给出了具体的吸热和放热量时使用。</p>
+<p>形式二： <span class="math display">\[
+\eta = 1 - \frac{Q_2}{Q_1}
+\]</span> <strong>使用场景：</strong> 结合热力学第一定律计算 <span
+class="math inline">\(Q_1\)</span> 和 <span
+class="math inline">\(Q_2\)</span> 时使用。</p>
+<p><strong>逆循环（制冷机）：</strong> 外界做功 <span
+class="math inline">\(A\)</span>，系统从低温热源吸热 <span
+class="math inline">\(Q_2\)</span>，向高温热源放热 <span
+class="math inline">\(Q_1\)</span>。</p>
+<p><strong>制冷系数：</strong> <span class="math display">\[
+e = \frac{Q_2}{A} = \frac{Q_2}{Q_1 - Q_2}
+\]</span></p>
+<blockquote>
+<p>⚠️ <strong>注意：</strong> <span class="math inline">\(Q_1\)</span>
+是<strong>吸热总和</strong>（不是净吸热），<span
+class="math inline">\(Q_2\)</span>
+是<strong>放热总和</strong>（取绝对值）。要先识别循环中各段是吸热还是放热。</p>
+</blockquote>
+<hr />
+<h3 id="卡诺循环">34. 卡诺循环</h3>
+<p><strong>组成：</strong> 两个等温过程 + 两个绝热过程</p>
+<p><strong>卡诺热机效率（只与热源温度有关）：</strong> <span
+class="math display">\[
+\eta_{\text{卡}} = 1 - \frac{T_2}{T_1}
+\]</span> - <span class="math inline">\(T_1\)</span> — 高温热源温度 -
+<span class="math inline">\(T_2\)</span> — 低温热源温度</p>
+<p><strong>卡诺制冷系数：</strong> <span class="math display">\[
+e_{\text{卡}} = \frac{T_2}{T_1 - T_2}
+\]</span></p>
+<p><strong>卡诺定理：</strong> -
+所有工作在相同高温热源和低温热源之间的热机，可逆机的效率最高 -
+可逆机的效率都等于卡诺热机的效率 - 不可逆机的效率小于卡诺热机的效率</p>
+<p><strong>重要推论：</strong> <span class="math display">\[
+\frac{Q_1}{T_1} + \frac{Q_2}{T_2} = 0 \quad (\text{可逆循环})
+\]</span> <strong>引入熵变概念：</strong> <span class="math display">\[
+\Delta S = \int \frac{dQ}{T} \quad (\text{可逆过程})
+\]</span></p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong> -
+卡诺效率只与<strong>热力学温度</strong>有关，与工作物质无关 - <span
+class="math inline">\(T_1 \to \infty\)</span> 或 <span
+class="math inline">\(T_2 \to 0\)</span> 才能使 <span
+class="math inline">\(\eta = 1\)</span>，但都不可实现 -
+实际热机效率总是小于对应的卡诺效率</p>
+</blockquote>
+<hr />
+<h2 id="九振动与波">九、振动与波</h2>
+<h3 id="简谐振动的运动学与动力学方程">35.
+简谐振动的运动学与动力学方程</h3>
+<p><strong>动力学方程（回复力）：</strong> <span class="math display">\[
+F = -kx
+\]</span> <span class="math display">\[
+m\frac{d^2x}{dt^2} = -kx \quad\Rightarrow\quad \frac{d^2x}{dt^2} +
+\omega^2 x = 0
+\]</span></p>
+<p><strong>运动学方程（振动表达式）：</strong> <span
+class="math display">\[
+x = A\cos(\omega t + \varphi)
+\]</span></p>
+<p><strong>各量含义：</strong> - <span class="math inline">\(A\)</span>
+— 振幅（最大位移） - <span class="math inline">\(\omega =
+\sqrt{k/m}\)</span> — 角频率（<span class="math inline">\(\omega =
+2\pi/T = 2\pi f\)</span>） - <span
+class="math inline">\(\varphi\)</span> — 初相位（<span
+class="math inline">\(t=0\)</span> 时的相位） - <span
+class="math inline">\(\omega t + \varphi\)</span> — 相位</p>
+<p><strong>速度和加速度：</strong> <span class="math display">\[
+v = -\omega A\sin(\omega t + \varphi) = \omega A\cos\left(\omega t +
+\varphi + \frac{\pi}{2}\right)
+\]</span> <span class="math display">\[
+a = -\omega^2 A\cos(\omega t + \varphi) = \omega^2 A\cos(\omega t +
+\varphi + \pi)
+\]</span></p>
+<p><strong>能量：</strong> <span class="math display">\[
+E_k = \frac{1}{2}mv^2 = \frac{1}{2}m\omega^2 A^2\sin^2(\omega t +
+\varphi)
+\]</span> <span class="math display">\[
+E_p = \frac{1}{2}kx^2 = \frac{1}{2}kA^2\cos^2(\omega t + \varphi)
+\]</span> <span class="math display">\[
+E = E_k + E_p = \frac{1}{2}kA^2 = \frac{1}{2}m\omega^2 A^2 \quad
+(\text{守恒})
+\]</span></p>
+<blockquote>
+<p><strong>注意：</strong>
+简谐振动中动能和势能此消彼长，但<strong>总机械能守恒</strong>。</p>
+</blockquote>
+<hr />
+<h3 id="旋转矢量法">36. 旋转矢量法</h3>
+<p><strong>方法：</strong> 用一个以角速度 <span
+class="math inline">\(\omega\)</span> 匀速旋转的矢量 <span
+class="math inline">\(\vec{A}\)</span> 在 <span
+class="math inline">\(x\)</span> 轴上的投影来表示简谐振动。</p>
+<p><strong>对应关系：</strong> - 矢量长度 → 振幅 <span
+class="math inline">\(A\)</span> - 旋转角速度 → 角频率 <span
+class="math inline">\(\omega\)</span> - 矢量与 <span
+class="math inline">\(x\)</span> 轴夹角 → 相位 <span
+class="math inline">\(\omega t + \varphi\)</span> - <span
+class="math inline">\(t=0\)</span> 时的夹角 → 初相 <span
+class="math inline">\(\varphi\)</span></p>
+<p><strong>用途：</strong></p>
+<p><strong>(a) 求初相 <span
+class="math inline">\(\varphi\)</span>：</strong> 已知 <span
+class="math inline">\(t=0\)</span> 时的 <span
+class="math inline">\(x_0\)</span> 和 <span
+class="math inline">\(v_0\)</span>
+方向，在旋转矢量图上确定矢量位置。</p>
+<p><strong>(b) 比较相位差：</strong> - <span
+class="math inline">\(\Delta\varphi =
+0\)</span>：同相（同时达到最大、同时过零） - <span
+class="math inline">\(\Delta\varphi =
+\pi\)</span>：反相（一个最大时另一个最小） - <span
+class="math inline">\(\Delta\varphi = \pm\pi/2\)</span>：相位差 <span
+class="math inline">\(\pi/2\)</span></p>
+<p><strong>(c) 求时间间隔：</strong> 旋转矢量转过角度 <span
+class="math inline">\(\Delta\theta = \omega\Delta t\)</span> → <span
+class="math inline">\(\Delta t = \Delta\theta/\omega\)</span></p>
+<blockquote>
+<p>旋转矢量法是<strong>解决简谐振动问题的强大工具</strong>，特别是求初相和相位差，比纯代数方法直观得多。</p>
+</blockquote>
+<hr />
+<h3 id="简谐振动的合成">37. 简谐振动的合成</h3>
+<p><strong>(a) 同方向、同频率的两个简谐振动的合成：</strong> <span
+class="math display">\[
+x_1 = A_1\cos(\omega t + \varphi_1),\quad x_2 = A_2\cos(\omega t +
+\varphi_2)
+\]</span></p>
+<p>合振动仍是同频率的简谐振动： <span class="math display">\[
+x = A\cos(\omega t + \varphi)
+\]</span></p>
+<p>合振幅： <span class="math display">\[
+A = \sqrt{A_1^2 + A_2^2 + 2A_1A_2\cos(\varphi_2 - \varphi_1)}
+\]</span></p>
+<p>合初相： <span class="math display">\[
+\tan\varphi = \frac{A_1\sin\varphi_1 +
+A_2\sin\varphi_2}{A_1\cos\varphi_1 + A_2\cos\varphi_2}
+\]</span></p>
+<p><strong>特殊情况：</strong> - <span
+class="math inline">\(\Delta\varphi = 0\)</span>（同相）：<span
+class="math inline">\(A = A_1 + A_2\)</span>（干涉加强） - <span
+class="math inline">\(\Delta\varphi = \pi\)</span>（反相）：<span
+class="math inline">\(A = |A_1 - A_2|\)</span>（干涉减弱） - <span
+class="math inline">\(A_1 = A_2\)</span> 且反相：<span
+class="math inline">\(A = 0\)</span>（完全抵消）</p>
+<p><strong>(b) 同方向、不同频率——拍：</strong> 当 <span
+class="math inline">\(\omega_1 \approx \omega_2\)</span>
+时产生<strong>拍</strong>现象： <span class="math display">\[
+x = 2A\cos\left(\frac{\omega_2 - \omega_1}{2}t\right) \cdot
+\cos\left(\frac{\omega_1 + \omega_2}{2}t\right)
+\]</span> 拍频：<span class="math inline">\(v = |\nu_1 -
+\nu_2|\)</span></p>
+<p><strong>(c) 互相垂直的简谐振动的合成：</strong> -
+同频率：合成轨迹为椭圆（李萨如图形） -
+频率比为简单整数比：形成稳定的李萨如图形</p>
+<blockquote>
+<p><strong>考试重点：</strong>
+同方向同频率合成是基础，掌握旋转矢量法求合振幅和初相。</p>
+</blockquote>
+<hr />
+<h3 id="波函数">38. 波函数</h3>
+<p><strong>波函数的一般形式：</strong> <span class="math display">\[
+y(x,t) = A\cos\left(\omega t - kx + \varphi\right)
+\]</span> <span class="math display">\[
+y(x,t) = A\cos 2\pi\left(\frac{t}{T} - \frac{x}{\lambda} +
+\varphi\right)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\omega = 2\pi/T\)</span> — 角频率</li>
+<li><span class="math inline">\(k = 2\pi/\lambda\)</span> —
+<strong>波数</strong>（不是玻尔兹曼常数）</li>
+<li><span class="math inline">\(u = \lambda/T = \nu\lambda\)</span> —
+波速</li>
+</ul>
+<p><strong>各量关系：</strong> <span class="math display">\[
+u = \frac{\omega}{k} = \lambda\nu
+\]</span></p>
+<p><strong>波函数的物理意义：</strong> - 固定 <span
+class="math inline">\(x\)</span>：<span
+class="math inline">\(y(t)\)</span> 是该点的振动方程 - 固定 <span
+class="math inline">\(t\)</span>：<span
+class="math inline">\(y(x)\)</span> 是该时刻的波形 - <span
+class="math inline">\(x\)</span> 和 <span
+class="math inline">\(t\)</span> 都变：描述波的传播</p>
+<p><strong>波速（机械波在弹性介质中）：</strong> - 绳中横波：<span
+class="math inline">\(u = \sqrt{F/\mu}\)</span>（<span
+class="math inline">\(F\)</span> 张力，<span
+class="math inline">\(\mu\)</span> 线密度） - 固体中纵波：<span
+class="math inline">\(u = \sqrt{Y/\rho}\)</span>（<span
+class="math inline">\(Y\)</span> 杨氏模量）</p>
+<p><strong>波动方程：</strong> <span class="math display">\[
+\frac{\partial^2 y}{\partial x^2} = \frac{1}{u^2}\frac{\partial^2
+y}{\partial t^2}
+\]</span></p>
+<blockquote>
+<p>⚠️ <strong>注意区分：</strong> - <span
+class="math inline">\(y\)</span> 表示振动位移，<span
+class="math inline">\(A\)</span> 表示振幅 - 波函数中 <span
+class="math inline">\(x\)</span> 前的<strong>负号</strong>表示波沿 <span
+class="math inline">\(x\)</span>
+<strong>正方向</strong>传播；<strong>正号</strong>表示沿 <span
+class="math inline">\(x\)</span> <strong>负方向</strong>传播</p>
+</blockquote>
+<hr />
+<h3 id="波的干涉与驻波">39. 波的干涉与驻波</h3>
+<p><strong>波的干涉条件：</strong>
+频率相同、振动方向相同、相位差恒定（相干波）。</p>
+<p><strong>干涉强度分布：</strong> <span class="math display">\[
+I = I_1 + I_2 + 2\sqrt{I_1I_2}\cos\Delta\varphi
+\]</span></p>
+<p><strong>干涉加强/减弱条件：</strong> - 加强：<span
+class="math inline">\(\Delta\varphi = \pm 2k\pi\)</span> 或 <span
+class="math inline">\(\delta = \pm k\lambda\)</span> - 减弱：<span
+class="math inline">\(\Delta\varphi = \pm (2k+1)\pi\)</span> 或 <span
+class="math inline">\(\delta = \pm (2k+1)\lambda/2\)</span></p>
+<p><strong>波程差与相位差关系：</strong> <span class="math display">\[
+\Delta\varphi = \frac{2\pi}{\lambda}\delta
+\]</span></p>
+<p><strong>驻波（两列振幅相同、传播方向相反的相干波叠加）：</strong></p>
+<p>驻波方程： <span class="math display">\[
+y = 2A\cos\left(\frac{2\pi x}{\lambda}\right)\cos(\omega t)
+\]</span></p>
+<ul>
+<li><strong>波腹</strong>（振幅最大处）：<span class="math inline">\(x =
+\pm k \cdot \lambda/2,\ k = 0,1,2,\ldots\)</span></li>
+<li><strong>波节</strong>（振幅为零处）：<span class="math inline">\(x =
+\pm (2k+1) \cdot \lambda/4,\ k = 0,1,2,\ldots\)</span></li>
+<li>相邻波腹（或相邻波节）间距：<span
+class="math inline">\(\lambda/2\)</span></li>
+<li>相邻波腹与波节间距：<span
+class="math inline">\(\lambda/4\)</span></li>
+</ul>
+<p><strong>半波损失在驻波中的体现：</strong>
+当反射点处出现<strong>波节</strong> → 反射时有半波损失
+当反射点处出现<strong>波腹</strong> → 反射时无半波损失</p>
+<p><strong>驻波的特点：</strong> -
+能量不传播（只在波腹和波节间来回转换） - 各点振幅不同，相位不是传播关系
+- 相邻段振动相位相反</p>
+<blockquote>
+<p>⚠️ <strong>易错点：</strong>
+驻波不是”波”——它不传播能量，各点以相同频率振动但振幅不同。驻波方程是两个反向传播波的叠加结果。</p>
+</blockquote>
+<hr />
+<h2 id="附录常用物理常数">附录：常用物理常数</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>常数</th>
+<th>符号</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>真空介电常数</td>
+<td><span class="math inline">\(\varepsilon_0\)</span></td>
+<td><span class="math inline">\(8.85 \times 10^{-12}\
+\text{C}^2/(\text{N·m}^2)\)</span></td>
+</tr>
+<tr>
+<td>真空磁导率</td>
+<td><span class="math inline">\(\mu_0\)</span></td>
+<td><span class="math inline">\(4\pi \times 10^{-7}\
+\text{N/A}^2\)</span></td>
+</tr>
+<tr>
+<td>真空光速</td>
+<td><span class="math inline">\(c\)</span></td>
+<td><span class="math inline">\(3.00 \times 10^8\
+\text{m/s}\)</span></td>
+</tr>
+<tr>
+<td>普朗克常数</td>
+<td><span class="math inline">\(h\)</span></td>
+<td><span class="math inline">\(6.63 \times 10^{-34}\
+\text{J·s}\)</span></td>
+</tr>
+<tr>
+<td>玻尔兹曼常数</td>
+<td><span class="math inline">\(k\)</span></td>
+<td><span class="math inline">\(1.38 \times 10^{-23}\
+\text{J/K}\)</span></td>
+</tr>
+<tr>
+<td>普适气体常数</td>
+<td><span class="math inline">\(R\)</span></td>
+<td><span class="math inline">\(8.31\ \text{J/(mol·K)}\)</span></td>
+</tr>
+<tr>
+<td>阿伏伽德罗常数</td>
+<td><span class="math inline">\(N_A\)</span></td>
+<td><span class="math inline">\(6.02 \times 10^{23}\
+\text{mol}^{-1}\)</span></td>
+</tr>
+<tr>
+<td>电子电量</td>
+<td><span class="math inline">\(e\)</span></td>
+<td><span class="math inline">\(1.60 \times 10^{-19}\
+\text{C}\)</span></td>
+</tr>
+<tr>
+<td>电子静质量</td>
+<td><span class="math inline">\(m_e\)</span></td>
+<td><span class="math inline">\(9.11 \times 10^{-31}\
+\text{kg}\)</span></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

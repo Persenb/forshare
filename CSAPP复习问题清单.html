@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>CSAPP复习问题清单</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<h1 id="csapp-复习问题清单">CSAPP 复习问题清单</h1>
+<p>本清单整理了复习过程中提出的全部问题，按章节归类。每个问题后标注了知识类别，方便定位薄弱环节。</p>
+<hr />
+<h2 id="一环境与工具">一、环境与工具</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>mkdir -p</code>
+全称是什么？</label></li>
+<li><label><input type="checkbox" /><code>apt</code>
+全称是什么？</label></li>
+<li><label><input type="checkbox" />GCC
+各编译选项的含义和全称（<code>-E</code>、<code>-S</code>、<code>-c</code>、<code>-o</code>、<code>-g</code>、<code>-O</code>、<code>-Wall</code>、<code>-std</code>、<code>-I</code>、<code>-D</code>）</label></li>
+<li><label><input type="checkbox" />Makefile
+的编写规则和常用变量</label></li>
+<li><label><input type="checkbox" />GCC 的 <code>-D</code>
+参数是什么意思？（Define——定义宏）</label></li>
+<li><label><input type="checkbox" />Git
+的基本操作：clone、commit、push、pull</label></li>
+<li><label><input type="checkbox" />GDB
+调试器常用命令有哪些？（break、run、next、step、continue、print、disassemble、info
+registers）</label></li>
+</ul>
+<hr />
+<h2 id="二信息的表示与处理">二、信息的表示与处理</h2>
+<h3 id="进制与编码">进制与编码</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />十进制小数转二进制用什么方法？（乘 2
+取整法）</label></li>
+<li><label><input type="checkbox" />十六进制转二进制时，高位的 0
+可以省略吗？（可以直接去掉）</label></li>
+<li><label><input
+type="checkbox" />字节序（Endianness）：小端序和大端序的区别？x86
+用哪种？</label></li>
+<li><label><input type="checkbox" />IEEE 754 全称是什么？</label></li>
+<li><label><input type="checkbox" />IEEE 怎么读？</label></li>
+<li><label><input
+type="checkbox" />为什么规格化数的尾数编码有一个隐式前置的
+1？（为了多一位精度）</label></li>
+<li><label><input type="checkbox" />为什么是 1 而不是
+0？（规格化定义要求整数部分非零，二进制只能为 1）</label></li>
+<li><label><input type="checkbox" />IEEE 754
+的设计哲学有哪些？（偏置指数、正负零、非规格化数、NaN、向最近偶数舍入等）</label></li>
+<li><label><input type="checkbox" />为什么浮点数中有 +0 和
+-0？（保留”从哪个方向趋近于零”的信息）</label></li>
+<li><label><input type="checkbox" />GB 与 GiB
+的区别？（GB=10⁹，GiB=2³⁰）</label></li>
+</ul>
+<h3 id="整数">整数</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />为什么 C
+语言中有符号数和无符号数混用时按无符号计算？</label></li>
+<li><label><input type="checkbox" />signed→unsigned 和 unsigned→signed
+的转换是对称的吗？</label></li>
+<li><label><input type="checkbox" />有符号数 -2
+的补码是什么？</label></li>
+<li><label><input
+type="checkbox" />正数的补码需要取反加一吗？（不需要，正数的补码就是本身）</label></li>
+<li><label><input type="checkbox" />int 显式转换为 char
+时怎么处理？（截断高位，按补码解析）</label></li>
+<li><label><input
+type="checkbox" />低位宽扩展为高位宽时，有符号数和无符号数分别怎么做？（符号扩展
+vs 零扩展）</label></li>
+<li><label><input
+type="checkbox" />截断是怎么操作的？（高位直接丢弃，不区分数据类型）</label></li>
+<li><label><input type="checkbox" /><code>sizeof</code>
+的结果类型是什么？（size_t，无符号整数）</label></li>
+<li><label><input type="checkbox" />int 转 float 再转回
+int，需要满足什么条件才不变？（float 尾数 ≥ 31 位）</label></li>
+<li><label><input type="checkbox" />31 位尾数够不够保证 int32
+不变？（够，2³¹ &gt; INT_MAX）</label></li>
+</ul>
+<h3 id="浮点数">浮点数</h3>
+<ul class="task-list">
+<li><label><input
+type="checkbox" />浮点数的舍入规则是什么？（默认向最近偶数舍入）</label></li>
+<li><label><input
+type="checkbox" />向偶数舍入的规则只用于什么情况？（恰好一半时，其余是四舍五入）</label></li>
+<li><label><input
+type="checkbox" />向偶数舍入的统计学意义是什么？（消除统计偏差，长期期望值为零）</label></li>
+<li><label><input type="checkbox" />int → float / double
+转换各有什么风险？</label></li>
+<li><label><input type="checkbox" />double → float
+的转换过程是怎样的？（符号复制 + 指数重偏置 +
+尾数截断舍入）</label></li>
+<li><label><input type="checkbox" /><code>(d + f) - d == f</code>
+为什么不总是成立？（两次舍入导致信息丢失）</label></li>
+<li><label><input
+type="checkbox" /><code>0.2 + 0.2 + 0.2 + 0.2 + 0.2 = 1.0</code>
+是怎么巧合出来的？</label></li>
+<li><label><input
+type="checkbox" />准度（Accuracy）与精度（Precision）的区别是什么？</label></li>
+</ul>
+<h3 id="运算">运算</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />位运算
+<code>&amp;</code>、<code>|</code>、<code>~</code>、<code>^</code>
+各有什么应用场景？</label></li>
+<li><label><input
+type="checkbox" />左移和右移分别怎么运算？</label></li>
+<li><label><input type="checkbox" />逻辑右移和算术右移的区别？（高位补 0
+vs 补符号位）</label></li>
+<li><label><input
+type="checkbox" />左移溢出时，有符号数和无符号数各是什么行为？（有符号→UB，无符号→模运算）</label></li>
+<li><label><input
+type="checkbox" />右移会溢出吗？（不会，但负数右移是向下取整，需要偏置修正）</label></li>
+<li><label><input type="checkbox" />怎么修正负数除以 2 的幂的结果？（用
+bias = (1&lt;&lt;k)-1）</label></li>
+<li><label><input type="checkbox" />两个 w 位的数相乘，结果多少位？（2w
+位，取低 w 位作为结果）</label></li>
+<li><label><input type="checkbox" />条件码 CF、OF、SF、ZF
+分别怎么计算？</label></li>
+<li><label><input type="checkbox" /><code>carry_in</code> 和
+<code>carry_out</code>
+是什么？（低位进位输入和输出到高位的进位）</label></li>
+<li><label><input type="checkbox" />CF 只看最高位是否有进位吗？（对，CF
+= carry_out[63]）</label></li>
+</ul>
+<hr />
+<h2 id="三程序的机器级表示">三、程序的机器级表示</h2>
+<h3 id="汇编基础">汇编基础</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />AT&amp;T
+汇编的全称是什么？</label></li>
+<li><label><input type="checkbox" />汇编指令的格式是怎样的？（标号:
+操作码 源操作数, 目标操作数）</label></li>
+<li><label><input type="checkbox" />寻址表达式 <code>D(Rb, Ri, S)</code>
+怎么计算？（地址 = Rb + Ri × S + D）</label></li>
+<li><label><input
+type="checkbox" />S（比例因子）只能取哪些值？（1、2、4、8）</label></li>
+<li><label><input type="checkbox" />为什么 <code>mov</code>
+指令的两个操作数不能都是内存？</label></li>
+<li><label><input type="checkbox" /><code>leaq</code>
+的全称和特殊之处？（不访存、不改变标志位、可用于做算术）</label></li>
+<li><label><input type="checkbox" /><code>xorq</code>
+指令的作用？</label></li>
+<li><label><input type="checkbox" />各寄存器的低字节名称是什么？（如
+rax→eax→ax→al/ah）</label></li>
+</ul>
+<h3 id="条件码与控制流">条件码与控制流</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />条件码 CF/OF/SF/ZF
+的计算方式是什么？</label></li>
+<li><label><input
+type="checkbox" />哪些指令会改变/不改变标志位？（lea、not
+不改变）</label></li>
+<li><label><input type="checkbox" /><code>seta</code> 和
+<code>setb</code> 的含义？（无符号大于/小于）</label></li>
+<li><label><input type="checkbox" /><code>setx</code>
+指令为什么只写最后一个字节？（历史设计，只支持 8 位写）</label></li>
+<li><label><input
+type="checkbox" />有符号数比较的汇编指令有哪些？（jg/jl/jge/jle）</label></li>
+<li><label><input
+type="checkbox" />条件跳转和条件数据传送（cmov）各自的优劣？</label></li>
+<li><label><input type="checkbox" />什么情况下不能用 cmov？</label></li>
+<li><label><input type="checkbox" />读汇编找等价 C
+代码时有什么技巧？</label></li>
+</ul>
+<h3 id="过程调用">过程调用</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>call</code> 和
+<code>ret</code> 指令是怎么实现的？</label></li>
+<li><label><input
+type="checkbox" />返回栈缓冲器（RSB）的作用？</label></li>
+<li><label><input type="checkbox" />32
+位处理器怎么传递参数？（全部通过栈，从右向左压）</label></li>
+<li><label><input type="checkbox" />x86-64 参数传递的寄存器映射（前 6
+个用寄存器，第 7 个起走栈）</label></li>
+<li><label><input
+type="checkbox" />参数顺序与寄存器/栈的对应规则是怎样的？</label></li>
+<li><label><input
+type="checkbox" />栈传递为什么从右向左压？（为了可变参数能访问第一个参数）</label></li>
+<li><label><input
+type="checkbox" />被调函数怎么访问调用者栈上的参数？（通过
+rbp+正偏移）</label></li>
+<li><label><input type="checkbox" />寄存器保护中 caller-save 和
+callee-save 的职责分配依据是什么？</label></li>
+<li><label><input
+type="checkbox" />栈帧的构成和各部分的归属？</label></li>
+<li><label><input type="checkbox" /><code>old frame pointer</code>
+存的是什么？（调用者的 RBP 值）</label></li>
+<li><label><input type="checkbox" /><code>%rbp</code> 的全称？（Base
+Pointer）</label></li>
+<li><label><input type="checkbox" />x86-64 栈帧对齐规则是什么？（call 前
+RSP 必须 16 字节对齐）</label></li>
+<li><label><input type="checkbox" />栈对齐的意义是什么？（SSE 指令
+movaps 需要 16 字节对齐）</label></li>
+<li><label><input type="checkbox" />函数入口的 RSP 末位为什么是
+0x8？（call 压入了 8 字节返回地址）</label></li>
+</ul>
+<h3 id="数据">数据</h3>
+<ul class="task-list">
+<li><label><input
+type="checkbox" />数组作为参数有哪三种等价的写法？</label></li>
+<li><label><input
+type="checkbox" />可变维度二维数组（VLA）怎么实现和传参？</label></li>
+<li><label><input type="checkbox" />VLA 分配在哪里？（栈上——运行时调整
+RSP）</label></li>
+<li><label><input type="checkbox" /><code>print_matrix_manual</code>
+不分配内存，那内存谁分配的？（调用者）</label></li>
+<li><label><input
+type="checkbox" />结构体的对齐规则是什么？</label></li>
+<li><label><input
+type="checkbox" />三条对齐规则有什么内在联系？</label></li>
+<li><label><input
+type="checkbox" />结构体自引用指针是做什么的？</label></li>
+<li><label><input
+type="checkbox" />自引用指针的嵌套定义为什么可行？（不完全类型，指针大小固定）</label></li>
+<li><label><input type="checkbox" /><code>union</code>
+的用途有哪些？</label></li>
+<li><label><input
+type="checkbox" />结构体对齐时，优化顺序的技巧是什么？（按对齐要求从大到小排）</label></li>
+</ul>
+<h3 id="代码注入攻击">代码注入攻击</h3>
+<ul class="task-list">
+<li><label><input
+type="checkbox" />缓冲区溢出的基本原理是什么？</label></li>
+<li><label><input type="checkbox" />gets
+写入时缓冲区、填充区、返回地址的位置关系？</label></li>
+<li><label><input
+type="checkbox" />栈随机化的作用？（ASLR，让攻击者难以定位地址）</label></li>
+<li><label><input type="checkbox" />NX
+bit（不可执行位）的作用？</label></li>
+<li><label><input
+type="checkbox" />栈金丝雀（canary）的原理？</label></li>
+</ul>
+<hr />
+<h2 id="四处理器体系结构">四、处理器体系结构</h2>
+<h3 id="指令集架构">指令集架构</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />CISC 和 RISC
+有什么区别？</label></li>
+<li><label><input type="checkbox" />为什么 RISC
+功耗更小？（解码简单、寄存器多、load-store、条件码可控）</label></li>
+<li><label><input type="checkbox" />为什么 RISC 功耗小却没有完全取代
+x86？（软件生态、x86 通过微操作转化弥补差距）</label></li>
+<li><label><input
+type="checkbox" />手机处理器和电脑处理器有什么区别？</label></li>
+<li><label><input
+type="checkbox" />指令集体系结构（ISA）是什么？</label></li>
+</ul>
+<h3 id="流水线">流水线</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />经典五级流水线的阶段划分？（F → D →
+E → M → W）</label></li>
+<li><label><input type="checkbox" />顺序执行处理器中每条指令的 6
+阶段执行过程？</label></li>
+<li><label><input
+type="checkbox" />时钟周期由什么决定？（最慢阶段的延迟）</label></li>
+<li><label><input type="checkbox" />吞吐量怎么计算？（1 /
+时钟周期）</label></li>
+<li><label><input
+type="checkbox" />流水线控制依赖的问题怎么解决？（分支预测 +
+冲刷）</label></li>
+<li><label><input
+type="checkbox" />多发射（Multi-issue）和超标量（Superscalar）是什么？</label></li>
+<li><label><input
+type="checkbox" />流水线对程序员透明是什么意思？（不需改程序就能正确运行，硬件自动处理）</label></li>
+<li><label><input type="checkbox" />GIPS
+是什么单位？（每秒十亿条指令）</label></li>
+<li><label><input type="checkbox" />IPC 和 CPI 的关系？</label></li>
+<li><label><input type="checkbox" />1ps 是多少秒？（10⁻¹²
+秒）</label></li>
+<li><label><input type="checkbox" />ALU 全称？（Arithmetic Logic
+Unit）</label></li>
+</ul>
+<hr />
+<h2 id="五存储器层次结构">五、存储器层次结构</h2>
+<h3 id="存储器基础">存储器基础</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />SRAM 和 DRAM 的区别？（6 晶体管 vs
+1T1C，速度快慢、容量大小、成本高低）</label></li>
+<li><label><input
+type="checkbox" />磁盘容量怎么计算？（各参数相乘，结果用
+GB）</label></li>
+<li><label><input
+type="checkbox" />旋转延迟怎么计算？（<code>60 / RPM / 2</code>）</label></li>
+<li><label><input type="checkbox" />RPM 是什么？（Revolutions Per
+Minute，每分钟转数）</label></li>
+<li><label><input type="checkbox" />SSD
+写入一个页的过程是怎样的？（写时重定向、FTL、垃圾回收）</label></li>
+<li><label><input
+type="checkbox" />主存、内存、高速缓存的关系？</label></li>
+<li><label><input
+type="checkbox" />主存就是平时说的”运行内存”吗？（对）</label></li>
+<li><label><input type="checkbox" />CPU
+处理的数据必须一级级传上来吗？（否，从最近的一级取）</label></li>
+<li><label><input type="checkbox" />CPU
+所有处理的内容都从缓存加载吗？（对，CPU 只和 L1 Cache
+直接交互）</label></li>
+</ul>
+<h3 id="局部性原理">局部性原理</h3>
+<ul class="task-list">
+<li><label><input
+type="checkbox" />时间局部性和空间局部性分别是什么？</label></li>
+<li><label><input
+type="checkbox" />步长（stride）的概念是什么？</label></li>
+<li><label><input type="checkbox" />步长和 Cache
+命中率的关系？</label></li>
+<li><label><input
+type="checkbox" />缓存命中体现时间局部性还是空间局部性？（两者都可以）</label></li>
+</ul>
+<h3 id="高速缓存cache">高速缓存（Cache）</h3>
+<ul class="task-list">
+<li><label><input
+type="checkbox" />三种未命中：强制未命中、容量未命中、冲突未命中的区别？</label></li>
+<li><label><input
+type="checkbox" />冲突未命中的原因是什么？（多个内存块映射到同一组/行，互相驱逐）</label></li>
+<li><label><input
+type="checkbox" />直接映射、组相联、全相联的区别？</label></li>
+<li><label><input
+type="checkbox" />写分配（Write-Allocate）和写回（Write-Back）的步骤？</label></li>
+<li><label><input
+type="checkbox" />写直达（Write-Through）的流程？（写缓存同时写主存，不写
+L2/L3）</label></li>
+<li><label><input type="checkbox" />平均访问时间怎么计算？（命中时间 +
+未命中率 × 未命中惩罚）</label></li>
+<li><label><input type="checkbox" />Cache 的容量怎么计算？</label></li>
+<li><label><input type="checkbox" />什么代码是 Cache
+友好的？</label></li>
+</ul>
+<h3 id="虚拟内存与磁盘">虚拟内存与磁盘</h3>
+<ul class="task-list">
+<li><label><input
+type="checkbox" />什么时候数据从内存写到磁盘？</label></li>
+<li><label><input type="checkbox" />页缓存（Page
+Cache）的作用？</label></li>
+</ul>
+<hr />
+<h2 id="六链接">六、链接</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" />程序构建的四个阶段是什么？（预处理 →
+编译 → 汇编 → 链接）</label></li>
+<li><label><input type="checkbox" />ELF
+文件有哪些主要节？（.text、.rodata、.data、.bss 等）</label></li>
+<li><label><input type="checkbox" /><code>.bss</code> 节在 ELF
+文件中占空间吗？（不占，只记录总大小）</label></li>
+<li><label><input type="checkbox" /><code>.bss</code>
+变量在运行时内存中连续排列吗？（对，连续排列）</label></li>
+<li><label><input type="checkbox" /><code>.bss</code>
+分配在内存的哪个位置？（紧接 <code>.data</code>
+之后，属于数据段）</label></li>
+<li><label><input type="checkbox" />已初始化全局变量的值存在 ELF
+文件的哪里？（<code>.data</code> 节）</label></li>
+<li><label><input type="checkbox" /><code>.rel.data</code>
+节是做什么的？（<code>.data</code>
+的重定位表，用于需要链接时修正地址的变量）</label></li>
+<li><label><input
+type="checkbox" />强符号与弱符号的区分和链接规则</label></li>
+<li><label><input
+type="checkbox" />增量编译和全量编译的区别？</label></li>
+<li><label><input
+type="checkbox" />引用外部函数需要在内部声明吗？（需要，或通过头文件包含）</label></li>
+<li><label><input type="checkbox" /><code>#ifdef INITIALIZE</code>
+的用途？（条件编译，根据是否定义宏选择代码分支）</label></li>
+<li><label><input type="checkbox" /><code>gcc -DINITIALIZE</code> 中的
+<code>-D</code> 是什么的缩写？（Define）</label></li>
+</ul>
+<hr />
+<h2 id="各章节问题数量统计">各章节问题数量统计</h2>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>问题数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一、环境与工具</td>
+<td>约 8</td>
+</tr>
+<tr>
+<td>二、信息的表示与处理</td>
+<td>约 35</td>
+</tr>
+<tr>
+<td>三、程序的机器级表示</td>
+<td>约 30</td>
+</tr>
+<tr>
+<td>四、处理器体系结构</td>
+<td>约 15</td>
+</tr>
+<tr>
+<td>五、存储器层次结构</td>
+<td>约 20</td>
+</tr>
+<tr>
+<td>六、链接</td>
+<td>约 12</td>
+</tr>
+<tr>
+<td><strong>总计</strong></td>
+<td><strong>约 120+</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p>使用方式：逐项自检，能清晰回答的标记为 ✅，不能的标记为 ❌，重点复习
+❌ 的题目。</p>
+</blockquote>
+</body>
+</html>

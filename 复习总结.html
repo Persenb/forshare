@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>复习总结</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="c-程序设计课程复习总结">C++ 程序设计课程复习总结</h1>
+<blockquote>
+<p>基于 class1 ~ classs6
+的课后编程练习，涵盖自定义排序、模拟、递归、高精度、双指针、二分、单调栈/队列、ST
+表、DFS/BFS、回溯剪枝等核心算法。</p>
+</blockquote>
+<hr />
+<h2 id="目录">目录</h2>
+<ul>
+<li><a href="#class-1--c-基础与递归入门">Class 1 — C++
+基础与递归入门</a></li>
+<li><a href="#class-2--双指针与二分查找">Class 2 —
+双指针与二分查找</a></li>
+<li><a href="#class-3--栈单调栈与-st-表">Class 3 — 栈、单调栈与 ST
+表</a></li>
+<li><a href="#附二分查找常见用法模板">附：二分查找常见用法模板</a></li>
+<li><a href="#class-4--dfs-连通块二叉树与单调队列">Class 4 — DFS
+连通块、二叉树与单调队列</a></li>
+<li><a href="#class-5--bfs-状态搜索与-dfs-剪枝">Class 5 — BFS 状态搜索与
+DFS 剪枝</a></li>
+<li><a href="#class-6--dfs-回溯">Class 6 — DFS 回溯</a></li>
+<li><a href="#知识点脑图">知识点脑图</a></li>
+<li><a href="#常见套路速查">常见套路速查</a></li>
+</ul>
+<hr />
+<h2 id="class-1-c-基础与递归入门">Class 1 — C++ 基础与递归入门</h2>
+<h3 id="score_sort-结构体多关键字排序">1. score_sort —
+结构体多关键字排序</h3>
+<p><strong>问题</strong>：按语文成绩升序排，相同时按数学成绩升序排。</p>
+<p><strong>思想：自定义比较函数</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> score <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> chinese<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> math<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> comp<span class="op">(</span>score x<span class="op">,</span> score y<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>x<span class="op">.</span>chinese <span class="op">!=</span> y<span class="op">.</span>chinese<span class="op">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">.</span>chinese <span class="op">&lt;</span> y<span class="op">.</span>chinese<span class="op">;</span>    <span class="co">// 主关键字</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">.</span>math <span class="op">&lt;</span> y<span class="op">.</span>math<span class="op">;</span>           <span class="co">// 次关键字</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sort<span class="op">(</span>a<span class="op">,</span> a <span class="op">+</span> n<span class="op">,</span> comp<span class="op">);</span></span></code></pre></div>
+<p><strong>要点</strong>：<code>comp</code>
+必须返回<strong>严格弱序</strong>（strict weak ordering），即
+<code>return a &lt; b</code> 而不是 <code>a &lt;= b</code>。</p>
+<hr />
+<h3 id="abs_value_sort-按绝对值排序">2. abs_value_sort —
+按绝对值排序</h3>
+<p><strong>思想：自定义排序 + <code>abs()</code></strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> comp<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> abs<span class="op">(</span>x<span class="op">)</span> <span class="op">&gt;</span> abs<span class="op">(</span>y<span class="op">);</span>    <span class="co">// 绝对值降序</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<blockquote>
+<p><code>sort()</code> 默认升序（<code>less</code>），降序用
+<code>greater&lt;int&gt;()</code> 或自定义 <code>comp</code>。</p>
+</blockquote>
+<hr />
+<h3 id="count-约瑟夫问题模拟">3. count — 约瑟夫问题（模拟）</h3>
+<p><strong>问题</strong>：n 个人围一圈，数到 k
+的人出列，求最后剩下的人。</p>
+<p><strong>思想：循环数组模拟</strong></p>
+<pre><code>用 bool 数组标记是否出列
+count 指针循环走，跳过已出列的人
+数到 k → 标记出列，人数 -1
+直到只剩 1 人</code></pre>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>n2 <span class="op">!=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>person<span class="op">[</span>count<span class="op">])</span> <span class="op">{</span>        <span class="co">// 还活着</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>k2 <span class="op">==</span> k<span class="op">)</span> <span class="op">{</span>           <span class="co">// 数到了</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            person<span class="op">[</span>count<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>   <span class="co">// 出列</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            n2<span class="op">--;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            k2 <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        k2<span class="op">++;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    count<span class="op">++;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>count <span class="op">&gt;</span> n<span class="op">)</span> count <span class="op">=</span> <span class="dv">1</span><span class="op">;</span>    <span class="co">// 环形</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>复杂度</strong>：O(nk) — 每次淘汰一个人要数 k 步。</p>
+<blockquote>
+<p><strong>进阶</strong>：约瑟夫问题可以用递推公式 O(n)
+解决：<code>f(1)=0; f(i)=(f(i-1)+k)%i</code>。</p>
+</blockquote>
+<hr />
+<h3 id="ants-蚂蚁掉杆问题">4. ants — 蚂蚁掉杆问题</h3>
+<p><strong>问题</strong>：杆上有若干蚂蚁，每只蚂蚁在两端之间爬，相遇则掉头，求所有蚂蚁都掉下去的最短和最长时间。</p>
+<p><strong>思想：相遇等价于穿过（关键思维）</strong></p>
+<pre><code>两只蚂蚁相遇掉头 ↔ 相当于互相穿过（个体不重要，重要的是位置）
+                       ↓
+每只蚂蚁的掉落时间就是 min(p, len-p) 或 max(p, len-p)
+最短时间：所有蚂蚁取 min 值中的最大值（因为要等最慢的那只）
+最长时间：所有蚂蚁取 max 值中的最大值</code></pre>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> t<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> p<span class="op">;</span> cin <span class="op">&gt;&gt;</span> p<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>i<span class="op">].</span>ls <span class="op">=</span> min<span class="op">(</span>p<span class="op">,</span> len <span class="op">-</span> p<span class="op">);</span>   <span class="co">// 这只蚂蚁的最短掉落时间</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    a<span class="op">[</span>i<span class="op">].</span>lm <span class="op">=</span> max<span class="op">(</span>p<span class="op">,</span> len <span class="op">-</span> p<span class="op">);</span>   <span class="co">// 这只蚂蚁的最长掉落时间</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> minT <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> maxT <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> t<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">].</span>ls <span class="op">&gt;</span> minT<span class="op">)</span> minT <span class="op">=</span> a<span class="op">[</span>i<span class="op">].</span>ls<span class="op">;</span>   <span class="co">// 短板效应：最慢的那个决定了总时间</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">].</span>lm <span class="op">&gt;</span> maxT<span class="op">)</span> maxT <span class="op">=</span> a<span class="op">[</span>i<span class="op">].</span>lm<span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>核心洞察</strong>：蚂蚁相遇掉头 →
+等价穿透。每只蚂蚁独立计算到两端的时间即可。</p>
+<hr />
+<h3 id="fibonaci_recurve-斐波那契朴素递归">5. fibonaci_recurve —
+斐波那契（朴素递归）</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> fib<span class="op">(</span><span class="dt">int</span> t<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>t <span class="op">==</span> <span class="dv">0</span> <span class="op">||</span> t <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fib<span class="op">(</span>t <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">+</span> fib<span class="op">(</span>t <span class="op">-</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>问题</strong>：大量重复计算。<code>fib(5)</code> 调用树：</p>
+<pre><code>                    fib(5)
+                  /        \
+             fib(4)         fib(3)
+            /      \        /    \
+        fib(3)    fib(2) fib(2)  fib(1)
+       /    \
+    fib(2) fib(1)</code></pre>
+<p><strong>复杂度</strong>：O(2ⁿ) — 指数爆炸，n=50 就跑不动了。</p>
+<hr />
+<h3 id="fibonaci-斐波那契递推-高精度大数">6. fibonaci — 斐波那契（递推 +
+高精度大数）</h3>
+<p><strong>思想：数组模拟大数 + 递推</strong></p>
+<pre><code>用数组 a[], b[], c[] 模拟大整数，每个元素存一位数字
+a=1, b=1 → 循环做 a+b → 更新 a=b, b=c</code></pre>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> do_plus<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> temp <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> size<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        c<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> b<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> temp<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> c<span class="op">[</span>i<span class="op">]</span> <span class="op">/</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        c<span class="op">[</span>i<span class="op">]</span> <span class="op">%=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>temp<span class="op">)</span> c<span class="op">[++</span>size<span class="op">]</span> <span class="op">=</span> temp<span class="op">;</span>   <span class="co">// 进位，位数 +1</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">版本</th>
+<th style="text-align: left;">方法</th>
+<th style="text-align: left;">可算到</th>
+<th style="text-align: left;">原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">递归版</td>
+<td style="text-align: left;"><code>fib(n-1)+fib(n-2)</code></td>
+<td style="text-align: left;">n ≤ 40</td>
+<td style="text-align: left;">指数爆炸</td>
+</tr>
+<tr>
+<td style="text-align: left;">递推版</td>
+<td style="text-align: left;">循环迭代</td>
+<td style="text-align: left;">n ≤ 90</td>
+<td style="text-align: left;"><code>long long</code> 溢出</td>
+</tr>
+<tr>
+<td style="text-align: left;">大数版</td>
+<td style="text-align: left;">数组模拟高精度</td>
+<td style="text-align: left;">n 任意大</td>
+<td style="text-align: left;">手算进位</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="hanno_tower-汉诺塔递归-步骤输出">7. hanno_tower — 汉诺塔（递归 +
+步骤输出）</h3>
+<p><strong>问题</strong>：把 n 个盘子从 A 移到
+C，每次移一个，大盘不能压小盘。</p>
+<p><strong>思想：递归分治</strong></p>
+<pre><code>要把 n 个盘子从 src 移到 dest（借助 mid）：
+    ① 把上面 n-1 个盘子从 src 移到 mid（借助 dest）
+    ② 把最底下的盘子从 src 移到 dest     ← 1 步
+    ③ 把 mid 上的 n-1 个盘子移到 dest（借助 src）</code></pre>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> move<span class="op">(</span><span class="dt">int</span> src<span class="op">,</span> <span class="dt">int</span> mid<span class="op">,</span> <span class="dt">int</span> dest<span class="op">,</span> <span class="dt">int</span> t<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>t <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> <span class="st">&quot;from &quot;</span> <span class="op">&lt;&lt;</span> src <span class="op">&lt;&lt;</span> <span class="st">&quot; to &quot;</span> <span class="op">&lt;&lt;</span> dest <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    move<span class="op">(</span>src<span class="op">,</span> dest<span class="op">,</span> mid<span class="op">,</span> t <span class="op">-</span> <span class="dv">1</span><span class="op">);</span>       <span class="co">// ①</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">&quot;from &quot;</span> <span class="op">&lt;&lt;</span> src <span class="op">&lt;&lt;</span> <span class="st">&quot; to &quot;</span> <span class="op">&lt;&lt;</span> dest <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span>  <span class="co">// ②</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    move<span class="op">(</span>mid<span class="op">,</span> src<span class="op">,</span> dest<span class="op">,</span> t <span class="op">-</span> <span class="dv">1</span><span class="op">);</span>       <span class="co">// ③</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>步数公式</strong>：<code>f(n) = 2*f(n-1) + 1</code> →
+<code>f(n) = 2ⁿ - 1</code></p>
+<hr />
+<h3 id="hannotpwer_simp-汉诺塔仅计算步数">8. hannotpwer_simp —
+汉诺塔（仅计算步数）</h3>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> move<span class="op">(</span><span class="dt">int</span> step<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>step <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> move<span class="op">(</span>step <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<blockquote>
+<p>递归计算 2ⁿ - 1，n 较大时会溢出，此时需用大数或公式直接算
+<code>(1LL &lt;&lt; n) - 1</code>。</p>
+</blockquote>
+<hr />
+<h3 id="median-两两差值的中位数暴力版">9. median —
+两两差值的中位数（暴力版）</h3>
+<p><strong>问题</strong>：求数组所有数对差值的中位数。</p>
+<p><strong>思想：暴力枚举所有差值 → 排序 → 取中位数</strong></p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> N<span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> N<span class="op">;</span> j<span class="op">++)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        a<span class="op">[</span>t<span class="op">++]</span> <span class="op">=</span> abs<span class="op">(</span>b<span class="op">[</span>i<span class="op">]</span> <span class="op">-</span> b<span class="op">[</span>j<span class="op">]);</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>sort<span class="op">(</span>a<span class="op">,</span> a <span class="op">+</span> t<span class="op">);</span></span></code></pre></div>
+<p><strong>复杂度</strong>：O(n² log n) — class2 中的
+<code>median_optimized</code> 用”二分答案+双指针”优化到了 O(n log
+n)。</p>
+<hr />
+<h3 id="balanced_lineup-区间最值差暴力版">10. balanced_lineup —
+区间最值差（暴力版）</h3>
+<p><strong>问题</strong>：多次询问区间 [l, r] 的最大值与最小值之差。</p>
+<p><strong>思想：每次查询遍历区间</strong></p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> b<span class="op">[</span>i<span class="op">].</span>l<span class="op">;</span> j <span class="op">&lt;=</span> b<span class="op">[</span>i<span class="op">].</span>r<span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>j<span class="op">]</span> <span class="op">&lt;</span> min<span class="op">)</span> min <span class="op">=</span> a<span class="op">[</span>j<span class="op">];</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>j<span class="op">]</span> <span class="op">&gt;</span> max<span class="op">)</span> max <span class="op">=</span> a<span class="op">[</span>j<span class="op">];</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>复杂度</strong>：O(nq) — class3 中的
+<code>balanced_lineupSTtable</code> 用 ST 表优化到了 O(n log n +
+q)。</p>
+<blockquote>
+<p><strong>对比学习</strong>：同一个问题，class1
+用暴力（理解问题），class3 用 ST
+表（优化性能）。这是很好的学习路径——<strong>先暴力，再优化</strong>。</p>
+</blockquote>
+<hr />
+<h3 id="class-1-题型速查">📋 Class 1 题型速查</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">问题</th>
+<th style="text-align: left;">核心方法</th>
+<th style="text-align: left;">复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">结构体排序</td>
+<td style="text-align: left;"><code>sort</code> + 自定义
+<code>comp</code></td>
+<td style="text-align: left;">O(n log n)</td>
+</tr>
+<tr>
+<td style="text-align: left;">绝对值排序</td>
+<td style="text-align: left;"><code>sort</code> + <code>abs</code></td>
+<td style="text-align: left;">O(n log n)</td>
+</tr>
+<tr>
+<td style="text-align: left;">约瑟夫问题</td>
+<td style="text-align: left;">循环数组模拟</td>
+<td style="text-align: left;">O(nk)</td>
+</tr>
+<tr>
+<td style="text-align: left;">蚂蚁掉杆</td>
+<td style="text-align: left;">相遇等价穿透</td>
+<td style="text-align: left;">O(n)</td>
+</tr>
+<tr>
+<td style="text-align: left;">斐波那契（递归）</td>
+<td style="text-align: left;">朴素递归</td>
+<td style="text-align: left;">O(2ⁿ)</td>
+</tr>
+<tr>
+<td style="text-align: left;">斐波那契（大数）</td>
+<td style="text-align: left;">数组模拟高精度 + 递推</td>
+<td style="text-align: left;">O(n)</td>
+</tr>
+<tr>
+<td style="text-align: left;">汉诺塔（递归）</td>
+<td style="text-align: left;">分治递归 + 步骤输出</td>
+<td style="text-align: left;">O(2ⁿ)</td>
+</tr>
+<tr>
+<td style="text-align: left;">汉诺塔（步数）</td>
+<td style="text-align: left;">递推 f(n) = 2f(n-1)+1</td>
+<td style="text-align: left;">O(n)</td>
+</tr>
+<tr>
+<td style="text-align: left;">差值中位数</td>
+<td style="text-align: left;">暴力枚举所有差值</td>
+<td style="text-align: left;">O(n² log n)</td>
+</tr>
+<tr>
+<td style="text-align: left;">区间最值差</td>
+<td style="text-align: left;">暴力遍历区间</td>
+<td style="text-align: left;">O(nq)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="class-2-双指针与二分查找">Class 2 — 双指针与二分查找</h2>
+<h3 id="boring_count-滑动窗口统计合法子串">1. boring_count —
+滑动窗口统计合法子串</h3>
+<p><strong>问题</strong>：给定字符串 s 和整数
+k，统计每个字符出现次数不超过 k 的子串个数。</p>
+<p><strong>思想：滑动窗口（双指针）</strong></p>
+<pre><code>右指针不断向右扩展 → 窗口变大 → 条件被破坏
+                                 ↓
+                    左指针右移收缩 → 条件恢复
+                                 ↓
+                        统计以右指针结尾的合法子串数</code></pre>
+<p><strong>关键代码</strong>：</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> right <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> right <span class="op">&lt;</span> len<span class="op">;</span> right<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    num<span class="op">[</span>s<span class="op">[</span>right<span class="op">]</span> <span class="op">-</span> <span class="ch">&#39;a&#39;</span><span class="op">]++;</span>                          <span class="co">// 右指针扩展</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>num<span class="op">[</span>s<span class="op">[</span>right<span class="op">]</span> <span class="op">-</span> <span class="ch">&#39;a&#39;</span><span class="op">]</span> <span class="op">&gt;</span> k<span class="op">)</span> <span class="op">{</span>               <span class="co">// 不合法 → 收缩</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        num<span class="op">[</span>s<span class="op">[</span>left<span class="op">]</span> <span class="op">-</span> <span class="ch">&#39;a&#39;</span><span class="op">]--;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        left<span class="op">++;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">+=</span> <span class="op">(</span>right <span class="op">-</span> left <span class="op">+</span> <span class="dv">1</span><span class="op">);</span>                      <span class="co">// 统计以 right 结尾的子串</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>核心技巧</strong>：<code>ans += (right - left + 1)</code> —
+每次加入一个新右端点，新增的合法子串数就是当前窗口的长度（即以 right
+结尾、左端点可取 left ~ right 的任一位置）。</p>
+<hr />
+<h3 id="can_you_find_it-三数列求和判定">2. can_you_find_it —
+三数列求和判定</h3>
+<p><strong>问题</strong>：三个数列 A、B、C，问能否从 A 和 B
+中各选一个数、从 C 中选一个数，使三数之和等于目标值。</p>
+<p><strong>思想：预处理 + 二分查找</strong></p>
+<pre><code>A × B 的所有两两和 → 存入数组并排序
+                     ↓
+        对每个 c ∈ C，二分查找 target - c 是否在两两和数组中</code></pre>
+<p><strong>复杂度</strong>：O(n² log n)，暴力是 O(n³)。</p>
+<p><strong>关键代码</strong>：</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 预处理 A 和 B 的所有两两和</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> m<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> t<span class="op">;</span> cin <span class="op">&gt;&gt;</span> t<span class="op">;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> l<span class="op">;</span> j<span class="op">++)</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        b<span class="op">[(</span>i<span class="op">-</span><span class="dv">1</span><span class="op">)*</span>l <span class="op">+</span> j<span class="op">]</span> <span class="op">=</span> t <span class="op">+</span> a<span class="op">[</span>j<span class="op">];</span>     <span class="co">// 依次排列</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>sort<span class="op">(</span>b <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> b <span class="op">+</span> l<span class="op">*</span>m <span class="op">+</span> <span class="dv">1</span><span class="op">);</span>               <span class="co">// 排序</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">// 查询：对每个 c 做二分查找</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>binary_search<span class="op">(</span>b <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> b <span class="op">+</span> l<span class="op">*</span>m <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> t <span class="op">-</span> c<span class="op">[</span>i<span class="op">]))</span> <span class="op">{</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> <span class="kw">true</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>适用场景</strong>：当暴力需要多重循环时，考虑能否预处理部分组合，配合二分加速。</p>
+<hr />
+<h3 id="median_optimized-两两差值的中位数">3. median_optimized —
+两两差值的中位数</h3>
+<p><strong>问题</strong>：给定数组，求所有数对差值的中位数。</p>
+<p><strong>思想：二分答案 + 双指针验证</strong></p>
+<pre><code>排序数组
+    ↓
+二分猜测答案 mid
+    ↓
+双指针统计差值 ≤ mid 的数对个数 cnt
+    ↓
+cnt ≥ 中位数位置？ → 缩小右边界 / 放大左边界</code></pre>
+<p><strong>关键代码</strong>：</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sort<span class="op">(</span>a <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> a <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> n<span class="op">);</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> a<span class="op">[</span>n<span class="op">]</span> <span class="op">-</span> a<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;=</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid <span class="op">=</span> left <span class="op">+</span> <span class="op">(</span>right <span class="op">-</span> left<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span>   <span class="co">// 防止溢出</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>check<span class="op">(</span>mid<span class="op">,</span> k<span class="op">))</span> <span class="op">{</span>                   <span class="co">// check 用双指针</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        ans <span class="op">=</span> mid<span class="op">;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        right <span class="op">=</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        left <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>双指针 check 的精髓</strong>：每个数做一次被减数，j
+指针不回退，总体 O(n)。</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> check<span class="op">(</span><span class="dt">int</span> mid<span class="op">,</span> <span class="dt">int</span> k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> cnt <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>j <span class="op">&lt;=</span> n <span class="op">&amp;&amp;</span> a<span class="op">[</span>j<span class="op">]</span> <span class="op">-</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;=</span> mid<span class="op">)</span> j<span class="op">++;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        cnt <span class="op">+=</span> j <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cnt <span class="op">&gt;=</span> k<span class="op">;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<blockquote>
+<p><strong>为什么 j 可以不回退</strong>？因为 i 增大时 a[i] 变大，a[j] -
+a[i] 变小，之前的 j 位置已经满足条件了。</p>
+</blockquote>
+<hr />
+<h2 id="class-3-栈单调栈与-st-表">Class 3 — 栈、单调栈与 ST 表</h2>
+<h3 id="river_hopscotch-移除石头最大化最小跳跃距离">1. River_hopscotch —
+移除石头最大化最小跳跃距离</h3>
+<p><strong>问题</strong>：河中有 n 块石头，移除 m
+块后，使剩余石头之间的最小跳跃距离最大化。</p>
+<p><strong>思想：二分答案 + 贪心模拟</strong></p>
+<pre><code>二分答案 mid（猜测最小跳跃距离）
+    ↓
+从头遍历石头，遇到距离 &lt; mid 的就&quot;移除&quot;
+（用 a[i] = a[i-1] 模拟移除）
+    ↓
+检查移除总数是否 ≤ m</code></pre>
+<p><strong>关键点</strong>： - 每次 check 完要用 <code>memcpy</code>
+还原数组 - 最后一块石头的距离需要单独检查 - 二分边界：left =
+最小间距，right = 最大间距</p>
+<p><strong>代码模式</strong>：</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> check<span class="op">(</span><span class="dt">int</span> mid<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> removed <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">+</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> mid<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>            <span class="co">// 移除第 i+1 块石头</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>            removed<span class="op">++;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> removed <span class="op">&lt;=</span> m<span class="op">;</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;=</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    mid <span class="op">=</span> <span class="op">(</span>left <span class="op">+</span> right<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>check<span class="op">(</span>mid<span class="op">))</span> <span class="op">{</span> ans <span class="op">=</span> mid<span class="op">;</span> left <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="op">}</span>  <span class="co">// 尝试更大的答案</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span> right <span class="op">=</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h3 id="balanced_lineupsttable-st表sparse-table">2.
+balanced_lineupSTtable — ST表（Sparse Table）</h3>
+<p><strong>问题</strong>：多次查询区间最大值与最小值之差。</p>
+<p><strong>思想：倍增预处理，O(1) 查询</strong></p>
+<pre><code>定义 st[k][i] = 从 i 开始长度 2^k 的区间的最值
+                        ↓
+st[0][i] = a[i]        （长度为 1）
+st[k][i] = max(st[k-1][i], st[k-1][i + 2^(k-1)])
+                       （两个半段合并）</code></pre>
+<p><strong>查询</strong>：区间 <code>[l, r]</code>，长度 len</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> k <span class="op">=</span> log2<span class="op">(</span>len<span class="op">);</span>   <span class="co">// 不大于 len 的最大 2 的幂</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> max<span class="op">(</span>st<span class="op">[</span>k<span class="op">][</span>l<span class="op">],</span> st<span class="op">[</span>k<span class="op">][</span>r <span class="op">-</span> <span class="op">(</span><span class="dv">1</span><span class="op">&lt;&lt;</span>k<span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">]);</span></span></code></pre></div>
+<figure>
+<img src="https://via.placeholder.com/400x80?text=两个覆盖区间取max"
+alt="ST表查询示意" />
+<figcaption aria-hidden="true">ST表查询示意</figcaption>
+</figure>
+<p><strong>优点</strong>：查询极快 O(1)<br />
+<strong>缺点</strong>：不支持修改（动态更新需用线段树）</p>
+<p><strong>log 表预处理</strong>：</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>logtable<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    logtable<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> logtable<span class="op">[</span>i<span class="op">/</span><span class="dv">2</span><span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span></code></pre></div>
+<hr />
+<h3 id="expression_evaluation-表达式求值加减乘">3. expression_evaluation
+— 表达式求值（加减乘）</h3>
+<p><strong>问题</strong>：计算只含 <code>+</code>、<code>*</code>
+的表达式，结果模 10000。</p>
+<p><strong>思想：延迟计算 / 累乘器</strong></p>
+<pre><code>遍历表达式：
+  · 遇到数字 → 拼接到 num
+  · 遇到运算符或结尾 →
+        cur = (cur * num) % 10000    ← 乘到累乘器
+        num = 0
+        如果是加号或结尾 →
+            ans = (ans + cur) % 10000
+            cur = 1                  ← 重置累乘器</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">遍历 <code>1+2*3+4</code></th>
+<th style="text-align: right;">cur</th>
+<th style="text-align: center;">ans</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">遇到 <code>+</code>（num=1）</td>
+<td style="text-align: right;">1×1=1</td>
+<td style="text-align: center;">0+1=1</td>
+</tr>
+<tr>
+<td style="text-align: left;">遇到 <code>*</code>（num=2）</td>
+<td style="text-align: right;">1×2=2</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">遇到 <code>+</code>（num=3）</td>
+<td style="text-align: right;">2×3=6</td>
+<td style="text-align: center;">1+6=7</td>
+</tr>
+<tr>
+<td style="text-align: left;">结尾（num=4）</td>
+<td style="text-align: right;">1×4=4</td>
+<td style="text-align: center;">7+4=11</td>
+</tr>
+</tbody>
+</table>
+<p><strong>技巧</strong>：初始化 <code>cur=1</code>，这样加法操作时
+<code>cur * num = num</code>，不影响结果。</p>
+<hr />
+<h3 id="largest_rectangle-单调栈求最大矩形">4. largest_rectangle —
+单调栈求最大矩形</h3>
+<p><strong>问题</strong>：直方图中找面积最大的矩形。</p>
+<p><strong>思想：单调递增栈</strong></p>
+<pre><code>每个柱子的高度能向左右延伸多远？
+    · 左边第一个比它矮的柱子 + 1
+    · 右边第一个比它矮的柱子 - 1
+                    ↓
+    单调栈维护递增高度，遇到矮柱子就弹出结算</code></pre>
+<p><strong>结算时机</strong>：当前柱子高度 &lt; 栈顶高度</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(!</span>st<span class="op">.</span>empty<span class="op">()</span> <span class="op">&amp;&amp;</span> cur <span class="op">&lt;</span> heights<span class="op">[</span>st<span class="op">.</span>top<span class="op">()])</span> <span class="op">{</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> h <span class="op">=</span> heights<span class="op">[</span>st<span class="op">.</span>top<span class="op">()];</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    st<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> st<span class="op">.</span>empty<span class="op">()</span> <span class="op">?</span> <span class="dv">0</span> <span class="op">:</span> st<span class="op">.</span>top<span class="op">()</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span>   <span class="co">// 左边界</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> right <span class="op">=</span> i <span class="op">-</span> <span class="dv">1</span><span class="op">;</span>                           <span class="co">// 右边界</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    maxArea <span class="op">=</span> max<span class="op">(</span>maxArea<span class="op">,</span> <span class="op">(</span><span class="dt">long</span> <span class="dt">long</span><span class="op">)</span>h <span class="op">*</span> <span class="op">(</span>right <span class="op">-</span> left <span class="op">+</span> <span class="dv">1</span><span class="op">));</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>为什么要加虚拟柱子（高度0）</strong>？让所有柱子最终都被弹出结算。</p>
+<p><strong>时间复杂度</strong>：O(n) —
+每个元素入栈一次，出栈最多一次。</p>
+<hr />
+<h3 id="queueandstack-栈和队列基础">5. queueandstack — 栈和队列基础</h3>
+<p><strong>问题</strong>：模拟 push/pop 操作，输出队列顺序和栈逆序。</p>
+<p><strong>注意陷阱</strong>：空容器 pop 时要标记
+error，但后续指令仍要读完（不能提前 break）。</p>
+<hr />
+<h2 id="附二分查找常见用法模板">附：二分查找常见用法模板</h2>
+<blockquote>
+<p>二分搜索是所有算法中最基础也最易错的技巧。关键在于<strong>明确搜索区间</strong>和<strong>下一步缩小区间的方向</strong>。下面是
+C++ 竞赛中最常用的 6 种二分模板。</p>
+</blockquote>
+<hr />
+<h3 id="模板-1标准二分查找精确值">模板 1：标准二分查找（精确值）</h3>
+<p><strong>用途</strong>：在有序数组中找 target，存在返回下标，否则返回
+-1。</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> binarySearch<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> nums<span class="op">,</span> <span class="dt">int</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> nums<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span>   <span class="co">// [left, right] 闭区间</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;=</span> right<span class="op">)</span> <span class="op">{</span>                  <span class="co">// 终止条件：left &gt; right</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> mid <span class="op">=</span> left <span class="op">+</span> <span class="op">(</span>right <span class="op">-</span> left<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// 防溢出写法</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>nums<span class="op">[</span>mid<span class="op">]</span> <span class="op">==</span> target<span class="op">)</span> <span class="cf">return</span> mid<span class="op">;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>nums<span class="op">[</span>mid<span class="op">]</span> <span class="op">&lt;</span> target<span class="op">)</span> left <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> right <span class="op">=</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>记忆口诀</strong>：<code>left &lt;= right</code>，<code>mid</code>
+用 <code>left + (right-left)/2</code>，相等直接返回。</p>
+<hr />
+<h3 id="模板-2二分查找左边界第一个-target">模板
+2：二分查找左边界（第一个 ≥ target）</h3>
+<p><strong>用途</strong>：在有序数组中找第一个 ≥ target 的元素下标（即
+<code>std::lower_bound</code>）。</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lowerBound<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> nums<span class="op">,</span> <span class="dt">int</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> nums<span class="op">.</span>size<span class="op">();</span>       <span class="co">// [left, right) 左闭右开</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> mid <span class="op">=</span> left <span class="op">+</span> <span class="op">(</span>right <span class="op">-</span> left<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>nums<span class="op">[</span>mid<span class="op">]</span> <span class="op">&gt;=</span> target<span class="op">)</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>            right <span class="op">=</span> mid<span class="op">;</span>                     <span class="co">// 左边界在左边（含 mid）</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>            left <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span>                  <span class="co">// 左边界在右边</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> left<span class="op">;</span>                             <span class="co">// left 就是第一个 ≥ target 的位置</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>常见变体</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">需求</th>
+<th style="text-align: left;">写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">第一个 ≥ target</td>
+<td style="text-align: left;"><code>lower_bound</code> / 上面模板</td>
+</tr>
+<tr>
+<td style="text-align: left;">第一个 &gt; target</td>
+<td style="text-align: left;"><code>upper_bound</code> / 把
+<code>&gt;=</code> 改成 <code>&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">最后一个 &lt; target</td>
+<td style="text-align: left;"><code>lower_bound</code> 结果 - 1</td>
+</tr>
+<tr>
+<td style="text-align: left;">最后一个 ≤ target</td>
+<td style="text-align: left;"><code>upper_bound</code> 结果 - 1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="模板-3二分查找右边界最后一个-target">模板
+3：二分查找右边界（最后一个 ≤ target）</h3>
+<p><strong>用途</strong>：在有序数组中找最后一个 ≤ target
+的元素下标。</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> upperBound<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> nums<span class="op">,</span> <span class="dt">int</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> nums<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;=</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> mid <span class="op">=</span> left <span class="op">+</span> <span class="op">(</span>right <span class="op">-</span> left<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>nums<span class="op">[</span>mid<span class="op">]</span> <span class="op">&lt;=</span> target<span class="op">)</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>            left <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span>                  <span class="co">// 右边界在右边，压缩左边界</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>            right <span class="op">=</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">;</span>                 <span class="co">// 右边界在左边</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> right<span class="op">;</span>                            <span class="co">// right 就是最后一个 ≤ target 的位置</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>注意</strong>：这个模板返回的是闭区间
+<code>[left, right]</code> 中的 <code>right</code>，当 right &lt; 0
+时表示不存在。</p>
+<hr />
+<h3 id="模板-4二分答案-最小值最大化">模板 4：二分答案 —
+最小值最大化</h3>
+<p><strong>用途</strong>：求”最大值尽可能大”的问题，如跳石头（最小跳跃距离最大化）。</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">// check(x): 能否让最小值 ≥ x</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;=</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid <span class="op">=</span> left <span class="op">+</span> <span class="op">(</span>right <span class="op">-</span> left<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>check<span class="op">(</span>mid<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        ans <span class="op">=</span> mid<span class="op">;</span>          <span class="co">// mid 可行，记录答案</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        left <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span>     <span class="co">// 尝试更大的答案</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>        right <span class="op">=</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">;</span>    <span class="co">// mid 不可行，缩小</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>典型问题</strong>：跳石头、牛棚距离、分割数组的最大值。</p>
+<p><strong>判断方向</strong>：<code>left</code>
+往大推（找最大的可行值），<code>right</code> 往小缩。</p>
+<hr />
+<h3 id="模板-5二分答案-最大值最小化">模板 5：二分答案 —
+最大值最小化</h3>
+<p><strong>用途</strong>：求”最小值尽可能小”的问题。</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">// check(x): 能否让最大值 ≤ x</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;=</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> mid <span class="op">=</span> left <span class="op">+</span> <span class="op">(</span>right <span class="op">-</span> left<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>check<span class="op">(</span>mid<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        ans <span class="op">=</span> mid<span class="op">;</span>          <span class="co">// mid 可行，记录答案</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        right <span class="op">=</span> mid <span class="op">-</span> <span class="dv">1</span><span class="op">;</span>    <span class="co">// 尝试更小的答案</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>        left <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span><span class="op">;</span>     <span class="co">// mid 不可行，放大</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>典型问题</strong>：木棍切割、抄写书、机器人走迷宫。</p>
+<p><strong>方向记忆</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模式</th>
+<th style="text-align: left;">check 含义</th>
+<th style="text-align: left;">可行后往哪走</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">最小值最大化</td>
+<td style="text-align: left;">能否让<strong>最小值</strong> ≥ mid</td>
+<td style="text-align: left;"><code>left = mid + 1</code>（加大）</td>
+</tr>
+<tr>
+<td style="text-align: left;">最大值最小化</td>
+<td style="text-align: left;">能否让<strong>最大值</strong> ≤ mid</td>
+<td style="text-align: left;"><code>right = mid - 1</code>（减小）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="模板-6浮点数二分">模板 6：浮点数二分</h3>
+<p><strong>用途</strong>：求平方根、解方程等需要精度的场景。</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> floatBinarySearch<span class="op">(</span><span class="dt">double</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> target<span class="op">;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">100</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span>         <span class="co">// 迭代 100 次，精度足够</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> mid <span class="op">=</span> <span class="op">(</span>left <span class="op">+</span> right<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>mid <span class="op">*</span> mid <span class="op">&lt;</span> target<span class="op">)</span>             <span class="co">// 条件判断</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>            left <span class="op">=</span> mid<span class="op">;</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>            right <span class="op">=</span> mid<span class="op">;</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> right<span class="op">;</span>                           <span class="co">// left 和 right 已足够接近</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>两种写法</strong>：</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 写法 A：固定迭代次数（推荐，无需考虑精度）</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">100</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 写法 B：精度控制（小心死循环）</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>right <span class="op">-</span> left <span class="op">&gt;</span> <span class="fl">1e-7</span><span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code></pre></div>
+<blockquote>
+<p><strong>为什么推荐固定 100 次？</strong>
+浮点数精度控制容易因精度设太高导致死循环，100 次迭代对 double
+来说足够了（每次区间减半，2⁻¹⁰⁰ ≈ 10⁻³⁰）。</p>
+</blockquote>
+<hr />
+<h3 id="stl-中的二分全家桶">STL 中的二分全家桶</h3>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;algorithm&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> f <span class="op">=</span> binary_search<span class="op">(</span>a<span class="op">,</span> a <span class="op">+</span> n<span class="op">,</span> x<span class="op">);</span>          <span class="co">// 是否存在 x（返回 bool）</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> p <span class="op">=</span> lower_bound<span class="op">(</span>a<span class="op">,</span> a <span class="op">+</span> n<span class="op">,</span> x<span class="op">);</span>            <span class="co">// 第一个 ≥ x 的指针</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> q <span class="op">=</span> upper_bound<span class="op">(</span>a<span class="op">,</span> a <span class="op">+</span> n<span class="op">,</span> x<span class="op">);</span>            <span class="co">// 第一个 &gt; x 的指针</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> idx  <span class="op">=</span> lower_bound<span class="op">(</span>a<span class="op">,</span> a <span class="op">+</span> n<span class="op">,</span> x<span class="op">)</span> <span class="op">-</span> a<span class="op">;</span>      <span class="co">// 转换为下标</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> cnt  <span class="op">=</span> upper_bound<span class="op">(</span>a<span class="op">,</span> a <span class="op">+</span> n<span class="op">,</span> x<span class="op">)</span> <span class="op">-</span> lower_bound<span class="op">(</span>a<span class="op">,</span> a <span class="op">+</span> n<span class="op">,</span> x<span class="op">);</span>  <span class="co">// x 的出现次数</span></span></code></pre></div>
+<p><strong>常见组合</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">需求</th>
+<th style="text-align: left;">写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">找 x 是否存在</td>
+<td style="text-align: left;"><code>binary_search</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">找 x 第一次出现位置</td>
+<td style="text-align: left;"><code>lower_bound</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">统计 x 出现次数</td>
+<td
+style="text-align: left;"><code>upper_bound - lower_bound</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">找第一个 &gt; x 的元素</td>
+<td style="text-align: left;"><code>upper_bound</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">找最后一个 ≤ x 的元素</td>
+<td style="text-align: left;"><code>upper_bound</code> 的前一个位置</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="二分易错点自查清单">二分易错点自查清单</h3>
+<table>
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">易错点</th>
+<th style="text-align: left;">正确做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>mid = (left+right)/2</code>
+溢出</td>
+<td style="text-align: left;">改为
+<code>left + (right-left)/2</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">死循环（左边界不更新）</td>
+<td style="text-align: left;">确认每次循环 <code>left</code> 或
+<code>right</code> 一定变化</td>
+</tr>
+<tr>
+<td style="text-align: left;">区间混淆（开闭区间不一致）</td>
+<td style="text-align: left;">统一用一种区间并保持全部代码一致</td>
+</tr>
+<tr>
+<td style="text-align: left;">浮点数精度过高导致死循环</td>
+<td style="text-align: left;">用固定迭代次数（100次）代替精度判断</td>
+</tr>
+<tr>
+<td style="text-align: left;">check 函数反了</td>
+<td style="text-align: left;">先确认”可行”的含义再写
+<code>true/false</code> 的分支</td>
+</tr>
+<tr>
+<td style="text-align: left;">序号从 1 开始/从 0 开始混用</td>
+<td style="text-align: left;">统一偏移量，STL 用 0-base，手写可以保持
+1-base</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="class-4-dfs-连通块二叉树与单调队列">Class 4 — DFS
+连通块、二叉树与单调队列</h2>
+<h3 id="lake_counting-dfs-洪水填充flood-fill">1. lake_counting — DFS
+洪水填充（Flood Fill）</h3>
+<p><strong>问题</strong>：二维网格中找水洼（连通块）个数，8
+方向连通。</p>
+<p><strong>思想：DFS 标记法</strong></p>
+<pre><code>遍历网格 → 遇到 &#39;W&#39; → DFS 将它所在的整个连通块都标记为 &#39;.&#39;
+                      → 连通块计数 +1</code></pre>
+<p><strong>方向遍历技巧</strong>：两层循环覆盖 8 个方向</p>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> dx <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span> dx <span class="op">&lt;=</span> <span class="dv">1</span><span class="op">;</span> dx<span class="op">++)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> dy <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span> dy <span class="op">&lt;=</span> <span class="dv">1</span><span class="op">;</span> dy<span class="op">++)</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 访问 (x+dx, y+dy)</span></span></code></pre></div>
+<p><strong>DFS
+本质</strong>：栈（递归）实现的深度优先搜索，沿着一个方向走到黑，再回溯。</p>
+<hr />
+<h3 id="slide_window-单调队列求滑动窗口最值">2. slide_window —
+单调队列求滑动窗口最值</h3>
+<p><strong>问题</strong>：长度为 k
+的滑动窗口在数组上移动，求每个窗口的最小值和最大值。</p>
+<p><strong>思想：单调队列</strong></p>
+<pre><code>用双端队列（deque）存储下标，维护：
+  · 最小值队列：递增（队首最小）
+  · 最大值队列：递减（队首最大）</code></pre>
+<p><strong>维护规则</strong>（以最小值队列为例）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">操作</th>
+<th style="text-align: left;">条件</th>
+<th style="text-align: left;">动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">队尾淘汰</td>
+<td style="text-align: left;"><code>a[新元素] &lt;= a[队尾]</code></td>
+<td style="text-align: left;">队尾弹出（新元素更小且更晚过期）</td>
+</tr>
+<tr>
+<td style="text-align: left;">队首淘汰</td>
+<td style="text-align: left;"><code>队首下标 &lt; i - k + 1</code></td>
+<td style="text-align: left;">队首弹出（滑出窗口）</td>
+</tr>
+<tr>
+<td style="text-align: left;">输出答案</td>
+<td style="text-align: left;"><code>i &gt;= k - 1</code></td>
+<td style="text-align: left;">队首即当前窗口最值</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> min_sliding<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    deque<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> dq<span class="op">;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(!</span>dq<span class="op">.</span>empty<span class="op">()</span> <span class="op">&amp;&amp;</span> a<span class="op">[</span>dq<span class="op">.</span>back<span class="op">()]</span> <span class="op">&gt;=</span> a<span class="op">[</span>i<span class="op">])</span> dq<span class="op">.</span>pop_back<span class="op">();</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        dq<span class="op">.</span>push_back<span class="op">(</span>i<span class="op">);</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>dq<span class="op">.</span>front<span class="op">()</span> <span class="op">&lt;=</span> i <span class="op">-</span> k<span class="op">)</span> dq<span class="op">.</span>pop_front<span class="op">();</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>i <span class="op">&gt;=</span> k <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> cout <span class="op">&lt;&lt;</span> a<span class="op">[</span>dq<span class="op">.</span>front<span class="op">()]</span> <span class="op">&lt;&lt;</span> <span class="st">&quot; &quot;</span><span class="op">;</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h3 id="tree_recover-二叉树遍历恢复">3. tree_recover —
+二叉树遍历恢复</h3>
+<p><strong>问题</strong>：已知前序遍历和中序遍历，求后序遍历。</p>
+<p><strong>思想：分治递归</strong></p>
+<pre><code>前序：[根 | 左子树 | 右子树]     根在第一个
+中序：[左子树 | 根 | 右子树]     根分隔左右
+                            ↓
+      前序第一个字符 = 根
+      在中序中找到根的位置 pos
+      左子树长度 = pos - inL
+                            ↓
+      递归左子树 + 递归右子树 + 输出根（后序）</code></pre>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> post<span class="op">(</span><span class="dt">int</span> preL<span class="op">,</span> <span class="dt">int</span> preR<span class="op">,</span> <span class="dt">int</span> inL<span class="op">,</span> <span class="dt">int</span> inR<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>preL <span class="op">&gt;</span> preR<span class="op">)</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> root <span class="op">=</span> pre<span class="op">[</span>preL<span class="op">];</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> pos <span class="op">=</span> inL<span class="op">;</span> <span class="cf">while</span> <span class="op">(</span>in<span class="op">[</span>pos<span class="op">]</span> <span class="op">!=</span> root<span class="op">)</span> pos<span class="op">++;</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> leftLen <span class="op">=</span> pos <span class="op">-</span> inL<span class="op">;</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    post<span class="op">(</span>preL <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> preL <span class="op">+</span> leftLen<span class="op">,</span> inL<span class="op">,</span> pos <span class="op">-</span> <span class="dv">1</span><span class="op">);</span>     <span class="co">// 左</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    post<span class="op">(</span>preL <span class="op">+</span> leftLen <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> preR<span class="op">,</span> pos <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> inR<span class="op">);</span>     <span class="co">// 右</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> root<span class="op">;</span>                                      <span class="co">// 根</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>三种遍历总结</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">遍历方式</th>
+<th style="text-align: left;">顺序</th>
+<th style="text-align: left;">根的位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">前序</td>
+<td style="text-align: left;">根 → 左 → 右</td>
+<td style="text-align: left;">第一个</td>
+</tr>
+<tr>
+<td style="text-align: left;">中序</td>
+<td style="text-align: left;">左 → 根 → 右</td>
+<td style="text-align: left;">中间</td>
+</tr>
+<tr>
+<td style="text-align: left;">后序</td>
+<td style="text-align: left;">左 → 右 → 根</td>
+<td style="text-align: left;">最后一个</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="class-5-bfs-状态搜索与-dfs-剪枝">Class 5 — BFS 状态搜索与 DFS
+剪枝</h2>
+<h3 id="divide_cola-bfs-可乐平分">1. divide_cola — BFS 可乐平分</h3>
+<p><strong>问题</strong>：三个容器（S, N, M），初始 S
+满，通过互相倒可乐，求平分到两个容器各一半的最小步数。</p>
+<p><strong>思想：BFS 状态空间搜索</strong></p>
+<pre><code>状态 = (s, n, m) 三元组
+初始状态 = (S, 0, 0)
+目标状态 = 任意两个容器各为 half
+
+每次操作 = 从容器 i 倒入容器 j
+    倒出量 = min(源容器剩余, 目标容器剩余空间)
+    新状态 = 更新后的 (s&#39;, n&#39;, m&#39;)
+
+vis[s][n][m] 三维去重，避免重复访问</code></pre>
+<pre><code>状态空间规模：101 × 101 × 101 ≈ 10^6，BFS 可接受</code></pre>
+<p><strong>关键判断</strong>：<code>S % 2 != 0</code> 直接返回
+NO（奇数不可平分）。</p>
+<p><strong>BFS 保证</strong>：第一次到达目标状态时步数最小。</p>
+<hr />
+<h3 id="maze_problem-bfs-迷宫最短路径-路径记录">2. maze_problem — BFS
+迷宫最短路径 + 路径记录</h3>
+<p><strong>问题</strong>：5×5 迷宫从 (1,1) 到 (5,5)
+的最短路径并输出。</p>
+<p><strong>思想：BFS + 前驱节点记录</strong></p>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>node trace<span class="op">[</span><span class="dv">10</span><span class="op">][</span><span class="dv">10</span><span class="op">];</span>          <span class="co">// 记录每个格子的前驱坐标</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>trace<span class="op">[</span>xx<span class="op">][</span>yy<span class="op">].</span>x <span class="op">=</span> fx<span class="op">.</span>front<span class="op">();</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>trace<span class="op">[</span>xx<span class="op">][</span>yy<span class="op">].</span>y <span class="op">=</span> fy<span class="op">.</span>front<span class="op">();</span></span></code></pre></div>
+<p><strong>路径输出（递归）</strong>：</p>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> print<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>x <span class="op">==</span> <span class="op">-</span><span class="dv">1</span> <span class="op">&amp;&amp;</span> y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="cf">return</span><span class="op">;</span>   <span class="co">// 起点</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    print<span class="op">(</span>trace<span class="op">[</span>x<span class="op">][</span>y<span class="op">].</span>x<span class="op">,</span> trace<span class="op">[</span>x<span class="op">][</span>y<span class="op">].</span>y<span class="op">);</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;(</span><span class="sc">%d</span><span class="st">,</span><span class="sc">%d</span><span class="st">)</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> x<span class="op">,</span> y<span class="op">);</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<blockquote>
+<p>BFS 第一次到达终点就是最短路径，这是由 BFS 逐层扩展的特性保证的。</p>
+</blockquote>
+<hr />
+<h3 id="number_transformer-bfs-数字变换">3. number_transformer — BFS
+数字变换</h3>
+<p><strong>问题</strong>：数字 K 到 P
+的最小操作次数，每次可选：×2、偶数÷2、+1。</p>
+<p><strong>思想：一维 BFS</strong></p>
+<pre><code>状态是一维的（数字本身）
+dist[x] 记录从起点到数字 x 的最短步数
+三种操作生成三个新状态</code></pre>
+<p><strong>注意</strong>：状态空间需要限制上界（这里 MAXN =
+100000），操作也要防越界。</p>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> nx <span class="op">=</span> x <span class="op">*</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>nx <span class="op">&lt;</span> MAXN <span class="op">&amp;&amp;</span> dist<span class="op">[</span>nx<span class="op">]</span> <span class="op">==</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    dist<span class="op">[</span>nx<span class="op">]</span> <span class="op">=</span> dist<span class="op">[</span>x<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    q<span class="op">[</span>tail<span class="op">++]</span> <span class="op">=</span> nx<span class="op">;</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h3 id="square-dfs-剪枝拼正方形">4. square — DFS + 剪枝拼正方形</h3>
+<p><strong>问题</strong>：判断能否用所有火柴拼成一个正方形。</p>
+<p><strong>思想：DFS 逐边拼接 + 三大剪枝</strong></p>
+<pre><code>target = 总长 / 4
+降序排序 → DFS 逐根火柴放入当前边</code></pre>
+<p><strong>三种剪枝</strong>：</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">剪枝</th>
+<th style="text-align: left;">代码</th>
+<th style="text-align: left;">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">① 降序排序</td>
+<td
+style="text-align: left;"><code>sort(..., greater&lt;&gt;())</code></td>
+<td style="text-align: left;">长火柴先放，分支更少</td>
+</tr>
+<tr>
+<td style="text-align: left;">② 第一根失败</td>
+<td
+style="text-align: left;"><code>if (sum == 0) return false</code></td>
+<td style="text-align: left;">这根火柴放哪条边都不行</td>
+</tr>
+<tr>
+<td style="text-align: left;">③ 等长跳过</td>
+<td
+style="text-align: left;"><code>while (i+1 &lt; n &amp;&amp; sticks[i+1] == sticks[i]) i++</code></td>
+<td style="text-align: left;">相同长度，结果相同</td>
+</tr>
+</tbody>
+</table>
+<pre><code>普通 DFS：4^n 种可能
++ 三大剪枝：实际运行极快</code></pre>
+<hr />
+<h2 id="class-6-dfs-回溯">Class 6 — DFS 回溯</h2>
+<h3 id="prime_circle-素数环">prime_circle — 素数环</h3>
+<p><strong>问题</strong>：1~n
+排成一个环，相邻两数之和为素数，输出所有排列。</p>
+<p><strong>思想：DFS 回溯</strong></p>
+<pre><code>固定 1 在第一位（旋转对称）
+从 step=2 开始 DFS 每个位置
+    ↓
+尝试所有未使用的数字 i
+检查 a[step-1] + i 是否为素数
+    ↓
+是 → 标记已用 → DFS 下一层 → 回溯撤销标记</code></pre>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> dfs<span class="op">(</span><span class="dt">int</span> step<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>step <span class="op">&gt;</span> n <span class="op">&amp;&amp;</span> isprime<span class="op">(</span>a<span class="op">[</span>n<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">))</span> <span class="op">{</span>   <span class="co">// 检查首尾和</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 输出解</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!</span>vis<span class="op">[</span>i<span class="op">]</span> <span class="op">&amp;&amp;</span> isprime<span class="op">(</span>a<span class="op">[</span>step<span class="op">-</span><span class="dv">1</span><span class="op">]</span> <span class="op">+</span> i<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>            vis<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>            a<span class="op">[</span>step<span class="op">]</span> <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>            dfs<span class="op">(</span>step <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>            vis<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>    <span class="co">// 回溯撤销</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>回溯模板</strong>：</p>
+<pre><code>DFS(当前状态) {
+    if (到达边界) { 输出/记录; return; }
+    for (所有可能的候选) {
+        if (候选合法) {
+            做出选择（标记）
+            DFS(下一状态)
+            撤销选择（取消标记）  ← 这是回溯的关键
+        }
+    }
+}</code></pre>
+<hr />
+<h2 id="知识点脑图">知识点脑图</h2>
+<pre><code>                         ┌─ 自定义排序（结构体、绝对值）
+                         │  例：score_sort, abs_value_sort
+                         │
+                         ├─ 模拟（约瑟夫问题、循环数组）
+                         │  例：count
+                         │
+                         ├─ 递归入门（斐波那契、汉诺塔、分治思想）
+                         │  例：fibonaci_recurve, hanno_tower
+                         │
+                         ├─ 高精度（数组模拟大数、进位）
+          ┌─ 基础 ──────┤  例：fibonaci
+          │             │
+          │             ├─ 暴力枚举（先暴力再优化）
+          │             │  例：median, balanced_lineup
+          │             │
+          │             └─ 思维转换（相遇等价穿透）
+          │                例：ants
+          │
+          │             ┌─ 双指针（滑动窗口、同向/相向）
+          │             │  例：boring_count, median_optimized
+          ├─ 线性结构 ──┼─ 二分（二分查找、二分答案）
+          │             │  例：can_you_find_it, River_hopscotch
+          │             │
+          │             └─ 栈与队列（单调栈、单调队列）
+          │                例：largest_rectangle, slide_window
+          │
+数据结构 ─┼─ 树形结构 ── 二叉树遍历与恢复
+  与      │              例：tree_recover
+ 算法     │
+          │             ┌─ DFS 连通块（Flood Fill）
+          │             │  例：lake_counting
+          ├─ 搜索算法 ──┼─ DFS 回溯（排列/组合）
+          │             │  例：prime_circle, square
+          │             │
+          │             └─ BFS 最短路（状态空间、网格、一维）
+          │                例：divide_cola, maze, number_transformer
+          │
+          └─ 高级技巧 ── 预处理 + 二分（空间换时间）
+                         例：can_you_find_it</code></pre>
+<hr />
+<h2 id="常见套路速查">常见套路速查</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">问题类型</th>
+<th style="text-align: left;">算法</th>
+<th style="text-align: left;">判断依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">结构体排序</td>
+<td style="text-align: left;"><code>sort</code> + 自定义
+<code>comp</code></td>
+<td style="text-align: left;">多关键字排序需求</td>
+</tr>
+<tr>
+<td style="text-align: left;">约瑟夫问题</td>
+<td style="text-align: left;">循环数组模拟 / 递推公式</td>
+<td style="text-align: left;">环形淘汰，数到 k 出列</td>
+</tr>
+<tr>
+<td style="text-align: left;">蚂蚁爬杆</td>
+<td style="text-align: left;">相遇等价穿透</td>
+<td style="text-align: left;">方向不重要，只看位置</td>
+</tr>
+<tr>
+<td style="text-align: left;">大数计算</td>
+<td style="text-align: left;">数组模拟高精度</td>
+<td style="text-align: left;">内置类型溢出</td>
+</tr>
+<tr>
+<td style="text-align: left;">汉诺塔</td>
+<td style="text-align: left;">递归分治</td>
+<td style="text-align: left;">问题可分解为同构子问题</td>
+</tr>
+<tr>
+<td style="text-align: left;">统计子串/子数组</td>
+<td style="text-align: left;">滑动窗口（双指针）</td>
+<td style="text-align: left;">窗口有单调性（右扩左缩）</td>
+</tr>
+<tr>
+<td style="text-align: left;">求第 K 大/中位数</td>
+<td style="text-align: left;">二分答案 + 验证</td>
+<td style="text-align: left;">答案有界且可二分判定</td>
+</tr>
+<tr>
+<td style="text-align: left;">区间最值多次查询</td>
+<td style="text-align: left;">ST 表（预处理 O(nlogn)）</td>
+<td style="text-align: left;">静态数据，频繁查询</td>
+</tr>
+<tr>
+<td style="text-align: left;">直方图/接雨水</td>
+<td style="text-align: left;">单调栈</td>
+<td style="text-align: left;">找左右第一个更小/更大</td>
+</tr>
+<tr>
+<td style="text-align: left;">滑动窗口最值</td>
+<td style="text-align: left;">单调队列</td>
+<td style="text-align: left;">双端队列，队尾淘汰</td>
+</tr>
+<tr>
+<td style="text-align: left;">连通块个数</td>
+<td style="text-align: left;">DFS/BFS Flood Fill</td>
+<td style="text-align: left;">网格图，8 方向或 4 方向</td>
+</tr>
+<tr>
+<td style="text-align: left;">二叉树遍历相关</td>
+<td style="text-align: left;">分治递归</td>
+<td style="text-align: left;">前中后序的对应关系</td>
+</tr>
+<tr>
+<td style="text-align: left;">最小步数（状态明确）</td>
+<td style="text-align: left;">BFS</td>
+<td style="text-align: left;">边权为 1 的最短路</td>
+</tr>
+<tr>
+<td style="text-align: left;">所有可行解 / 判定</td>
+<td style="text-align: left;">DFS 回溯 + 剪枝</td>
+<td style="text-align: left;">需要枚举所有可能</td>
+</tr>
+<tr>
+<td style="text-align: left;">最优值（不是步数）</td>
+<td style="text-align: left;">二分答案 / DP</td>
+<td style="text-align: left;">答案具有单调性</td>
+</tr>
+<tr>
+<td style="text-align: left;">求和判定（多组数据）</td>
+<td style="text-align: left;">预处理 + 二分</td>
+<td style="text-align: left;">部分组合可预先计算</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p><em>每个程序文件都包含了完整的注释，建议结合源码阅读本总结效果更佳。</em></p>
+</blockquote>
+</body>
+</html>

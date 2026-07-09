@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>CSAPP复习整理</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="csapp-复习要点整理">CSAPP 复习要点整理</h1>
+<hr />
+<h2 id="一环境与工具">一、环境与工具</h2>
+<h3 id="linux-常用命令">Linux 常用命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ls</code></td>
+<td>列出目录内容</td>
+</tr>
+<tr>
+<td><code>cp</code></td>
+<td>复制文件/目录</td>
+</tr>
+<tr>
+<td><code>mkdir</code></td>
+<td>创建目录</td>
+</tr>
+<tr>
+<td><code>rmdir</code></td>
+<td>删除空目录</td>
+</tr>
+<tr>
+<td><code>chmod</code></td>
+<td>修改文件权限</td>
+</tr>
+</tbody>
+</table>
+<h3 id="目录与路径">目录与路径</h3>
+<ul>
+<li><strong>绝对路径：</strong> 从根目录 <code>/</code> 开始，如
+<code>/home/user/main.c</code></li>
+<li><strong>相对路径：</strong> 相对于当前目录，如
+<code>./src/main.c</code>、<code>../include/</code></li>
+</ul>
+<h3 id="gcc-编译选项">GCC 编译选项</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-E</code></td>
+<td>只预处理</td>
+<td><code>gcc -E main.c</code></td>
+</tr>
+<tr>
+<td><code>-S</code></td>
+<td>编译到汇编</td>
+<td><code>gcc -S main.c</code> → 生成 <code>main.s</code></td>
+</tr>
+<tr>
+<td><code>-c</code></td>
+<td>编译/汇编，不链接</td>
+<td><code>gcc -c main.c</code> → 生成 <code>main.o</code></td>
+</tr>
+<tr>
+<td><code>-o</code></td>
+<td>指定输出文件名</td>
+<td><code>gcc -o myprog main.c</code></td>
+</tr>
+<tr>
+<td><code>-g</code></td>
+<td>生成调试信息</td>
+<td><code>gcc -g main.c</code></td>
+</tr>
+<tr>
+<td><code>-O0</code> ~ <code>-O3</code></td>
+<td>优化级别</td>
+<td><code>gcc -O2 main.c</code></td>
+</tr>
+<tr>
+<td><code>-Wall</code></td>
+<td>开启大部分警告</td>
+<td><code>gcc -Wall main.c</code></td>
+</tr>
+<tr>
+<td><code>-std=c99</code></td>
+<td>指定 C 语言标准</td>
+<td><code>gcc -std=c99 main.c</code></td>
+</tr>
+<tr>
+<td><code>-I</code></td>
+<td>添加头文件搜索路径</td>
+<td><code>gcc -I./include main.c</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>编译完整流程：</strong> 预处理（<code>-E</code>）→
+编译（<code>-S</code>）→ 汇编（<code>-c</code>）→ 链接（默认）</p>
+<h3 id="gdb-调试器常用命令">GDB 调试器常用命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>简写</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>break</code></td>
+<td><code>b</code></td>
+<td>设置断点</td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td><code>r</code></td>
+<td>运行程序</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>n</code></td>
+<td>单步执行（不进入函数）</td>
+</tr>
+<tr>
+<td><code>step</code></td>
+<td><code>s</code></td>
+<td>单步执行（进入函数）</td>
+</tr>
+<tr>
+<td><code>continue</code></td>
+<td><code>c</code></td>
+<td>继续执行到下一个断点</td>
+</tr>
+<tr>
+<td><code>print</code></td>
+<td><code>p</code></td>
+<td>打印变量值</td>
+</tr>
+<tr>
+<td><code>disassemble</code></td>
+<td>—</td>
+<td>反汇编当前函数</td>
+</tr>
+<tr>
+<td><code>info registers</code></td>
+<td>—</td>
+<td>查看所有寄存器</td>
+</tr>
+<tr>
+<td><code>quit</code></td>
+<td><code>q</code></td>
+<td>退出 GDB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="git-基本操作">Git 基本操作</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>url<span class="op">&gt;</span>         <span class="co"># 克隆远程仓库到本地</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;message&quot;</span> <span class="co"># 提交本地修改</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push                <span class="co"># 推送提交到远程仓库</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull                <span class="co"># 从远程拉取最新代码</span></span></code></pre></div>
+<hr />
+<h2 id="二信息的表示与处理">二、信息的表示与处理</h2>
+<h3 id="进制转换">进制转换</h3>
+<table>
+<colgroup>
+<col style="width: 60%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr>
+<th>转换方向</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>二进制 ↔︎ 十六进制</strong></td>
+<td>每 4 位二进制对应 1 位十六进制，从低位开始分组</td>
+</tr>
+<tr>
+<td><strong>十进制整数 → 二进制</strong></td>
+<td>除 2 取余，余数从下往上排列</td>
+</tr>
+<tr>
+<td><strong>十进制小数 → 二进制</strong></td>
+<td><strong>乘 2 取整法</strong>，反复乘 2，取整数部分，直到小数部分为 0
+或达到精度</td>
+</tr>
+<tr>
+<td><strong>二进制/十六进制 → 十进制</strong></td>
+<td>按权展开相加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>陷阱：</strong> 十六进制转二进制时，高位多余的 0
+可以直接省略。如 <code>0x0A</code> → <code>1010</code>，不必写成
+<code>00001010</code>。</p>
+<h3 id="位运算">位运算</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;</code></td>
+<td>按位与</td>
+<td>掩码提取——保留某些位（如 <code>x &amp; 0xFF</code> 取低 8 位）</td>
+</tr>
+<tr>
+<td><code>\|</code></td>
+<td>按位或</td>
+<td>设置某些位为 1（如 <code>x \| 0x01</code> 将最低位置 1）</td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>按位取反</td>
+<td>构造掩码（如 <code>~0xFF</code> 得到除低 8 位外全 1）</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>按位异或</td>
+<td>翻转特定位、交换两个值（<code>a ^= b; b ^= a; a ^= b</code>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="移位运算">移位运算</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 42%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr>
+<th>类型</th>
+<th>对应指令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>逻辑左移</strong></td>
+<td><code>shl</code> / <code>&lt;&lt;</code></td>
+<td>左移，低位补 0，高位丢弃</td>
+</tr>
+<tr>
+<td><strong>逻辑右移</strong></td>
+<td><code>shr</code> / 无符号数的 <code>&gt;&gt;</code></td>
+<td>右移，<strong>高位补 0</strong></td>
+</tr>
+<tr>
+<td><strong>算术右移</strong></td>
+<td><code>sar</code> / 有符号数的 <code>&gt;&gt;</code></td>
+<td>右移，<strong>高位补符号位</strong>（原最高位）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关系：</strong>
+<code>x &lt;&lt; k = x × 2^k</code>（不溢出时）；无符号右移
+<code>x &gt;&gt; k = ⌊x / 2^k⌋</code>（向零取整）；有符号算术右移需要对负数做<strong>偏置修正</strong>才能得到向零取整的结果。</p>
+<h3 id="字长">字长</h3>
+<p>字长是 CPU
+一次能并行处理的最大位数，也是<strong>通用寄存器的宽度</strong>。x86-64
+的字长为 <strong>64 位</strong>，x86-32 的字长为 <strong>32
+位</strong>。字长决定了虚拟地址空间的大小（64 位可寻址 2⁶⁴ 字节）。</p>
+<h3 id="字节序endianness">字节序（Endianness）</h3>
+<ul>
+<li><strong>小端序（Little-Endian）：</strong>
+低位字节存储在低地址。<strong>x86 架构使用小端序。</strong></li>
+<li><strong>大端序（Big-Endian）：</strong>
+高位字节存储在低地址。网络协议（IP/TCP）通常使用大端序。</li>
+</ul>
+<p>例：存储 <code>0x12345678</code>（4 字节）在地址
+<code>0x100</code>：</p>
+<pre><code>小端序:  0x100: 78 | 0x101: 56 | 0x102: 34 | 0x103: 12
+大端序:  0x100: 12 | 0x101: 34 | 0x102: 56 | 0x103: 78</code></pre>
+<hr />
+<h3 id="整数编码">整数编码</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>编码规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>无符号数</strong></td>
+<td>编码直接等于二进制数值，范围 <code>0 ~ 2^w - 1</code></td>
+</tr>
+<tr>
+<td><strong>有符号数（补码）</strong></td>
+<td>正数等于二进制数值；<strong>负数 = 按位取反再加 1</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>易错：</strong>
+正数的补码就是其本身，不要看见有符号数就去取反加一！</p>
+<p><strong>补码计算示例（8 位为例）：</strong></p>
+<pre><code>+5  = 00000101（直接就是二进制）
+-5  = 11111011（5→00000101，取反→11111010，加1→11111011）
+
+反过来验证：11111011 解读为有符号数
+→ 最高位为 1 是负数，先减 1 → 11111010，取反 → 00000101 = 5 → 所以是 -5 ✓</code></pre>
+<h3 id="整数类型转换与扩展">整数类型转换与扩展</h3>
+<h4 id="有符号与无符号转换">有符号与无符号转换</h4>
+<p><strong>编码不变，重新解读——值可能改变。</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> x <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span>               <span class="co">// 补码: 0xFFFFFFFF (32位)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">unsigned</span> u <span class="op">=</span> x<span class="op">;</span>           <span class="co">// u = 4294967295</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 位模式 0xFFFFFFFF 不变，但解读方式变了</span></span></code></pre></div>
+<h4 id="低位宽扩展为高位宽">低位宽扩展为高位宽</h4>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 28%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr>
+<th>原类型</th>
+<th>扩展方式</th>
+<th>示例（8→16位）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>有符号数</strong></td>
+<td><strong>符号位扩展</strong>——新扩展的高位全补符号位</td>
+<td>8位 <code>11111011</code>（-5）→ 16位
+<code>11111111 11111011</code>（-5）</td>
+</tr>
+<tr>
+<td><strong>无符号数</strong></td>
+<td><strong>零扩展</strong>——新扩展的高位全补 0</td>
+<td>8位 <code>11111011</code>（251）→ 16位
+<code>00000000 11111011</code>（251）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="截断">截断</h4>
+<p>高位部分直接丢弃，不区分数据类型。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> a <span class="op">=</span> <span class="bn">0x12345678</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> c <span class="op">=</span> a<span class="op">;</span>          <span class="co">// 截断到 8 位: c = 0x78</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 按补码解析 0x78 → +120</span></span></code></pre></div>
+<hr />
+<h3 id="整数运算">整数运算</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>运算</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>加法/减法</strong></td>
+<td>编码直接相加/相减，然后<strong>丢弃超出位宽的部分</strong></td>
+</tr>
+<tr>
+<td><strong>减法转化</strong></td>
+<td><code>-x = ~x + 1</code>——取反再加 1，这是补码的特性</td>
+</tr>
+<tr>
+<td><strong>乘法</strong></td>
+<td>两个 w 位的数相乘，结果理论上需要 <code>2w</code> 位，<strong>低 w
+位是结果</strong>，高位可能溢出</td>
+</tr>
+</tbody>
+</table>
+<p><strong>例子（4 位无符号）：</strong></p>
+<pre><code>  1101 (13)
++ 0111  (7)
+----------
+ 10100 → 截断为 0100 (4)  → CF=1（溢出）</code></pre>
+<hr />
+<h3 id="浮点数ieee-754">浮点数（IEEE 754）</h3>
+<h4 id="位单精度float格式">32 位单精度（float）格式</h4>
+<pre><code>S (1位) | exp (8位) | frac (23位)</code></pre>
+<h4 id="位双精度double格式">64 位双精度（double）格式</h4>
+<pre><code>S (1位) | exp (11位) | frac (52位)</code></pre>
+<h4 id="三种编码类型">三种编码类型</h4>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>类型</th>
+<th>特征</th>
+<th>E 的计算</th>
+<th>M 的计算</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>规格化数</strong></td>
+<td><code>exp</code> 不全为 0 且不全为 1</td>
+<td><code>E = exp - bias</code>，<code>bias = 2^(k-1) - 1</code></td>
+<td><code>M = 1 + frac</code>（有隐含的 1）</td>
+<td>常规数值</td>
+</tr>
+<tr>
+<td><strong>非规格化数</strong></td>
+<td><code>exp</code> 全为 0</td>
+<td><code>E = 1 - bias</code>（固定值）</td>
+<td><code>M = frac</code>（隐含位是 0）</td>
+<td>接近 0 的数，<strong>等间距</strong></td>
+</tr>
+<tr>
+<td><strong>无穷大</strong></td>
+<td><code>exp</code> 全为 1，<code>frac</code> 全为 0</td>
+<td>—</td>
+<td>—</td>
+<td>运算结果溢出</td>
+</tr>
+<tr>
+<td><strong>NaN</strong></td>
+<td><code>exp</code> 全为 1，<code>frac</code> 不全为 0</td>
+<td>—</td>
+<td>—</td>
+<td>无效运算结果</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：</strong> -
+十进制转浮点数时，<strong>规格化数不要忘记隐含的前置 1</strong> -
+浮点数中有两个零：<code>+0.0</code> 和
+<code>-0.0</code>（符号位不同），但比较时 <code>+0.0 == -0.0</code> 为
+<code>true</code> -
+浮点数在大数值时<strong>不等间距</strong>——指数越大，相邻可表示数的间隔越大</p>
+<h4 id="十进制转浮点数步骤以-float-为例">十进制转浮点数步骤（以 float
+为例）</h4>
+<ol type="1">
+<li>将十进制数转为二进制（整数部分除 2 取余，小数部分乘 2 取整）</li>
+<li>规格化：写成 <code>±1.xxx × 2^E</code> 的形式</li>
+<li>计算指数编码：<code>exp = E + bias</code></li>
+<li>尾数：取 <code>xxx...</code>（去掉隐含的 1），低位补 0 到 23 位</li>
+</ol>
+<h4 id="浮点数与整数转换">浮点数与整数转换</h4>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>转换</th>
+<th>安全性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int → double</code></td>
+<td>安全</td>
+<td>double 尾数 53 位 &gt; int 的 31 位，所有 int 都能精确表示</td>
+</tr>
+<tr>
+<td><code>int → float</code></td>
+<td><strong>可能有精度损失</strong></td>
+<td>float 尾数只有 24 位，<code>|int| &gt; 2^24</code> 时会丢失精度</td>
+</tr>
+<tr>
+<td><code>float/double → int</code></td>
+<td><strong>截断小数</strong></td>
+<td>向零取整；值超出 int 范围时为<strong>未定义行为（UB）</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="三程序的机器级表示">三、程序的机器级表示</h2>
+<h3 id="汇编指令格式">汇编指令格式</h3>
+<pre><code>标号:  操作码  源操作数, 目标操作数</code></pre>
+<ul>
+<li><strong>标号</strong>是指令地址的符号表示，不必须</li>
+<li>操作码带后缀表示操作大小：<code>b</code>（1B）、<code>w</code>（2B）、<code>l</code>（4B）、<code>q</code>（8B）</li>
+</ul>
+<h3 id="操作数类型三种">操作数类型（三种）</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>类型</th>
+<th>格式</th>
+<th>示例</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>立即数</strong></td>
+<td><code>$</code> + 整数</td>
+<td><code>$42</code></td>
+<td>常数</td>
+</tr>
+<tr>
+<td><strong>寄存器</strong></td>
+<td><code>%</code> + 寄存器名</td>
+<td><code>%rax</code></td>
+<td>寄存器中的值</td>
+</tr>
+<tr>
+<td><strong>内存</strong></td>
+<td><code>D(Rb, Ri, S)</code></td>
+<td><code>-8(%rbp)</code></td>
+<td>地址 = <code>Rb + Ri × S + D</code>，<strong>S 只能是 1, 2, 4,
+8</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>内存地址计算四元组格式详解：</strong></p>
+<pre><code>D(Rb, Ri, S) → 有效地址 = Rb + Ri × S + D
+  D   = 偏移量（常数，可省略）
+  Rb  = 基址寄存器
+  Ri  = 变址寄存器（可省略）
+  S   = 比例因子（1/2/4/8，可省略，省略时为 1）</code></pre>
+<p>例：<code>4(%rax, %rcx, 8)</code> → 地址 =
+<code>%rax + %rcx × 8 + 4</code></p>
+<h3 id="各寄存器低字节名称">各寄存器低字节名称</h3>
+<table>
+<thead>
+<tr>
+<th>64 位</th>
+<th>32 位</th>
+<th>16 位</th>
+<th>8 位（低）</th>
+<th>8 位（高）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%rax</code></td>
+<td><code>%eax</code></td>
+<td><code>%ax</code></td>
+<td><code>%al</code></td>
+<td><code>%ah</code></td>
+</tr>
+<tr>
+<td><code>%rbx</code></td>
+<td><code>%ebx</code></td>
+<td><code>%bx</code></td>
+<td><code>%bl</code></td>
+<td><code>%bh</code></td>
+</tr>
+<tr>
+<td><code>%rcx</code></td>
+<td><code>%ecx</code></td>
+<td><code>%cx</code></td>
+<td><code>%cl</code></td>
+<td><code>%ch</code></td>
+</tr>
+<tr>
+<td><code>%rdx</code></td>
+<td><code>%edx</code></td>
+<td><code>%dx</code></td>
+<td><code>%dl</code></td>
+<td><code>%dh</code></td>
+</tr>
+<tr>
+<td><code>%rsi</code></td>
+<td><code>%esi</code></td>
+<td><code>%si</code></td>
+<td><code>%sil</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>%rdi</code></td>
+<td><code>%edi</code></td>
+<td><code>%di</code></td>
+<td><code>%dil</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>%rsp</code></td>
+<td><code>%esp</code></td>
+<td><code>%sp</code></td>
+<td><code>%spl</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>%rbp</code></td>
+<td><code>%ebp</code></td>
+<td><code>%bp</code></td>
+<td><code>%bpl</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>%r8</code></td>
+<td><code>%r8d</code></td>
+<td><code>%r8w</code></td>
+<td><code>%r8b</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：</strong>
+根据操作的操作数大小选择对应的后缀和寄存器名。如要操作一个 32 位值，用
+<code>%eax</code>（或 <code>%r8d</code>）配合 <code>movl</code>。</p>
+<h3 id="常用指令">常用指令</h3>
+<h4 id="数据传送指令">数据传送指令</h4>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>操作大小</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>movb</code></td>
+<td>1 字节</td>
+<td><code>movb $0xFF, %al</code></td>
+</tr>
+<tr>
+<td><code>movw</code></td>
+<td>2 字节</td>
+<td><code>movw %ax, %bx</code></td>
+</tr>
+<tr>
+<td><code>movl</code></td>
+<td>4 字节</td>
+<td><code>movl %eax, %ebx</code></td>
+</tr>
+<tr>
+<td><code>movq</code></td>
+<td>8 字节</td>
+<td><code>movq %rax, %rbx</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键约束：<code>mov</code>
+的两个操作数不能都是内存。</strong>
+内存到内存的传送需要分两步：先读到寄存器，再写到目标内存。</p>
+<h4 id="mov-与-lea-的区别"><code>mov</code> 与 <code>lea</code>
+的区别</h4>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">movq</span> <span class="op">(%</span><span class="kw">rdi</span><span class="op">,</span> <span class="op">%</span><span class="kw">rsi</span><span class="op">,</span> <span class="dv">4</span><span class="op">),</span> <span class="op">%</span><span class="kw">rax</span>    <span class="co">; 先计算地址，再读该地址的值到 rax</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>leaq <span class="op">(%</span><span class="kw">rdi</span><span class="op">,</span> <span class="op">%</span><span class="kw">rsi</span><span class="op">,</span> <span class="dv">4</span><span class="op">),</span> <span class="op">%</span><span class="kw">rax</span>    <span class="co">; 只计算地址表达式的值，不访存，结果即地址</span></span></code></pre></div>
+<ul>
+<li><code>mov</code>：计算地址 → <strong>访问内存</strong> → 取数据</li>
+<li><code>lea</code>：只计算地址表达式（常用于做算术，不改变标志位）</li>
+</ul>
+<p><strong><code>lea</code> 的妙用：</strong> 编译器常用
+<code>lea</code> 做无副作用的算术运算。</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">; 计算 x * 5</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>leaq <span class="op">(%</span><span class="kw">rdi</span><span class="op">,</span> <span class="op">%</span><span class="kw">rdi</span><span class="op">,</span> <span class="dv">4</span><span class="op">),</span> <span class="op">%</span><span class="kw">rax</span>    <span class="co">; rax = rdi + rdi * 4 = x * 5</span></span></code></pre></div>
+<h4 id="算术与逻辑指令">算术与逻辑指令</h4>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>加法</strong></td>
+<td><code>add S, D</code></td>
+<td><code>D = D + S</code></td>
+</tr>
+<tr>
+<td><strong>减法</strong></td>
+<td><code>sub S, D</code></td>
+<td><code>D = D - S</code></td>
+</tr>
+<tr>
+<td><strong>乘法</strong></td>
+<td><code>imul S, D</code></td>
+<td><code>D = D × S</code>（有符号）</td>
+</tr>
+<tr>
+<td><strong>与</strong></td>
+<td><code>and S, D</code></td>
+<td><code>D = D &amp; S</code></td>
+</tr>
+<tr>
+<td><strong>或</strong></td>
+<td><code>or S, D</code></td>
+<td><code>D = D \| S</code></td>
+</tr>
+<tr>
+<td><strong>异或</strong></td>
+<td><code>xor S, D</code></td>
+<td><code>D = D ^ S</code></td>
+</tr>
+<tr>
+<td><strong>取反</strong></td>
+<td><code>not D</code></td>
+<td><code>D = ~D</code>（<strong>不改变标志位</strong>）</td>
+</tr>
+<tr>
+<td><strong>取负</strong></td>
+<td><code>neg D</code></td>
+<td><code>D = -D</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="移位指令">移位指令</h4>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shl</code> / <code>sal</code></td>
+<td>左移，低位补 0（两者相同）</td>
+</tr>
+<tr>
+<td><code>shr</code></td>
+<td><strong>逻辑右移</strong>，高位补 0</td>
+</tr>
+<tr>
+<td><code>sar</code></td>
+<td><strong>算术右移</strong>，高位补符号位</td>
+</tr>
+</tbody>
+</table>
+<h3 id="条件码">条件码</h3>
+<h4 id="六个标志位">六个标志位</h4>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th>标志位</th>
+<th>全称</th>
+<th>含义</th>
+<th>计算方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CF</strong></td>
+<td>Carry Flag</td>
+<td>进位（无符号溢出）</td>
+<td><code>carry_out[63]</code>（最高位是否有进位）</td>
+</tr>
+<tr>
+<td><strong>OF</strong></td>
+<td>Overflow Flag</td>
+<td>溢出（有符号溢出）</td>
+<td><code>carry_out[63] XOR carry_out[62]</code></td>
+</tr>
+<tr>
+<td><strong>SF</strong></td>
+<td>Sign Flag</td>
+<td>符号位（结果为负）</td>
+<td><code>result[63]</code>（结果的最高位）</td>
+</tr>
+<tr>
+<td><strong>ZF</strong></td>
+<td>Zero Flag</td>
+<td>结果为零</td>
+<td>所有结果位均为 0 时 ZF=1</td>
+</tr>
+<tr>
+<td><strong>PF</strong></td>
+<td>Parity Flag</td>
+<td>奇偶标志</td>
+<td>结果低 8 位中 1 的个数为偶数</td>
+</tr>
+<tr>
+<td><strong>AF</strong></td>
+<td>Auxiliary Flag</td>
+<td>辅助进位（BCD 用）</td>
+<td>第 3 位进位</td>
+</tr>
+</tbody>
+</table>
+<h4 id="影响标志位的常见指令">影响标志位的常见指令</h4>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>CF</th>
+<th>OF</th>
+<th>SF</th>
+<th>ZF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>add</code> / <code>sub</code></td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>inc</code> / <code>dec</code></td>
+<td>不变</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>neg</code></td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>and</code> / <code>or</code> / <code>xor</code></td>
+<td>清零</td>
+<td>清零</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>not</code></td>
+<td>不变</td>
+<td>不变</td>
+<td>不变</td>
+<td>不变</td>
+</tr>
+<tr>
+<td><code>shl</code> / <code>sal</code></td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>shr</code> / <code>sar</code></td>
+<td>✓</td>
+<td>✓(有限)</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>lea</code></td>
+<td>不变</td>
+<td>不变</td>
+<td>不变</td>
+<td>不变</td>
+</tr>
+<tr>
+<td><code>cmp</code>（同 sub 但不写回）</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>test</code>（同 and 但不写回）</td>
+<td>清零</td>
+<td>清零</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键：</strong> <code>lea</code> 和 <code>not</code>
+不改变任何标志位。</p>
+<h3 id="控制流">控制流</h3>
+<h4 id="条件跳转指令jxx">条件跳转指令（<code>jXX</code>）</h4>
+<p><code>cmp</code> 或 <code>test</code> 设置标志位后，<code>jXX</code>
+根据标志位判断是否跳转。</p>
+<p><strong><code>cmp S, D</code> 的含义：</strong> 计算
+<code>D - S</code>，设置标志位但不写回结果。</p>
+<p><strong><code>test S, D</code> 的含义：</strong> 计算
+<code>D &amp; S</code>，设置标志位但不写回结果。</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 27%" />
+<col style="width: 11%" />
+<col style="width: 27%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr>
+<th>后缀</th>
+<th>含义（有符号）</th>
+<th>后缀</th>
+<th>含义（无符号）</th>
+<th>标志位条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>je</code> / <code>jne</code></td>
+<td>相等/不等</td>
+<td>相同</td>
+<td>相同</td>
+<td><code>ZF=1</code> / <code>ZF=0</code></td>
+</tr>
+<tr>
+<td><code>jg</code> / <code>jge</code></td>
+<td>大于/大于等于</td>
+<td><code>ja</code> / <code>jae</code></td>
+<td>Above</td>
+<td><code>SF=OF</code>（且 ZF=0 时）</td>
+</tr>
+<tr>
+<td><code>jl</code> / <code>jle</code></td>
+<td>小于/小于等于</td>
+<td><code>jb</code> / <code>jbe</code></td>
+<td>Below</td>
+<td><code>SF≠OF</code>（或 ZF=1 时）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：</strong> <code>jg</code> 不是直接看
+<code>SF=0</code>，而是 <code>SF == OF</code>。</p>
+<h4 id="条件数据传送cmov">条件数据传送（<code>cmov</code>）</h4>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cmovg</span> <span class="op">%</span><span class="kw">rax</span><span class="op">,</span> <span class="op">%</span><span class="kw">rbx</span>    <span class="co">; 如果大于（有符号），rbx = rax，否则 rbx 不变</span></span></code></pre></div>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 38%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr>
+<th>对比项</th>
+<th><code>jXX</code>（条件分支）</th>
+<th><code>cmov</code>（条件移动）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原理</td>
+<td>猜测分支方向，猜错则清空流水线</td>
+<td>两条路径都计算，条件满足才写回</td>
+</tr>
+<tr>
+<td>预测准确率高（&gt;95%）</td>
+<td>快</td>
+<td>较慢（两边都算）</td>
+</tr>
+<tr>
+<td>预测准确率低（~50%）</td>
+<td>慢（频繁猜错）</td>
+<td><strong>更快</strong></td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>两侧有函数调用/副作用</td>
+<td>简单数据选择</td>
+</tr>
+</tbody>
+</table>
+<p><strong>不适用 <code>cmov</code> 的情况：</strong>
+可能引发异常的内存访问（如空指针解引用）、浮点数、目的操作数是内存。</p>
+<h4 id="流程分析技巧">流程分析技巧</h4>
+<p><strong>读汇编找等价 C 代码时：</strong> 注意 if
+判断条件是否反了。如果满足条件直接跳转到 <code>ret</code> 了，那 if
+里面的条件应该是相反的。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">// C 代码</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>x <span class="op">&lt;=</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">// 可能的汇编</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    cmpl $<span class="dv">0</span><span class="op">,</span> <span class="op">%</span>edi</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    jg   <span class="op">.</span>L1           <span class="op">;</span> 如果 x <span class="op">&gt;</span> <span class="dv">0</span>，跳转到执行主体（不返回）</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    movl $<span class="dv">0</span><span class="op">,</span> <span class="op">%</span>eax</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    ret</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>L1<span class="op">:</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span></code></pre></div>
+<p>这里 <code>jg</code>（大于则跳走）说明条件写的是”小于等于时返回
+0”。</p>
+<h3 id="switch-与跳转表">Switch 与跳转表</h3>
+<p>当 case
+值密集连续时，编译器生成<strong>跳转表</strong>（<code>.rodata</code>
+中的地址数组）：</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span> <span class="op">(</span>x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">0</span><span class="op">:</span> <span class="op">...</span> <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span> <span class="op">...</span> <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span> <span class="op">...</span> <span class="cf">default</span><span class="op">:</span> <span class="op">...</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>    cmpl   <span class="op">$</span><span class="bn">2</span><span class="op">,</span> <span class="op">%</span><span class="kw">edi</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">ja</span>     <span class="op">.</span>L_default</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">jmp</span>    <span class="op">*.</span>L4<span class="op">(,</span> <span class="op">%</span><span class="kw">rdi</span><span class="op">,</span> <span class="dv">8</span><span class="op">)</span>    <span class="co">; 间接跳转</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">section</span> <span class="op">.</span>rodata</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">.L4:</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    .quad <span class="op">.</span>L_case0</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    .quad <span class="op">.</span>L_case1</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    .quad <span class="op">.</span>L_case2</span></code></pre></div>
+<p><strong>跳转表是 O(1) 的——不管多少个 case，执行时间固定。条件链是
+O(n)。</strong></p>
+<hr />
+<h3 id="过程函数调用">过程（函数调用）</h3>
+<h4 id="栈的操作">栈的操作</h4>
+<p>栈由<strong>高地址向低地址生长</strong>（RSP 递减）。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>指令</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>push %rax</code></td>
+<td><code>RSP -= 8</code>，<code>[RSP] = %rax</code></td>
+</tr>
+<tr>
+<td><code>pop %rax</code></td>
+<td><code>%rax = [RSP]</code>，<code>RSP += 8</code></td>
+</tr>
+<tr>
+<td><code>call func</code></td>
+<td><code>RSP -= 8</code>，<code>[RSP] = RIP</code>，<code>RIP = func</code>（压入返回地址）</td>
+</tr>
+<tr>
+<td><code>ret</code></td>
+<td><code>RIP = [RSP]</code>，<code>RSP += 8</code>（弹出返回地址）</td>
+</tr>
+</tbody>
+</table>
+<p><code>call</code> 和 <code>ret</code> 的对应关系：</p>
+<pre><code>main:
+    call func          ; 1. 把下一条指令地址（main+offset）压栈
+    ...                 ; 2. 跳转到 func
+                        ; 4. 返回到这里继续执行
+func:
+    ...
+    ret                 ; 3. 从栈顶弹出返回地址，跳回</code></pre>
+<h4 id="栈帧">栈帧</h4>
+<p>每个函数的调用都要为其创建一个<strong>栈帧</strong>。函数的嵌套调用正好符合栈的结构——后调用的先返回。</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode asm"><code class="sourceCode fasm"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">func:</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">push</span>   <span class="op">%</span><span class="kw">rbp</span>        <span class="co">; 保存调用者的 RBP</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">mov</span>    <span class="op">%</span><span class="kw">rsp</span><span class="op">,</span> <span class="op">%</span><span class="kw">rbp</span>  <span class="co">; 建立当前函数的帧指针</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sub</span>    <span class="op">$</span>N<span class="op">,</span> <span class="op">%</span><span class="kw">rsp</span>    <span class="co">; 分配局部变量空间</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">mov</span>    <span class="op">%</span><span class="kw">rbp</span><span class="op">,</span> <span class="op">%</span><span class="kw">rsp</span>  <span class="co">; 恢复 RSP</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">pop</span>    <span class="op">%</span><span class="kw">rbp</span>        <span class="co">; 恢复调用者的 RBP</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">ret</span></span></code></pre></div>
+<h4 id="参数传递x86-64-system-v-abi">参数传递（x86-64 System V
+ABI）</h4>
+<table>
+<thead>
+<tr>
+<th>参数位置</th>
+<th>寄存器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 个</td>
+<td><code>%rdi</code></td>
+</tr>
+<tr>
+<td>第 2 个</td>
+<td><code>%rsi</code></td>
+</tr>
+<tr>
+<td>第 3 个</td>
+<td><code>%rdx</code></td>
+</tr>
+<tr>
+<td>第 4 个</td>
+<td><code>%rcx</code></td>
+</tr>
+<tr>
+<td>第 5 个</td>
+<td><code>%r8</code></td>
+</tr>
+<tr>
+<td>第 6 个</td>
+<td><code>%r9</code></td>
+</tr>
+<tr>
+<td>第 7 个起</td>
+<td><strong>栈</strong>（从右向左压栈）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回值：</strong> 通过 <code>%rax</code> 传递。</p>
+<p><strong>注意：</strong>
+分析多参数函数时，将参数和寄存器按顺序对应起来即可，不需要死记硬背。</p>
+<h4 id="寄存器使用惯例">寄存器使用惯例</h4>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>类型</th>
+<th>寄存器</th>
+<th>责任</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Caller-saved</strong></td>
+<td><code>%rax</code>, <code>%rcx</code>, <code>%rdx</code>,
+<code>%rsi</code>, <code>%rdi</code>, <code>%r8~%r11</code></td>
+<td>调用者在 <code>call</code> 前自行保存需要的值</td>
+</tr>
+<tr>
+<td><strong>Callee-saved</strong></td>
+<td><code>%rbx</code>, <code>%rbp</code>, <code>%r12~%r15</code></td>
+<td>被调者负责在入口保存、返回前恢复</td>
+</tr>
+</tbody>
+</table>
+<p><strong>设计原则：</strong>
+让最短生存期的数据由调用者管，最长生存期的由被调者管，使总体保存/恢复次数最少。</p>
+<hr />
+<h3 id="数组">数组</h3>
+<ul>
+<li>数组是一片<strong>连续的内存空间</strong></li>
+<li><strong>行优先（Row-Major）</strong>——每一行之间的数据是连续存储的</li>
+<li>多层数组相当于用指针把多个数组串起来</li>
+</ul>
+<p><strong>地址计算：</strong> 对于
+<code>int arr[R][C]</code>，<code>arr[i][j]</code> 的地址 =
+<code>arr_base + (i × C + j) × 4</code></p>
+<hr />
+<h3 id="结构体">结构体</h3>
+<ul>
+<li>结构体也是一段连续的空间，区别在于包含不同类型成员</li>
+<li>通过<strong>相对于起始位置的偏移量</strong>来计算地址</li>
+</ul>
+<h4 id="字节对齐规则重点可能-10-分题">字节对齐规则（重点，可能 10
+分题）</h4>
+<ol type="1">
+<li><strong>每个类型的起始地址必须是其对齐要求的整数倍：</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小</th>
+<th>对齐要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>char</code></td>
+<td>1</td>
+<td>1（任意地址）</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td>2</td>
+<td>2（偶地址）</td>
+</tr>
+<tr>
+<td><code>int</code> / <code>float</code></td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>long</code> / <code>double</code> / 指针</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li><strong>结构体的大小必须是其中最大成员对齐要求的整数倍</strong>（末尾可能有填充）</li>
+</ol>
+<p><strong>三条规则的递进关系：</strong></p>
+<pre><code>规则 1（自然对齐）→ 决定规则 2 需要的倍数
+规则 2（成员偏移对齐）→ 决定字段间的填充（padding）
+规则 3（结构体大小对齐）→ 决定末尾填充，保证数组也能满足规则 2</code></pre>
+<p><strong>示例：</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> S <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span>   c<span class="op">;</span>     <span class="co">// offset 0, size 1</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 填充 3 字节</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span>    i<span class="op">;</span>     <span class="co">// offset 4 (4 的倍数), size 4</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">short</span>  s<span class="op">;</span>     <span class="co">// offset 8 (2 的倍数), size 2</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 填充 2 字节（保证大小为 4 的倍数）</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">// sizeof(struct S) = 12</span></span></code></pre></div>
+<p><strong>优化技巧：</strong>
+按成员对齐要求从大到小排列，可以减少填充。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Bad <span class="op">{</span> <span class="dt">char</span> c<span class="op">;</span> <span class="dt">int</span> i<span class="op">;</span> <span class="dt">short</span> s<span class="op">;</span> <span class="op">};</span>    <span class="co">// sizeof = 12</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Good <span class="op">{</span> <span class="dt">int</span> i<span class="op">;</span> <span class="dt">short</span> s<span class="op">;</span> <span class="dt">char</span> c<span class="op">;</span> <span class="op">};</span>   <span class="co">// sizeof = 8（少 4 字节填充）</span></span></code></pre></div>
+<h3 id="联合体union">联合体（union）</h3>
+<p>不考。</p>
+<hr />
+<h3 id="代码注入攻击">代码注入攻击</h3>
+<h4 id="基本原理">基本原理</h4>
+<p>在缓冲区中写入多于缓冲区长度的数据，覆盖返回地址，操控控制流跳转到注入的恶意代码位置。</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> echo<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> buf<span class="op">[</span><span class="dv">4</span><span class="op">];</span>        <span class="co">// 很小的缓冲区</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    gets<span class="op">(</span>buf<span class="op">);</span>          <span class="co">// gets 不检查长度！</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<pre><code>栈布局（溢出前）:
+┌──────────────────┐
+│ buf[0~3]          │ ← 缓冲区（4 字节）
+├──────────────────┤
+│ 填充区（20 字节）  │ ← gets 溢出时先写这里
+├──────────────────┤
+│ 返回地址           │ ← 被覆盖后，ret 跳到攻击者控制的位置
+└──────────────────┘</code></pre>
+<p><strong>缓冲区只是 <code>buf[4]</code> 那 4 个字节。溢出就是突破了这
+4 个字节写到了外面。</strong>
+填充区和返回地址不是缓冲区的一部分——它们是缓冲区溢出的受害者。</p>
+<h4 id="三种防御手段">三种防御手段</h4>
+<table>
+<colgroup>
+<col style="width: 60%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr>
+<th>防御手段</th>
+<th>原理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>栈随机化</strong></td>
+<td>每次运行栈起始地址随机变化（ASLR），攻击者难以定位注入代码的位置</td>
+</tr>
+<tr>
+<td><strong>不可执行位（NX bit）</strong></td>
+<td>标记栈内存不可执行。即使注入了代码，CPU 也无法执行它 →
+崩溃而非被攻击</td>
+</tr>
+<tr>
+<td><strong>栈金丝雀（Stack Canary）</strong></td>
+<td>在栈帧中插入随机值（canary），函数返回前检查是否被修改。被破坏则调用
+<code>__stack_chk_fail</code> 终止程序</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四处理器体系结构">四、处理器体系结构</h2>
+<h3 id="cisc-vs-risc">CISC vs RISC</h3>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>对比项</th>
+<th>CISC（x86）</th>
+<th>RISC（ARM、RISC-V）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指令长度</td>
+<td><strong>变长</strong>（1~15 字节）</td>
+<td><strong>定长</strong>（通常 4 字节）</td>
+</tr>
+<tr>
+<td>指令复杂度</td>
+<td>单条指令可做复杂操作</td>
+<td>单条指令做简单操作，复杂功能由多条组合</td>
+</tr>
+<tr>
+<td>寄存器数量</td>
+<td>少（x86-64: 16 个通用寄存器）</td>
+<td>多（ARM64: 31 个、RISC-V: 32 个）</td>
+</tr>
+<tr>
+<td>访存方式</td>
+<td>多数指令可直接操作内存</td>
+<td>只有 <code>load</code> / <code>store</code> 指令访存</td>
+</tr>
+<tr>
+<td>解码器</td>
+<td>复杂（大量晶体管，功耗高）</td>
+<td>简单（功耗低）</td>
+</tr>
+<tr>
+<td>功耗</td>
+<td>高</td>
+<td><strong>低</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么 RISC 功耗更低？</strong> 1. 解码器简单（ARM
+解码器晶体管约 x86 的 1/10） 2. 寄存器多 → 减少访存（访存能耗是 ALU
+运算的几十倍） 3. Load-Store 架构 → 控制逻辑简单 4. 条件码更新可控 →
+减少无效翻转</p>
+<hr />
+<h3 id="经典五级流水线">经典五级流水线</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>英文</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>取指</strong></td>
+<td>Fetch</td>
+<td>从内存读取指令，同时更新 PC（<code>PC += 指令长度</code>）</td>
+</tr>
+<tr>
+<td><strong>译码</strong></td>
+<td>Decode</td>
+<td>译码指令，从寄存器堆读取操作数</td>
+</tr>
+<tr>
+<td><strong>执行</strong></td>
+<td>Execute</td>
+<td>ALU 执行算术/逻辑运算</td>
+</tr>
+<tr>
+<td><strong>访存</strong></td>
+<td>Memory</td>
+<td>读/写数据内存（Load/Store 指令）</td>
+</tr>
+<tr>
+<td><strong>写回</strong></td>
+<td>Write Back</td>
+<td>将结果写回寄存器堆</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：</strong> 在顺序执行的 CPU
+中，可能访问内存的指令阶段是<strong>取指</strong>（读指令）和<strong>访存</strong>（读写数据）。</p>
+<h4 id="时钟周期与吞吐量">时钟周期与吞吐量</h4>
+<pre><code>时钟周期 = 流水线中最慢阶段的延迟
+          （流水线划分时要尽量让各阶段均分）
+
+单条指令执行时间 = 时钟周期 × 流水线阶段数
+
+吞吐量 = 1 / 时钟周期（每秒钟完成的指令数）</code></pre>
+<p><strong>当流水线段数 K
+划分到极限时</strong>（将访问寄存器的操作也作为一个阶段），吞吐量接近理论最大值。</p>
+<p><strong>示例：</strong></p>
+<pre><code>假设各阶段延迟: F=2ns, D=3ns, E=3ns, M=4ns, W=1ns
+最慢阶段 = M（4ns）
+时钟周期 = 4ns
+吞吐量 = 1 / (4 × 10⁻⁹) = 250 MIPS
+单条指令时间 = 4ns × 5 = 20ns</code></pre>
+<h4 id="流水线对程序员透明">流水线对程序员透明</h4>
+<p><strong>流水线处理器的执行不需要对程序进行修改</strong>——通过硬件自动实现的转发（Forwarding）、停顿（Stall）、分支预测等机制保证与顺序执行等价。这是流水线设计的基本目标。</p>
+<h4 id="控制冒险分支预测">控制冒险（分支预测）</h4>
+<p>分支指令导致流水线不知道该取哪条指令。</p>
+<p>解决方案（从简单到复杂）：</p>
+<ol type="1">
+<li><strong>预测不跳转：</strong>
+默认继续取顺序下一条。猜错时冲刷错误指令，损失 2 周期</li>
+<li><strong>动态分支预测：</strong> 使用分支历史表（BHT），2-bit
+饱和计数器，准确率 &gt;95%</li>
+<li><strong>分支目标缓冲器（BTB）：</strong>
+不仅预测是否跳转，还缓存目标地址</li>
+</ol>
+<hr />
+<h2 id="五存储器层次结构">五、存储器层次结构</h2>
+<h3 id="常用存储器对比">常用存储器对比</h3>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr>
+<th>类型</th>
+<th>实现</th>
+<th>速度</th>
+<th>容量</th>
+<th>成本</th>
+<th>主要应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SRAM</strong></td>
+<td>6 个晶体管</td>
+<td>最快（~1ns）</td>
+<td>小（MB 级）</td>
+<td>高</td>
+<td>CPU 缓存（L1/L2/L3）</td>
+</tr>
+<tr>
+<td><strong>DRAM</strong></td>
+<td>1 晶体管 + 1 电容</td>
+<td>较慢（~50ns）</td>
+<td>大（GB 级）</td>
+<td>低</td>
+<td>主存</td>
+</tr>
+<tr>
+<td><strong>磁盘（HDD）</strong></td>
+<td>机械盘片</td>
+<td>最慢（~ms）</td>
+<td>极大（TB 级）</td>
+<td>极低</td>
+<td>大容量持久存储</td>
+</tr>
+<tr>
+<td><strong>SSD</strong></td>
+<td>闪存</td>
+<td>介于 DRAM 和磁盘之间（μs 级）</td>
+<td>大</td>
+<td>中</td>
+<td>高速持久存储</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SSD 比磁盘快，但比 DRAM 慢。</strong> <strong>SRAM 比 DRAM
+快，但容量小、成本高。</strong></p>
+<h3 id="磁盘">磁盘</h3>
+<p><strong>基本术语：</strong></p>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>磁道（Track）</strong></td>
+<td>盘面上的同心圆</td>
+</tr>
+<tr>
+<td><strong>扇区（Sector）</strong></td>
+<td>磁道上划分的最小存储单元（通常 512B 或 4KB）</td>
+</tr>
+<tr>
+<td><strong>柱面（Cylinder）</strong></td>
+<td>所有盘面同一半径的磁道集合</td>
+</tr>
+<tr>
+<td><strong>寻道时间</strong></td>
+<td>磁头移动到目标磁道的时间</td>
+</tr>
+<tr>
+<td><strong>旋转延迟</strong></td>
+<td>盘片旋转到目标扇区的时间（平均 = 半圈旋转时间）</td>
+</tr>
+<tr>
+<td><strong>传输时间</strong></td>
+<td>读写数据的时间</td>
+</tr>
+</tbody>
+</table>
+<p><strong>容量计算：</strong></p>
+<pre><code>磁盘容量 = 磁头数 × 每面磁道数 × 每道扇区数 × 每扇区字节数</code></pre>
+<p><strong>注意：</strong> 结果是 <strong>GB</strong>（10⁹ 字节），不是
+<strong>GiB</strong>（2³⁰ 字节）。</p>
+<p><strong>数据访问时间：</strong></p>
+<pre><code>访问时间 = 寻道时间 + 旋转时间 + 传输时间</code></pre>
+<h3 id="局部性原理">局部性原理</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>类型</th>
+<th>定义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>时间局部性</strong></td>
+<td>一个数据被使用后，<strong>近期还可能被再次使用</strong></td>
+<td>循环内的变量反复访问</td>
+</tr>
+<tr>
+<td><strong>空间局部性</strong></td>
+<td>一个数据被使用后，<strong>附近地址的数据也可能被使用</strong></td>
+<td>数组的顺序遍历</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>指令的顺序执行体现<strong>空间局部性</strong></li>
+<li>循环体体现<strong>时间局部性</strong>（反复执行相同指令）</li>
+</ul>
+<p><strong>一定会考局部性原理的概念题。</strong></p>
+<hr />
+<h3 id="高速缓存cache">高速缓存（Cache）</h3>
+<h4 id="组织结构">组织结构</h4>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>直接映射</strong></td>
+<td>每个内存块只能映射到 Cache 中唯一的行</td>
+<td>简单，但冲突不命中高</td>
+</tr>
+<tr>
+<td><strong>组相联</strong></td>
+<td>每个内存块可映射到一组中的任意一行</td>
+<td>折中方案，广泛使用</td>
+</tr>
+<tr>
+<td><strong>全相联</strong></td>
+<td>每个内存块可放在 Cache 中任意行</td>
+<td>灵活，但硬件成本高</td>
+</tr>
+</tbody>
+</table>
+<h4 id="容量计算">容量计算</h4>
+<pre><code>Cache 总容量 = 行数 × (有效位 + 标记位 + 数据块大小)</code></pre>
+<h4 id="cache-友好代码的特征">Cache 友好代码的特征</h4>
+<ol type="1">
+<li><strong>利用空间局部性：</strong> 按行优先遍历多维数组（步长为
+1），避免跨大步长访问</li>
+<li><strong>利用时间局部性：</strong>
+反复使用同一数据（如累加器、循环不变量）</li>
+<li>每次访问都尽量使用已加载到 Cache 中的数据</li>
+</ol>
+<p><strong>能够分析未命中率：</strong>
+例如矩阵乘法中不同的循环嵌套顺序（ijk vs ikj vs kij）对 Cache
+未命中率的影响。</p>
+<h4 id="平均访问时间">平均访问时间</h4>
+<pre><code>平均访问时间 = 命中时间 + 未命中率 × 未命中惩罚</code></pre>
+<h4 id="存储器山">存储器山</h4>
+<p>不考。</p>
+<hr />
+<h2 id="六链接">六、链接</h2>
+<h3 id="程序构建四阶段">程序构建四阶段</h3>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>阶段</th>
+<th>输入</th>
+<th>输出</th>
+<th>主要工作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>预处理</strong></td>
+<td><code>.c</code></td>
+<td><code>.i</code></td>
+<td>处理
+<code>#include</code>、<code>#define</code>、宏展开、删除注释</td>
+</tr>
+<tr>
+<td><strong>编译</strong></td>
+<td><code>.i</code></td>
+<td><code>.s</code></td>
+<td>将 C 代码翻译为汇编代码</td>
+</tr>
+<tr>
+<td><strong>汇编</strong></td>
+<td><code>.s</code></td>
+<td><code>.o</code></td>
+<td>将汇编代码翻译为机器码（目标文件）</td>
+</tr>
+<tr>
+<td><strong>链接</strong></td>
+<td><code>.o</code> + 库</td>
+<td>可执行文件</td>
+<td><strong>符号解析</strong> + <strong>重定位</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="符号解析">符号解析</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr>
+<th>符号类型</th>
+<th>定义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>全局符号</strong></td>
+<td>定义在当前模块，可被其他模块引用</td>
+<td>非 <code>static</code> 的函数和全局变量</td>
+</tr>
+<tr>
+<td><strong>外部符号</strong></td>
+<td>引用在其他模块中定义的符号</td>
+<td>使用其他文件中的函数/变量</td>
+</tr>
+<tr>
+<td><strong>局部符号</strong></td>
+<td>仅在当前模块内可见</td>
+<td>带 <code>static</code> 的函数和全局变量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="强符号与弱符号">强符号与弱符号</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>强符号</strong></td>
+<td>已初始化的全局变量、函数定义</td>
+</tr>
+<tr>
+<td><strong>弱符号</strong></td>
+<td>未初始化的全局变量</td>
+</tr>
+</tbody>
+</table>
+<p><strong>同名全局符号链接规则（三步法）：</strong></p>
+<ol type="1">
+<li><strong>不允许有多个同名强符号→链接错误</strong></li>
+<li>如果有一个强符号和多个弱符号→<strong>选择强符号</strong></li>
+<li>如果有多个弱符号→<strong>随机选一个</strong>（危险！可能导致不易察觉的
+bug）</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">// file1.c</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span>        <span class="co">// 强符号</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> func<span class="op">()</span> <span class="op">{}</span>    <span class="co">// 强符号</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">// file2.c</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> x<span class="op">;</span>            <span class="co">// 弱符号</span></span></code></pre></div>
+<p>链接结果：选择 <code>x = 5</code>（强符号覆盖弱符号）。</p>
+<p><strong>如果有以下情况：</strong></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">// file1.c</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">// file2.c</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> x <span class="op">=</span> <span class="dv">10</span><span class="op">;</span>       <span class="co">// 另一个强符号 → 链接错误！</span></span></code></pre></div>
+<p>两个强符号冲突，链接器报错。</p>
+<hr />
+<blockquote>
+<p>以上为 CSAPP
+课程的核心考点整理。每个部分的例题需要结合具体题目练习巩固。</p>
+</blockquote>
+</body>
+</html>

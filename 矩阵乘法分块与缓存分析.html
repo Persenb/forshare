@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>矩阵乘法分块与缓存分析</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="矩阵乘法分块优化与缓存分析">矩阵乘法分块优化与缓存分析</h1>
+<h2 id="前提参数">前提参数</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>元素类型</td>
+<td><code>double</code>，8 字节</td>
+</tr>
+<tr>
+<td>Cache line</td>
+<td>8 个 <code>double</code> = 64 字节</td>
+</tr>
+<tr>
+<td>分块大小</td>
+<td>B×B 个 <code>double</code></td>
+</tr>
+<tr>
+<td>总 Cache 容量（以 <code>double</code> 计）</td>
+<td>C，满足 <strong>3B² &lt; C</strong></td>
+</tr>
+<tr>
+<td>矩阵大小</td>
+<td>n×n，n &gt;&gt; B</td>
+</tr>
+</tbody>
+</table>
+<h3 id="内存布局约定">内存布局约定</h3>
+<p>C/C++ 按 <strong>行主序（row-major）</strong> 存储矩阵。矩阵 A
+的地址分布：</p>
+<pre><code>A[i][j] = A_base + (i * n + j) * 8</code></pre>
+<p>同一行内相邻元素地址连续，跨行跳 n 个元素。</p>
+<h3 id="cache-line-映射规则">Cache line 映射规则</h3>
+<p>硬件以 cache line 为单位从内存加载数据。对于起始地址为
+<code>addr</code> 的 <code>double</code>：</p>
+<pre><code>所属 cache line 的起始地址 = addr - (addr % 64)    // 64 字节对齐</code></pre>
+<p>即：<strong>同一 cache line 覆盖一段 64 字节连续地址</strong>，存放
+<strong>8 个连续的 <code>double</code></strong>。</p>
+<hr />
+<h2 id="代码">代码</h2>
+<h3 id="朴素版i-j-k">朴素版（i-j-k）</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span>j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> n<span class="op">;</span> j<span class="op">++)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> n<span class="op">;</span> k<span class="op">++)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      c<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">+=</span> a<span class="op">[</span>i<span class="op">][</span>k<span class="op">]</span> <span class="op">*</span> b<span class="op">[</span>k<span class="op">][</span>j<span class="op">];</span></span></code></pre></div>
+<h3 id="分块版">分块版</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> mmm<span class="op">(</span><span class="dt">double</span> <span class="op">*</span>a<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>b<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>c<span class="op">,</span> <span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i<span class="op">,</span> j<span class="op">,</span> k<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i <span class="op">+=</span> B<span class="op">)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span>j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> n<span class="op">;</span> j <span class="op">+=</span> B<span class="op">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span>k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> n<span class="op">;</span> k <span class="op">+=</span> B<span class="op">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> <span class="op">(</span>i1 <span class="op">=</span> i<span class="op">;</span> i1 <span class="op">&lt;</span> i<span class="op">+</span>B<span class="op">;</span> i1<span class="op">++)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span>j1 <span class="op">=</span> j<span class="op">;</span> j1 <span class="op">&lt;</span> j<span class="op">+</span>B<span class="op">;</span> j1<span class="op">++)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> <span class="op">(</span>k1 <span class="op">=</span> k<span class="op">;</span> k1 <span class="op">&lt;</span> k<span class="op">+</span>B<span class="op">;</span> k1<span class="op">++)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                c<span class="op">[</span>i1<span class="op">*</span>n<span class="op">+</span>j1<span class="op">]</span> <span class="op">+=</span> a<span class="op">[</span>i1<span class="op">*</span>n<span class="op">+</span>k1<span class="op">]</span> <span class="op">*</span> b<span class="op">[</span>k1<span class="op">*</span>n<span class="op">+</span>j1<span class="op">];</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>外层 (i, j, k) 遍历 B×B 块，内层 (i1, j1, k1) 计算两个 B×B
+块的乘法：</p>
+<pre><code>C_block(i,j) = Σ A_block(i,k) × B_block(k,j)   (k_block)</code></pre>
+<hr />
+<h1
+id="第一部分朴素版i-j-k逐次追踪">第一部分：朴素版（i-j-k）逐次追踪</h1>
+<h2 id="执行顺序">执行顺序</h2>
+<pre><code>i=0:
+  j=0:  k=0, 1, 2, ..., n-1  → 计算 c[0][0]
+  j=1:  k=0, 1, 2, ..., n-1  → 计算 c[0][1]
+  j=2:  k=0, 1, 2, ..., n-1  → 计算 c[0][2]
+  ...
+  j=n-1: ...
+i=1: ...</code></pre>
+<h2 id="cache-line-命中失效逐次追踪">Cache line 命中/失效逐次追踪</h2>
+<p>取 n=1024，追踪前几次迭代。令
+<code>A_base=0x0</code>，<code>B_base=0x800000</code>（仅用来模拟 cache
+line 地址对齐）。</p>
+<h3 id="固定-i0j0k0..n-1">固定 i=0，j=0，k=0..n-1</h3>
+<pre><code>k=0:  a[0][0]  → 地址 0x0        → ❌ 冷 miss → 加载 cache line [a[0][0..7]]  (0x0-0x3F)
+      b[0][0]  → 地址 0x800000   → ❌ 冷 miss → 加载 cache line [b[0][0..7]]  (0x800000-0x80003F)
+      c[0][0]  → 地址 0x1600000  → ❌ 冷 miss → 加载 cache line [c[0][0..7]]
+
+k=1:  a[0][1]  → 地址 0x8        → ✅ 命中（和 a[0][0] 同 cache line）
+      b[1][0]  → 地址 0x800400   → ❌ miss → 加载 [b[1][0..7]]  (每行 n=1024, 跨度 8192=0x2000)
+      c[0][0]  → 已加载          → ✅ 命中
+
+k=2:  a[0][2]  → ✅ 命中
+      b[2][0]  → 地址 0x800800   → ❌ miss → 加载 [b[2][0..7]]
+      c[0][0]  → ✅ 命中
+
+k=3:  a[0][3]  → ✅ 命中
+      b[3][0]  → 地址 0x800C00   → ❌ miss → 加载 [b[3][0..7]]
+      c[0][0]  → ✅ 命中
+
+...
+
+k=7:  a[0][7]  → ✅ 命中 (同一条 cache line 的最后一个元素)
+      b[7][0]  → ❌ miss → 加载 [b[7][0..7]]
+      c[0][0]  → ✅ 命中
+
+k=8:  a[0][8]  → 地址 0x40 → ❌ miss（进入了新的 cache line [a[0][8..15]]）
+      b[8][0]  → ❌ miss → 加载 [b[8][0..7]]
+      c[0][0]  → ✅ 命中</code></pre>
+<p><strong>k=0..n-1 阶段小结</strong>：</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>数组</th>
+<th>每 8 次 k 迭代 miss 次数</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><strong>1 次</strong></td>
+<td>行内顺序访问，每 8 个连续元素跨一条 cache line</td>
+</tr>
+<tr>
+<td>B</td>
+<td><strong>B 列 = n 次</strong></td>
+<td>每步访问 b[k][0]，k 每递增 1 就跳到下一行，每行一条新 cache
+line，<strong>全部 miss</strong></td>
+</tr>
+<tr>
+<td>C</td>
+<td><strong>1 次</strong>（第一次）</td>
+<td>固定地址，之后放寄存器</td>
+</tr>
+</tbody>
+</table>
+<p><strong>这一阶段共 miss = 1 + n + 1 ≈ n+2 次。</strong></p>
+<h3 id="固定-i0切换到-j1k0..n-1">固定 i=0，切换到 j=1，k=0..n-1</h3>
+<pre><code>j=0→j=1 之间访问的数据量（k=0..n-1 完整一轮）：
+  A: n 个元素，n/8 条 cache line
+  B: n 行第 0 列，n 条 cache line
+  C: 1 个地址
+  ——————————
+  合计 ≈ (9/8)n 条 cache line 的新数据被加载
+
+如果缓存容量 &lt; (9/8)n（n 很大时必然成立），
+那么 k=0 时加载的 [b[0][0..7]] 已被驱逐。</code></pre>
+<pre><code>j=1:
+  k=0:  a[0][0]  → 地址 0x0  → ❓ 可能是命中或 miss（取决于缓存策略和 j=0 一轮后是否仍保留，保守按 miss）
+        b[0][1]  → 地址 0x800008 → ❌ miss！
+                 → 注意：b[0][1] 和 b[0][0] 在同一 cache line [b[0][0..7]] 里！
+                 → 但这条 cache line 在 j=0 的 k=0..n-1 循环期间已被后续大量数据挤出了缓存
+                 → 只能重新从内存加载
+        c[0][1]  → ❌ 冷 miss（第一次访问 c[0][1]）
+
+  k=1:  a[0][1]  → 可能 hit (如果 a 的 cache line 没被完全驱逐)
+        b[1][1]  → ❌ miss → b[1][1] 和 b[1][0] 同 cache line，同样已被驱逐
+        c[0][1]  → ✅ 命中
+
+  k=2...n-1: 类似，b 的每一行都 miss</code></pre>
+<h3 id="朴素版缓存行为总结">朴素版缓存行为总结</h3>
+<pre><code>每来一个 j:
+  b 的整列 n 个元素全部重新 miss
+  原因：从 j 列到 j+1 列，间隔了 (9/8)n 条 cache line 的访问
+       ＞ 缓存容量 → 第 j 列的数据已在期间被完全驱逐
+
+对 j=0..n-1 的每个 j 重复 n 次 → B 被读了 n² 次，每次都 miss</code></pre>
+<p><strong>总 cache miss 估算</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>每轮 j 的 miss</th>
+<th>总 miss（三层循环）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>n/8</td>
+<td>n² × n/8 = n³/8</td>
+</tr>
+<tr>
+<td>B</td>
+<td>n</td>
+<td>n² × n = n³</td>
+</tr>
+<tr>
+<td>C（第一次）</td>
+<td>1</td>
+<td>n²</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td></td>
+<td><strong>≈ 9n³/8</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="第二部分分块版逐次追踪">第二部分：分块版逐次追踪</h1>
+<p>取 n=1024，B=64（块大小 64×64 = 4096 个 double = 32KB，三块合计
+96KB）。</p>
+<h2 id="外层块迭代结构">外层块迭代结构</h2>
+<pre><code>i=0:          (块行 0)
+  j=0:        (块列 0)
+    k=0:      计算 C_block(0,0) += A_block(0,0) × B_block(0,0)
+    k=64:     计算 C_block(0,0) += A_block(0,64) × B_block(64,0)
+    k=128:    计算 C_block(0,0) += A_block(0,128) × B_block(128,0)
+    ...
+    k=n-64:   计算 C_block(0,0) += A_block(0,n-64) × B_block(n-64,0)
+              此时 C_block(0,0) 已累加完所有 k_block → 最终结果
+  j=64:       (块列 64)
+    k=0:      计算 C_block(0,64) += A_block(0,0) × B_block(0,64)
+    ...</code></pre>
+<p>下面追踪一个典型块迭代 <code>(i=0, j=0, k=0)</code> 的内部细节。</p>
+<h2 id="内三层循环的完整执行顺序">内三层循环的完整执行顺序</h2>
+<pre><code>  i1=0:
+    j1=0:   k1=0, 1, 2, ..., B-1
+    j1=1:   k1=0, 1, 2, ..., B-1
+    ...
+    j1=B-1: k1=0, 1, 2, ..., B-1
+  i1=1:
+    j1=0:   k1=0, 1, 2, ..., B-1
+    ...
+  ...
+  i1=B-1:
+    ...</code></pre>
+<h3
+id="阶段一i10首行b_block-从冷启动到完全填充">阶段一：i1=0（首行，B_block
+从冷启动到完全填充）</h3>
+<p><strong>子阶段 1.1：j1=0，k1=0..B-1（首列首次遍历——逐条 cold
+miss）</strong></p>
+<pre><code>i1=0, j1=0:
+
+  k1=0:  a[0][0]   → 地址 0x0         → ❌ cold miss → 加载 cache line L_A0 = [a[0][0..7]]
+         b[0][0]   → 地址 0x800000    → ❌ cold miss → 加载 cache line L_B00 = [b[0][0..7]]
+         c[0][0]   → 地址 0x1600000   → ❌ cold miss → 加载 cache line [c[0][0..7]]
+
+  k1=1:  a[0][1]   → 0x8             → ✅ 同 L_A0 → hit
+         b[1][0]   → 0x800400        → ❌ miss → 加载 L_B10 = [b[1][0..7]]
+         c[0][0]                      → ✅ 命中（已在缓存）
+
+  k1=2:  a[0][2]   → ✅ 同 L_A0 → hit
+         b[2][0]   → 0x800800        → ❌ miss → 加载 L_B20 = [b[2][0..7]]
+         c[0][0]                      → ✅ hit
+
+  k1=3:  a[0][3]   → ✅ hit
+         b[3][0]   → 0x800C00        → ❌ miss → 加载 L_B30 = [b[3][0..7]]
+         c[0][0]                      → ✅ hit
+
+  k1=4:  a[0][4]   → ✅ hit
+         b[4][0]   → 0x801000        → ❌ miss → 加载 L_B40 = [b[4][0..7]]
+         c[0][0]                      → ✅ hit
+
+  k1=5:  a[0][5]   → ✅ hit
+         b[5][0]   → 0x801400        → ❌ miss → 加载 L_B50 = [b[5][0..7]]
+         c[0][0]                      → ✅ hit
+
+  k1=6:  a[0][6]   → ✅ hit
+         b[6][0]   → 0x801800        → ❌ miss → 加载 L_B60 = [b[6][0..7]]
+         c[0][0]                      → ✅ hit
+
+  k1=7:  a[0][7]   → ✅ hit（L_A0 最后一个元素）
+         b[7][0]   → 0x801C00        → ❌ miss → 加载 L_B70 = [b[7][0..7]]
+         c[0][0]                      → ✅ hit
+
+  k1=8:  a[0][8]   → 0x40            → ❌ miss → 加载 L_A1 = [a[0][8..15]]
+         b[8][0]   → 0x802000        → ❌ miss → 加载 L_B80 = [b[8][0..7]]
+         c[0][0]                      → ✅ hit
+  ...（以此类推）
+  k1=B-1=63:
+         a[0][63]  → ❌ miss → 加载 L_A7 = [a[0][56..63]]
+         b[63][0]  → ❌ miss → 加载 L_B63_0 = [b[63][0..7]]
+         c[0][0]                      → ✅ hit</code></pre>
+<p><strong>j1=0 阶段统计</strong>：</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>数组</th>
+<th>访问次数</th>
+<th>miss 次数</th>
+<th>命中率</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>B = 64</td>
+<td>B/8 = <strong>8</strong></td>
+<td>87.5%</td>
+<td>每 8 个连续元素跨一条 cache line，首元素 miss，后 7 个 hit</td>
+</tr>
+<tr>
+<td>B</td>
+<td>B = 64</td>
+<td><strong>B = 64</strong></td>
+<td>0%</td>
+<td>b[k][0]，k 递增 = 逐行扫描第 0 列，每步新 cache line，全部 cold
+miss</td>
+</tr>
+<tr>
+<td>C</td>
+<td>B = 64</td>
+<td>1（仅首次）</td>
+<td>98.4%</td>
+<td>固定 c[0][0]，第一次 cold miss 后一直 hit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>子阶段 1.2：j1=1..7，k1=0..B-1（同列后 7 列——同一 cache line
+横向命中）</strong></p>
+<pre><code>i1=0, j1=1:
+
+  k1=0:  a[0][0]   → ✅ 同 L_A0 → hit（和 j1=0 完全相同的地址！）
+         b[0][1]   → 0x800008 → ✅ ✅ ✅ **HIT！！！**
+                    → b[0][1] 和 b[0][0] 在**同一条** cache line L_B00 里！
+                    → L_B00 在 j1=0, k1=0 时已加载，且在缓存中未被驱逐
+         c[0][1]   → 0x1600008 → ❌ 可能 cold miss（第一次访问 c[0][1]）
+
+  k1=1:  a[0][1]   → ✅ hit（同 L_A0）
+         b[1][1]   → 0x800408 → ✅ **HIT！！！**
+                    → b[1][1] 和 b[1][0] 在同一条 cache line L_B10 里
+                    → L_B10 在 j1=0, k1=1 时已加载
+         c[0][1]   → ✅ hit
+
+  k1=2:  a[0][2]   → ✅ hit
+         b[2][1]   → 0x800808 → ✅ **HIT！！！**（已加载的 L_B20）
+         c[0][1]   → ✅ hit
+  ...
+  k1=63: a[0][63]  → ✅ hit
+         b[63][1]  → 0x801C08 → ✅ **HIT！！！**（已加载的 L_B63_0）
+         c[0][1]   → ✅ hit</code></pre>
+<p><strong>同样，j1=2..7 也全部如此</strong>——对 B_block 的全部访问都是
+<strong>hit</strong>，因为第 0 列加载进来的 cache line 同时覆盖了第 1~7
+列。</p>
+<p><strong>j1=1..7 阶段统计（B 的访问堪称完美）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>数组</th>
+<th>访问次数×列数</th>
+<th>miss 次数</th>
+<th>命中率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>64×7</td>
+<td><strong>0</strong>（全同 L_A0..L_A7 范围内）</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>B</td>
+<td>64×7</td>
+<td><strong>0</strong>（全在同一条 cache line 内）</td>
+<td><strong>100%</strong></td>
+</tr>
+<tr>
+<td>C</td>
+<td>64×7</td>
+<td>7（每列第一个元素 cold）</td>
+<td>~98.4%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>子阶段 1.3：j1=8..15，k1=0..B-1（新的一组 cache
+line）</strong></p>
+<pre><code>i1=0, j1=8:
+
+  k1=0:  a[0][0]   → ✅ hit（还在缓存）
+         b[0][8]   → 0x800040 → ❌ miss → 加载 L_B08 = [b[0][8..15]]
+                    → b[0][0..7] 和 b[0][8..15] 不在同一条 cache line！
+                    → 但 b[0][8..15] 是新 cache line，从未加载过
+         c[0][8]   → ❌ cold miss
+
+  k1=1:  a[0][1]   → ✅ hit
+         b[1][8]   → 0x800440 → ❌ miss → 加载 L_B18 = [b[1][8..15]]
+         c[0][8]   → ✅ hit
+  ...（B 全部 cold miss）
+
+  k1=63: b[63][8]  → ❌ miss → 加载 L_B63_8 = [b[63][8..15]]</code></pre>
+<p><strong>j1=8 阶段：B 再次全部 miss（新的一组 8 列，新的 cache
+line）。</strong></p>
+<pre><code>i1=0, j1=9..15:
+  对 B 的所有访问全部 →
+  ✅ **HIT！！！**（j1=8 时已加载了覆盖 b[k][8..15] 的 cache line）</code></pre>
+<p><strong>以此类推</strong>：每 8 列为一组，组内第一列 B 全部 miss（B
+条 cache line），后 7 列 B 全部 hit。</p>
+<h3 id="i10-全部结束后b_block-的缓存状态">i1=0 全部结束后——B_block
+的缓存状态</h3>
+<pre><code>i1=0 共遍历了 j1=0..B-1 所有列。
+B_block 共 B²/8 = 4096/8 = 512 条 cache line，全部被加载过至少一次。
+
+此时缓存状态（假设缓存足够大，满足 3B² &lt; C）：
+  [已驻留]  A_block(0,0) :  B/8 = 8 条 cache line（行 0 的 64 个元素）
+  [已驻留]  B_block(0,0) :  B²/8 = 512 条 cache line（全部！）
+  [已驻留]  C_block(0,0) :  B/8 = 8 条 cache line（行 0 的 64 个元素，部分）
+
+没被驱逐，因为 3B² &lt; C，这三个块的总大小（3 × 8 × 512 = 3 × 32KB = 96KB）小于缓存容量。</code></pre>
+<h3
+id="阶段二i11第二行b_block-完全命中阶段">阶段二：i1=1（第二行，B_block
+完全命中阶段）</h3>
+<pre><code>i1=1:
+
+  j1=0, k1=0:  a[1][0]  → 0x2000 → ❌ 可能 miss（新行，新的 cache line L_A0&#39; = [a[1][0..7]]）
+               b[0][0]  → 0x800000 → ✅ ✅ ✅ **HIT！L_B00 还在缓存中！**
+               c[1][0]  → ❌ 可能 cold miss
+
+  j1=0, k1=1:  a[1][1]  → ✅ hit（同 L_A0&#39;）
+               b[1][0]  → 0x800400 → ✅ **HIT！L_B10 还在缓存中！**
+               c[1][0]  → ✅ hit
+  ...
+  j1=0, k1=63: a[1][63] → ❌ miss（L_A7&#39; = [a[1][56..63]]）
+               b[63][0] → 0x801C00 → ✅ **HIT！L_B63_0 还在缓存中！**
+               c[1][0]  → ✅ hit
+
+  j1=1..7, k1=0..63:
+               b[k][1..7] → 全部 ✅ **HIT！**（同一 cache line，L_Bk0 们都在）
+
+  j1=8, k1=0..63:
+               b[k][8]  → ✅ **HIT！**（L_Bk8 们也在，i1=0 时已加载）
+  ...</code></pre>
+<p><strong>i1=1..B-1：对 B_block 的全部 B×(B²) 次访问，0 次
+miss。</strong></p>
+<h3 id="分块版一次块迭代完整统计">分块版一次块迭代完整统计</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>内层循环阶段</th>
+<th>A miss</th>
+<th>A hit</th>
+<th>B miss</th>
+<th>B hit</th>
+<th>C miss</th>
+<th>C hit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>i1=0</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>j1=0（首列首遍历）</td>
+<td>B/8</td>
+<td>B−B/8</td>
+<td><strong>B</strong></td>
+<td>0</td>
+<td>1</td>
+<td>B−1</td>
+</tr>
+<tr>
+<td>j1=1~7（同组列）</td>
+<td>0</td>
+<td>7B</td>
+<td><strong>0</strong></td>
+<td><strong>7B</strong></td>
+<td>7</td>
+<td>7B−7</td>
+</tr>
+<tr>
+<td>j1=8（新组首列）</td>
+<td>0</td>
+<td>B</td>
+<td><strong>B</strong></td>
+<td>0</td>
+<td>1</td>
+<td>B−1</td>
+</tr>
+<tr>
+<td>j1=9~15（同组列）</td>
+<td>0</td>
+<td>7B</td>
+<td><strong>0</strong></td>
+<td><strong>7B</strong></td>
+<td>7</td>
+<td>7B−7</td>
+</tr>
+<tr>
+<td>…（每 8 列一组）</td>
+<td>0</td>
+<td>…</td>
+<td><strong>B/组</strong></td>
+<td><strong>7B/组</strong></td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td><strong>i1=1~B-1</strong>（后 B-1 行）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>j1=0（首列）</td>
+<td>(B-1)×B/8</td>
+<td>(B-1)(B−B/8)</td>
+<td><strong>0</strong></td>
+<td><strong>(B-1)B</strong></td>
+<td>B-1</td>
+<td>(B-1)(B-1)</td>
+</tr>
+<tr>
+<td>j1=1~7</td>
+<td>0</td>
+<td>(B-1)×7B</td>
+<td><strong>0</strong></td>
+<td><strong>(B-1)×7B</strong></td>
+<td>7(B-1)</td>
+<td>(B-1)(7B−7)</td>
+</tr>
+<tr>
+<td>j1=8~…</td>
+<td>…</td>
+<td>…</td>
+<td><strong>0</strong></td>
+<td><strong>(B-1)×(B²)</strong></td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td><strong>合计（一次块迭代）</strong></td>
+<td>B²/8</td>
+<td>B³−B²/8</td>
+<td><strong>B²/8</strong></td>
+<td><strong>B³−B²/8</strong></td>
+<td>B²/8</td>
+<td>B³−B²/8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="对-b-的-miss-分析最关键的优化">对 B 的 miss
+分析——最关键的优化</h3>
+<pre><code>对 B_block 的总访问次数 = B×B×B = B³
+总 miss 次数           = B²/8  （仅在 i1=0 时，每 8 列一组，每组首列触发 B 次 miss）
+总 hit 次数            = B³ − B²/8
+
+命中率 ≈ 1 − 1/(8B)
+  B=64 时 ≈ 1 − 0.002 = 99.8%</code></pre>
+<p>对比朴素版中 B 的命中率 ≈ <strong>0%</strong>（每步都 miss）。</p>
+<hr />
+<h1
+id="第三部分为什么结果不同关键分析">第三部分：为什么结果不同——关键分析</h1>
+<h2 id="朴素版同样的-cache-line-加载了但被挤走了">朴素版：同样的 cache
+line 加载了，但被挤走了</h2>
+<pre><code>朴素版 j=0 → j=1：
+
+同一 cache line L_B00 = [b[0][0..7]]
+
+第一次访问：j=0, k=0      → ❌ cold miss → 加载 L_B00
+想再次使用：j=1, k=0      → ❌ miss → L_B00 已被驱逐
+
+中间发生了什么？
+  j=0 的 k=0..n-1 循环中，新加载的数据：
+    A 行 0: n/8 条 cache line
+    B 第 0 列: n 条 cache line（包括 L_B00，L_B10，...，L_Bn-1_0）
+    C: 少量
+  合计 ≈ (9/8)n 条 cache line
+
+  L_B00 在此过程中经历了：
+  ┌─────────────────────────────────────────────────┐
+  │ k=0:  L_B00 加载                                    │
+  │ k=1:  L_B10 加载 → L_B00 仍&quot;新鲜&quot;                    │
+  │ k=2:  L_B20 加载 → L_B00 靠后                          │
+  │ ...                                                  │
+  │ k≈C: 新加载的 cache line 已填满缓存 → 某条旧数据被驱逐    │
+  │        （取决于替换策略，FIFO/LRU/随机）                 │
+  │ ...                                                  │
+  │ k=n-1: L_B00 已被驱逐                                  │
+  │ j=1, k=0: 需要 L_B00 → ❌ 不在 → 重新加载                │
+  └─────────────────────────────────────────────────┘
+  
+  关键：L_B00 在被再次需要之前，中间经过了 ≈ n 条 cache line 的加载
+        当 n &gt; 缓存能容纳的 cache line 数时，L_B00 必然被逐出
+
+  而且更糟糕的是，b[0][1] 明明和 b[0][0] 在**同一条 cache line** 里！
+  但因为 L_B00 已经被驱逐了，连这个横向复用也完全浪费了。</code></pre>
+<h2 id="分块版同一条-cache-line赶上了">分块版：同一条 cache
+line，赶上了</h2>
+<pre><code>分块版 i1=0 → i1=1：
+
+同一 cache line L_B00 = [b[0][0..7]]
+
+第一次访问：i1=0, j1=0, k1=0  → ❌ cold miss → 加载 L_B00
+再次使用：  i1=0, j1=1, k1=0  → ✅ hit
+                （中间隔了 B=64 次 k1 访问，仅加载了 A 的 8 条 cache line）
+再次使用：  i1=0, j1=2, k1=0  → ✅ hit
+再次使用：  i1=0, j1=7, k1=0  → ✅ hit
+                （B=64 行，每 8 列一组，同组内全 hit）
+再次使用：  i1=1, j1=0, k1=0  → ✅ hit
+                （中间隔了一整行 i1=0 的 B×B 次访问，但 B_block 总共只占
+                  B²/8 条 cache line，且 3B² &lt; C，不会被逐出）
+再次使用：  i1=1, j1=1, k1=0  → ✅ hit
+...
+           i1=B-1, j1=B-1, k1=B-1 → ✅ hit
+                （从第一次加载到最后一次使用，L_B00 一直驻留在缓存中）
+
+  L_B00 在此过程中：
+  ┌──────────────────────────────────────────────────┐
+  │ i1=0, j1=0, k1=0: L_B00 加载                          │
+  │ i1=0, j1=0, k1=1..63: A 和 B 的更多 cache line 加载      │
+  │ i1=0, j1=1..7, k1=0..63: 全部 hit，无新加载                 │
+  │ i1=0, j1=8, k1=0: B 的下一组 cache line 加载               │
+  │      （替换策略可能逐出最旧的缓存行，但 3B² &lt; C，             │
+  │       即使逐出也是逐出同块内的其他行，L_B00 仍可能被保留，      │
+  │       或被逐出后会在同一 i1=0 轮被重新加载一次）              │
+  │ ...                                                     │
+  │ i1=1..B-1: L_B00 全部 hit                                │
+  └──────────────────────────────────────────────────┘
+
+  关键：L_B00 第一次加载后到最后一次被使用，
+        中间只经过了约 B²/8 条 cache line 的加载
+        因为 3B² &lt; C，这些数据**撑不满缓存**
+        → L_B00 得以全程驻留</code></pre>
+<h2 id="本质差异对照">本质差异对照</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>朴素版</th>
+<th>分块版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>B 的 cache line 加载时机</strong></td>
+<td>j=0, k=0..n-1 逐行 cold miss</td>
+<td>i1=0, j1=0, k1=0..B-1 逐行 cold miss</td>
+</tr>
+<tr>
+<td><strong>加载的 cache line 数量</strong></td>
+<td>每条 B 的 cache line 加载 <strong>n 次</strong>（每列一次）</td>
+<td>每条 B 的 cache line 加载 <strong>1 次</strong>（i1=0 时加载，后 B-1
+行复用）</td>
+</tr>
+<tr>
+<td><strong>同 cache line 横向复用</strong></td>
+<td><strong>浪费</strong>：b[0][j] 和 b[0][j+1] 同 cache line，但整条
+line 已被驱逐</td>
+<td><strong>充分利用</strong>：b[0][j] 加载的 cache line 覆盖
+b[0][j+1..j+7]，后 7 列全命中</td>
+</tr>
+<tr>
+<td><strong>纵向复用</strong></td>
+<td><strong>无</strong>：b[k][j] 加载后下一行就跳到新 cache
+line，无横向无关的复用</td>
+<td><strong>充分</strong>：i1=0 加载全部 B_block，i1=1..B-1 对 B_block
+全部命中</td>
+</tr>
+<tr>
+<td><strong>从加载到末次使用的间隔</strong></td>
+<td>n 次访问（被驱逐）</td>
+<td>B² 次访问（不超缓存容量）</td>
+</tr>
+<tr>
+<td><strong>B 的总 miss</strong></td>
+<td><strong>n³</strong></td>
+<td><strong>n³/(8B)</strong>（降低了 8B 倍）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="第四部分完整数据流总结">第四部分：完整数据流总结</h1>
+<h2 id="一次块迭代-i-j-k-内的数据流">一次块迭代 (i, j, k)
+内的数据流</h2>
+<pre><code>数据从哪里来（内存 → 缓存）：
+  
+  A_block(i,k)：i1 第一次访问各行时，该行的 cache line 按需加载
+                 每行 ≤B/8 条 cache line
+                 行内后续访问 hit
+
+  B_block(k,j)：i1=0 时，每组 8 列的首列触发 cold miss，
+                加载该列的 B 条 cache line
+                同组后 7 列全部 hit
+                i1=1..B-1 时全部 hit
+
+  C_block(i,j)：随 i1,j1 首次访问按需加载
+                同一位置在 k1 循环中反复累加（寄存器）
+
+数据流经路径：
+  内存 → L_cache（加载整条 cache line）→ CPU 寄存器（计算）→ L_cache（写回）
+  一个 cache line 从内存加载后，在缓存中被访问多次（读/写）后才可能被逐出</code></pre>
+<h2 id="缓存不命中类型">缓存不命中类型</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>miss 类型</th>
+<th>出现场景</th>
+<th>分块版 vs 朴素版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cold miss</strong>（强制失效）</td>
+<td>第一次访问某条 cache line</td>
+<td><strong>相同</strong>：分块版只是将 cold miss 集中到 i1=0 阶段</td>
+</tr>
+<tr>
+<td><strong>Capacity miss</strong>（容量失效）</td>
+<td>工作集 &gt; 缓存容量，之前加载的 cache line 被后续数据挤走</td>
+<td><strong>分块版消除</strong>：3B² &lt; C 保证工作集不超容量</td>
+</tr>
+<tr>
+<td><strong>Conflict miss</strong>（冲突失效）</td>
+<td>因缓存关联度限制，两个地址映射到同一缓存组相互驱逐</td>
+<td>两者都可能发生，分块版可通过调整 B 缓解</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总-cache-miss-估算对比">总 cache miss 估算对比</h2>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>对 A 的总 miss</th>
+<th>对 B 的总 miss</th>
+<th>对 C 的总 miss</th>
+<th>总 miss</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>朴素</td>
+<td>n³/8</td>
+<td>n³</td>
+<td>n²</td>
+<td><strong>9n³/8</strong></td>
+</tr>
+<tr>
+<td>分块</td>
+<td>n³/(8B)</td>
+<td><strong>n³/(8B)</strong></td>
+<td>n²/B</td>
+<td><strong>n³/(4B)</strong>（首项 n³ 项）</td>
+</tr>
+<tr>
+<td>提升倍率</td>
+<td>8B 倍</td>
+<td><strong>8B 倍</strong></td>
+<td>B 倍</td>
+<td>≈ <strong>O(B) 倍</strong></td>
+</tr>
+</tbody>
+</table>
+<pre><code>以 B=64 时：分块版的 B miss 从 n³ 降到 n³/(512)，降低 512 倍！</code></pre>
+<hr />
+<h1 id="第五部分何时需要重新加载">第五部分：何时需要重新加载</h1>
+<p>分块版中 B_block 的 cache line
+<strong>只需要加载一次</strong>，前提是 <strong>3B² &lt;
+C</strong>。如果 B 选得太大，导致 3B² &gt; C：</p>
+<pre><code>B×B 块过大 → 3B² &gt; C → A/B/C 三个块无法同时驻留
+→ 在 i1=0 加载的 B_block 会在 i1 还没遍历完时就被挤出去一部分
+→ i1=1 时发现部分 cache line 已被驱逐 → 重新 miss
+→ 退化为类似朴素版的性能</code></pre>
+<p>所以 B 的选择必须满足 <strong>3B² &lt;
+C</strong>，这是分块有效的硬性条件。</p>
+</body>
+</html>
